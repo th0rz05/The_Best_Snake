@@ -14,9 +14,7 @@ Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up2020
 - **Jumping** - The game character will jump when the space bar key is pressed.
 - **Getting hidden coins** - When the game character hits a platform from below (by jumping beneath it) it will smash that segment of the platform and will get any coins that may exist hidden there.
 
-### PLANNED FEATURES
-
-> This section is similar to the previous one but should list the features that are not yet implemented. Instead of screenshots you should include GUI mock-ups for the planned features.
+### FUNCIONALIDADES A IMPLEMENTAR
 
 - **Movimentar sozinha** - A cada unidade de tempo a cobra anda na direção em que está a apontar garatindo que está em constante movimento.
 - **Movimentar** - Cada cobra irá se mover consoante a tecla pressionada [SETAS OU AWSD].
@@ -32,6 +30,7 @@ Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up2020
 - **Pontuações** - Na opção pontuações irá ser mostrado para cada modo de jogo as melhores pontuações de jogos anteriores mostrando no modo original o tamanha máximo alcançado, no modo multijogador o vencedor e a duração da partida e no modo desafio o tempo necessário para concluir cada nível.
 - **Salvar jogo** - Permite guardar quais os níveis já concluídos pelo utilizador e todas as pontuações.
 - **Carregar jogo** - Permite carregar a partir de um ficheiro o nível atual no modo desafio e todas as pontuações. Se for iniciado um jogo sem carregar um anterior , o modo desafio irá começar pelo nível fácil e as pontuações estarão vazias.
+![](Imagens/hardcore.png)
 
 
 ### DESIGN
