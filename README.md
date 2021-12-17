@@ -1,6 +1,5 @@
 ## LDTS_<05><01> - <THE BEST SNAKE>
 
-> Include here one or two paragraphs explaining the main idea of the project, followed by a sentence identifying who the authors are.
 Para o nosso projeto escolhemos como base o jogo "Snake". O projeto terá vários modos de jogo , nomeadamente , o modo original , um modo multijogador e um modo desafio. Em todos as cobras têm que apanhar frutas para crescer e cumprir o objetivo de cada minijogo.
 Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up202008061, Tiago Barbosa up202004926 para LDTS 2021/22.
 
@@ -33,6 +32,8 @@ Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up2020
 ![DESAFIO](Imagens/desafio.png)
 - **Regras** - Se no menu for selecionada a opção das regras irá ser mostrado todas as regras gerais e específicas de cada modo de jogo.
 - **Pontuações** - Na opção pontuações irá ser mostrado para cada modo de jogo as melhores pontuações de jogos anteriores mostrando no modo original o tamanha máximo alcançado, no modo multijogador o vencedor e a duração da partida e no modo desafio o tempo necessário para concluir cada nível.
+![PONTUAÇOES](Imagens/pontuacoes1.png)
+![PONTUAÇOES](Imagens/pontuacoes2.png)
 - **Salvar jogo** - Permite guardar quais os níveis já concluídos pelo utilizador e todas as pontuações.
 - **Carregar jogo** - Permite carregar a partir de um ficheiro o nível atual no modo desafio e todas as pontuações. Se for iniciado um jogo sem carregar um anterior , o modo desafio irá começar pelo nível fácil e as pontuações estarão vazias.
 
