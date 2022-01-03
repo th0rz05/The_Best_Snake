@@ -1,3 +1,5 @@
+import com.googlecode.lanterna.graphics.TextGraphics;
+
 public interface Element {
-    public void draw();
+    public void draw(TextGraphics screen);
 }
