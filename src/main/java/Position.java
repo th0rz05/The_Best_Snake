@@ -15,4 +15,11 @@ public class Position {
         return y;
     }
 
+    public void setX(int x) {
+        this.x = 0;
+    }
+
+    public void setY(int y) {
+        this.y = 0;
+    }
 }

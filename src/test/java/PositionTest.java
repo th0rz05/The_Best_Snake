@@ -13,4 +13,20 @@ public class PositionTest {
         Position p = new Position(1,2);
         Assertions.assertEquals(2,p.getY());
     }
+
+    @Test
+    public void setX(){
+        Position p = new Position(1,2);
+        p.setX(5);
+        Assertions.assertEquals(5,p.getX());
+    }
+
+    @Test
+    public void setY(){
+        Position p = new Position(1,2);
+        p.setY(4);
+        Assertions.assertEquals(4,p.getY());
+    }
+
+
 }
