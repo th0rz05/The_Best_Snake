@@ -16,6 +16,7 @@ import java.io.IOException;
 public class SnakeHeadTest {
     TerminalScreen screen;
     SnakeHead snakeHead;
+    TextGraphics graphics;
     @BeforeEach
     public void setup() throws IOException {
         TerminalSize terminalSize = new TerminalSize(100, 100);
@@ -23,18 +24,19 @@ public class SnakeHeadTest {
         Terminal terminal = terminalFactory.createTerminal();
         screen = new TerminalScreen(terminal);
         snakeHead = new SnakeHead(new Position(10,10));
+        graphics = screen.newTextGraphics();
     }
 
     @Test
     public void test_draw(){
-        snakeHead.draw(screen.newTextGraphics());
+        snakeHead.draw(graphics);
         Assertions.assertEquals(snakeHead.getSymbol(),screen.getBackCharacter(10,10).getCharacterString());
     }
 
     @Test
     public void test_draw2(){
 
-        snakeHead.draw(screen.newTextGraphics());
+        snakeHead.draw(graphics);
         Assertions.assertNotEquals(snakeHead.getSymbol(),screen.getBackCharacter(20,20).getCharacterString());
     }
 }
