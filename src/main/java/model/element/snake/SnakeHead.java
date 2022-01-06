@@ -1,15 +1,19 @@
+package model.element.snake;
+
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import model.Position;
+import model.element.Element;
 
-public class SnakeBody implements Element{
+public class SnakeHead implements Element {
 
     private Position position;
-    private String symbol = "■";
+    private String symbol = "●";
     private String color = "#333366";
 
-    public SnakeBody(Position position) {
+    public SnakeHead(Position position) {
         this.position = position;
     }
 
