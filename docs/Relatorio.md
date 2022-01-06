@@ -1,4 +1,4 @@
-# LDTS_<05> <01> - <THE BEST SNAKE>
+# LDTS <05 01> - THE BEST SNAKE
 
 Para o nosso projeto escolhemos como base o jogo "Snake". O projeto terá vários modos de jogo, nomeadamente, o modo original , um modo multijogador e um modo desafio. Em todos as cobras têm que apanhar frutas para crescer e cumprir o objetivo de cada minijogo.
 Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up202008061, Tiago Barbosa up202004926 para LDTS 2021/22.
