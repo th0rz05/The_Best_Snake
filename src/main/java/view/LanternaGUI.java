@@ -18,7 +18,7 @@ public class LanternaGUI {
         this.height = h;
         this.width = w;
         try{
-            TerminalSize terminalSize = new TerminalSize(height, width);
+            TerminalSize terminalSize = new TerminalSize(width, height);
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             Terminal terminal = terminalFactory.createTerminal();
             this.screen = new TerminalScreen(terminal);

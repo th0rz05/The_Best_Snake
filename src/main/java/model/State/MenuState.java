@@ -19,15 +19,15 @@ public class MenuState extends State {
         try{
             screen.getScreen().startScreen();
             screen.getScreen().clear();
-            drawText("THE BEST SNAKE","#FFFFFF",new TerminalPosition(20,1));
-            drawText("ORIGINAL","#FFFFFF",new TerminalPosition(23,6));
+            drawText("THE BEST SNAKE","#FFFFFF",new TerminalPosition(23,1));
+            drawText("ORIGINAL","#FFFFFF",new TerminalPosition(26,6));
             screen.getScreen().refresh();
             System.out.println("On Menu!");
             x++;
-            if(x==15){
+            if(x==10){
                 screen.getScreen().stopScreen();
                 screen.getScreen().close();
-                changeState(game,new OriginalState(new LanternaGUI(60,30)));
+                changeState(game,new OriginalState(new LanternaGUI(30,60)));
             }
 
         }catch (IOException e){

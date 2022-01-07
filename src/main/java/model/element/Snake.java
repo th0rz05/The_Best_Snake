@@ -67,6 +67,10 @@ public class Snake implements Drawable{
         this.PACE_TO_MOVEMENT = PACE_TO_MOVEMENT;
     }
 
+    public Element getSnakeHead(){
+        return snake.get(0);
+    }
+
     @Override
     public void draw(TextGraphics screen) {
         for(Element element:snake){
@@ -75,7 +79,7 @@ public class Snake implements Drawable{
     }
 
     public void move(){
-        Position newposition = new Position(snake.get(0).getPosition().getX()+directionX,snake.get(0).getPosition().getY()+directionY);
+        Position newposition = new Position(getSnakeHead().getPosition().getX()+directionX,getSnakeHead().getPosition().getY()+directionY);
         for(Element element:snake){
             Position oldposition = element.getPosition();
             element.setPosition(newposition);
