@@ -1,19 +1,16 @@
-package model.element;
+package model.element.fruit;
 
 
 import model.Position;
+import model.element.Element;
 
 
-public class Fruit extends Element {
+abstract class Fruit extends Element {
     private float velocity = 1;
     private int size = 1;
 
-    public Fruit(Position position, float velocity, int size, String color, String symbol){
+    public Fruit(Position position){
         super(position);
-        this.velocity = velocity;
-        this.size = size;
-        setColor(color);
-        setSymbol(symbol);
     }
 
     public float getVelocity() {
