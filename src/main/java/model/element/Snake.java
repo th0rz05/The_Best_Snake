@@ -21,6 +21,9 @@ public class Snake implements Drawable{
     public Snake(Position position) {
         snake.add(new SnakeHead(new Position(position.getX(), position.getY())));
         snake.add(new SnakeBody(new Position(position.getX()-1, position.getY())));
+        snake.add(new SnakeBody(new Position(position.getX()-2, position.getY())));
+        snake.add(new SnakeBody(new Position(position.getX()-3, position.getY())));
+        snake.add(new SnakeBody(new Position(position.getX()-4, position.getY())));
         size = 2;
         pace = 0;
         directionX = 1;
@@ -95,7 +98,8 @@ public class Snake implements Drawable{
     }
 
     public void changeDirection(int x, int y){
-
+        setDirectionX(x);
+        setDirectionY(y);
     }
 
     public void move(){

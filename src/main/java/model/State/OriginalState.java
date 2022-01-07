@@ -18,7 +18,7 @@ public class OriginalState extends State {
     public OriginalState(LanternaGUI screen) {
         super(screen);
         snake_tobias = new Snake(new Position(30,15));
-        arena = new Arena(snake_tobias,screen.getHeight(),screen.getWidth());
+        arena = new Arena(snake_tobias,screen);
     }
 
 
@@ -30,7 +30,6 @@ public class OriginalState extends State {
             arena.draw(screen.getGraphics());
             arena.execute();
             screen.getScreen().refresh();
-            System.out.println("On Original!");
         }catch (IOException e){
             e.printStackTrace();
         }

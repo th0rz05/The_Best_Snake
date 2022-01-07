@@ -24,12 +24,11 @@ public class MenuState extends State {
             screen.getScreen().startScreen();
             screen.getScreen().clear();
             drawText("THE BEST SNAKE","#FFFFFF",new TerminalPosition(23,1));
-            drawText("ORIGINAL","#FFFFFF",new TerminalPosition(26,6));
+            drawText("ORIGINAL(PRESS 1)","#FFFFFF",new TerminalPosition(26,6));
             screen.getScreen().refresh();
-            System.out.println("On Menu!");
             if(observer.readinput()){
                 KeyStroke key = observer.getKeys().get(0);
-                if(key.getKeyType()== KeyType.Character && key.getCharacter()=='o'){
+                if(key.getKeyType()== KeyType.Character && key.equals(new KeyStroke('1',false,false,false))){
                     screen.getScreen().stopScreen();
                     screen.getScreen().close();
                     changeState(game,new OriginalState(new LanternaGUI(30,60)));

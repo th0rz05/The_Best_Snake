@@ -25,6 +25,7 @@ public class KeyboardObserver {
 
     public boolean readinput(){
         try{
+            keys.clear();
             KeyStroke key = screen.getScreen().pollInput();
             if(key!=null){
                 keys.add(key);
