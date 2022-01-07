@@ -24,7 +24,7 @@ public class MenuState extends State {
             screen.getScreen().startScreen();
             screen.getScreen().clear();
             drawText("THE BEST SNAKE","#FFFFFF",new TerminalPosition(23,1));
-            drawText("ORIGINAL(PRESS 1)","#FFFFFF",new TerminalPosition(26,6));
+            drawText("ORIGINAL(PRESS 1)","#FFFFFF",new TerminalPosition(22,6));
             screen.getScreen().refresh();
             if(observer.readinput()){
                 KeyStroke key = observer.getKeys().get(0);
