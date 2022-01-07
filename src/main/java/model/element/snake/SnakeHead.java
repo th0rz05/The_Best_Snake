@@ -7,7 +7,7 @@ public class SnakeHead extends Element {
     public SnakeHead(Position position) {
         super(position);
         setSymbol("●");
-        setColor("#333366");
+        setColor("#0086ff");
     }
 
 }
