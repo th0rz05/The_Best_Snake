@@ -1,5 +1,6 @@
 package model.State;
 
+import view.Game;
 import view.LanternaGUI;
 
 public class ChallengeState extends State{
@@ -8,7 +9,7 @@ public class ChallengeState extends State{
     }
 
     @Override
-    public void step() {
+    public void step(Game game) {
         System.out.println("On Challenge!");
     }
 }

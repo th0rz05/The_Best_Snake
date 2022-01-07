@@ -1,5 +1,6 @@
 package view;
 
+import model.State.MenuState;
 import model.State.State;
 
 public class Game {
@@ -11,13 +12,17 @@ public class Game {
         this.fps = fps;
     }
 
+    public void setGameState(State state){
+        this.gamestate = state;
+    }
+
     public void start(){
         int frametime = 1000/fps;
 
         while(gamestate!= null){
             long startTime = System.currentTimeMillis();
 
-            gamestate.step();
+            gamestate.step(this);
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frametime - elapsedTime;
