@@ -31,5 +31,4 @@ public class PositionTest {
         Assertions.assertEquals(4,p.getY());
     }
 
-
 }

@@ -19,9 +19,8 @@ public class Snake implements Drawable{
 
 
     public Snake(Position position) {
-        snake.add(new SnakeHead(position));
-        position.setX(position.getX()-1);
-        snake.add(new SnakeBody(position));
+        snake.add(new SnakeHead(new Position(position.getX(), position.getY())));
+        snake.add(new SnakeBody(new Position(position.getX()-1, position.getY())));
         size = 2;
         pace = 0;
         directionX = 1;
@@ -76,6 +75,11 @@ public class Snake implements Drawable{
     }
 
     public void move(){
-
+        Position newposition = new Position(snake.get(0).getPosition().getX()+directionX,snake.get(0).getPosition().getY()+directionY);
+        for(Element element:snake){
+            Position oldposition = element.getPosition();
+            element.setPosition(newposition);
+            newposition = oldposition;
+        }
     }
 }
