@@ -1,5 +1,6 @@
 package view;
 
+import model.State.MenuState;
 import model.State.State;
 
 public class Game {
