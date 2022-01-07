@@ -7,7 +7,7 @@ public class Kiwi extends Fruit {
         super(position);
         setSymbol("k");
         setColor("green");
-        setVelocity(1);
-        setSize(4);
+        setVelocity(2);
+        setSize(-5);
     }
 }

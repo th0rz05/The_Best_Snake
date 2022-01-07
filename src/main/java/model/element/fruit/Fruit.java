@@ -6,18 +6,18 @@ import model.element.Element;
 
 
 abstract class Fruit extends Element {
-    private float velocity = 1;
+    private double velocity = 1;
     private int size = 1;
 
     public Fruit(Position position){
         super(position);
     }
 
-    public float getVelocity() {
+    public double getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(float velocity) {
+    public void setVelocity(double velocity) {
         this.velocity = velocity;
     }
 

@@ -1,8 +1,14 @@
 package model.State;
 
+import view.LanternaGUI;
+
 public class RulesState extends State{
+    public RulesState(LanternaGUI screen) {
+        super(screen);
+    }
+
     @Override
-    void step() {
+    public void step() {
         System.out.println("On Rules!");
     }
 }

@@ -7,7 +7,7 @@ public class Apple extends Fruit {
         super(position);
          setSymbol("m");
          setColor("red");
-         setVelocity(1);
+         setVelocity(0.5);
          setSize(3);
     }
 }

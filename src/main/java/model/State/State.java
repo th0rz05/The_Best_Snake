@@ -5,5 +5,9 @@ import view.LanternaGUI;
 
 public abstract class State {
     LanternaGUI screen;
-    abstract void step();
+    abstract public void step();
+
+    public State(LanternaGUI screen) {
+        this.screen = screen;
+    }
 }
