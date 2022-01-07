@@ -29,6 +29,7 @@ public class OriginalState extends State {
             screen.getScreen().clear();
             arena.draw(screen.getGraphics());
             arena.execute();
+            drawText("Press Q to exit","#FFFFFF",new TerminalPosition(45,29));
             screen.getScreen().refresh();
         }catch (IOException e){
             e.printStackTrace();

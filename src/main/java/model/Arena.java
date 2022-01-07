@@ -2,21 +2,24 @@ package model;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
 import controller.KeyboardObserver;
 import model.element.Drawable;
 import model.element.Element;
 import model.element.Snake;
 import view.LanternaGUI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Arena implements Drawable {
 
-    KeyboardObserver observer;
+    KeyboardObserver observer; //este observer devia ir para o original
     int height;
     int width;
+    LanternaGUI screen;
 
     private List<Drawable> elements = new ArrayList<>();
     private List<Snake> snakes = new ArrayList<>();
@@ -28,6 +31,7 @@ public class Arena implements Drawable {
         elements.add(snake);
         snakes.add(snake);
         observer = new KeyboardObserver(screen);
+        this.screen = screen;
     }
 
     @Override
@@ -47,6 +51,16 @@ public class Arena implements Drawable {
                     case ArrowLeft  -> snake.changeDirection(-1,0);
                     case ArrowRight -> snake.changeDirection(1,0);
                 }
+                if(key.getKeyType()== KeyType.Character && key.getCharacter()=='q'){
+                    try{
+                        screen.getScreen().stopScreen();
+                        screen.getScreen().close();
+                        System.exit(0);
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+
             }
             snake.move();
             if(snake.getSnakeHead().getPosition().getX()>=width){

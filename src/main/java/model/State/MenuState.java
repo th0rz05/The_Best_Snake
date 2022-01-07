@@ -25,6 +25,7 @@ public class MenuState extends State {
             screen.getScreen().clear();
             drawText("THE BEST SNAKE","#FFFFFF",new TerminalPosition(23,1));
             drawText("ORIGINAL(PRESS 1)","#FFFFFF",new TerminalPosition(22,6));
+            drawText("Press Q to exit","#FFFFFF",new TerminalPosition(45,29));
             screen.getScreen().refresh();
             if(observer.readinput()){
                 KeyStroke key = observer.getKeys().get(0);
@@ -32,6 +33,11 @@ public class MenuState extends State {
                     screen.getScreen().stopScreen();
                     screen.getScreen().close();
                     changeState(game,new OriginalState(new LanternaGUI(30,60)));
+                }
+                if(key.getKeyType()== KeyType.Character && key.getCharacter()=='q'){
+                    screen.getScreen().stopScreen();
+                    screen.getScreen().close();
+                    System.exit(0);
                 }
             }
         }catch (IOException e){
