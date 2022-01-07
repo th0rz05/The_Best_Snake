@@ -17,4 +17,18 @@ public class SnakeTest {
         Assertions.assertEquals(new Position(11,10),s1.getSnakeHead().getPosition());
         Assertions.assertEquals(new Position(10,10),s1.getSnake().get(1).getPosition());
     }
+
+    @Test
+    public void changeDirection1(){
+        s1.changeDirection(0,1);
+        Assertions.assertEquals(0,s1.getDirectionX());
+        Assertions.assertEquals(1,s1.getDirectionY());
+    }
+
+    @Test
+    public void changeDirection2(){
+        s1.changeDirection(-1,0);
+        Assertions.assertEquals(-1,s1.getDirectionX());
+        Assertions.assertEquals(0,s1.getDirectionY());
+    }
 }

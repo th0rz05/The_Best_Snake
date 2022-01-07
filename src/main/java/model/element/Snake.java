@@ -67,6 +67,22 @@ public class Snake implements Drawable{
         this.PACE_TO_MOVEMENT = PACE_TO_MOVEMENT;
     }
 
+    public int getDirectionX() {
+        return directionX;
+    }
+
+    public void setDirectionX(int directionX) {
+        this.directionX = directionX;
+    }
+
+    public int getDirectionY() {
+        return directionY;
+    }
+
+    public void setDirectionY(int directionY) {
+        this.directionY = directionY;
+    }
+
     public Element getSnakeHead(){
         return snake.get(0);
     }
@@ -76,6 +92,10 @@ public class Snake implements Drawable{
         for(Element element:snake){
             element.draw(screen);
         }
+    }
+
+    public void changeDirection(int x, int y){
+
     }
 
     public void move(){
