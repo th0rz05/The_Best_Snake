@@ -6,14 +6,14 @@ Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up2020
 
 ## FUNCIONALIDADES IMPLEMENTADAS
 
+- **Movimentar sozinha** - A cada unidade de tempo a cobra anda na direção em que está a apontar garatindo que está em constante movimento.
+- **Movimentar** - Cada cobra irá se mover consoante a tecla pressionada [SETAS OU AWSD].
+- **Sair das bordas** - No modo original e multijogador quando a cobra sai pela borda ela regressa do lado oposto.
+  ![BORDAS](../Imagens/bordas.png)
 
 ## FUNCIONALIDADES A IMPLEMENTAR
 
-- **Movimentar sozinha** - A cada unidade de tempo a cobra anda na direção em que está a apontar garatindo que está em constante movimento.
-- **Movimentar** - Cada cobra irá se mover consoante a tecla pressionada [SETAS OU AWSD].
 - **Comer frutas** - Quando a cobra comer uma fruta espalhada pelo ecrã o seu tamanho irá alterar consoante as propriedades dessa fruta.
-- **Sair das bordas** - No modo original e multijogador quando a cobra sai pela borda ela regressa do lado oposto.
-![BORDAS](../Imagens/bordas.png)
 - **Propriedades das frutas** - Cada fruta terá uma propriedade que modificará o comportamento da cobra que terão vantagens e desvantagens dependendo do modo de jogo. Cada fruta poderá aumentar e diminuir o tamanho em diferentes fatores [-1,+1,*2,/2,...] e também poderá mudar a velocidade da cobra.
 - **Fruta mistério** - Esta fruta ao contrário das restantes irá ter propriedades aleatórias cada vez que é consumida.
 - **Menu** - Menu com opções para jogar cada modo de jogo, ver as regras de cada jogo e ver as pontuações registadas para cada modo de jogo.
@@ -121,3 +121,22 @@ Isto facilita no modo multijogador pois assim o observer pode analisar o "buffer
 O uso deste pattern traz vantagens como:
 - Evita processamento de inputs nulos ou sem valor para o programa
 - Permite controlar o movimento de duas cobras no mesmo ciclo ao delegar a tarefa de analisar o buffer do teclado a outra entidade
+
+### Os vários estados do nosso jogo
+
+#### Contexto do problema
+
+O nosso jogo tem vários estados em que se pode encontrar num certo momento comecando pelo menu.
+
+#### Pattern
+
+Decidimos aplicar o **_State Pattern_** para o nosso programa visto que permite controlar os vários estados possíveis da mesma forma.
+#### Implementação
+
+Nesta implementação o programa tem a si associado um estado que tem um tarefa principal(step()) que está sempre a ser executada no loop do jogo.
+Depois cada estado, dependendo do que acontecer, pode mudar o estado do jogo permitindo assim controlar sempre em que estado está o programa.
+#### Consequências
+
+O uso deste pattern traz vantagens como:
+- Torna desnecessário o uso de várias flags para controlar o estado do programa
+- Facilita a integração de um novo estado no programa não sendo necessário mudanças no código
