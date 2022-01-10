@@ -3,6 +3,7 @@ package model.element;
 import model.Position;
 import model.element.fruit.Apple;
 import model.element.fruit.Kiwi;
+import model.element.fruit.Orange;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,17 +39,20 @@ public class SnakeTest {
     public void eatApple(){
         s1.eatFruit(new Apple(new Position(0,0)));
         Assertions.assertEquals(5,s1.getSize());
+        Assertions.assertEquals(1,s1.getVelocity());
     }
 
     @Test
     public void eatKiwi(){
         s1.eatFruit(new Kiwi(new Position(0,0)));
         Assertions.assertEquals(2,s1.getSize());
+        Assertions.assertEquals(4,s1.getVelocity());
     }
 
     @Test
     public void eatOrange(){
-        s1.eatFruit(new Apple(new Position(0,0)));
+        s1.eatFruit(new Orange(new Position(0,0)));
         Assertions.assertEquals(3,s1.getSize());
+        Assertions.assertEquals(2,s1.getVelocity());
     }
 }

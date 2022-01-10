@@ -16,7 +16,7 @@ public class Snake implements Drawable{
     private int pace;
     private int directionX;
     private int directionY;
-    private int PACE_TO_MOVEMENT = 8;
+    private int PACE_TO_MOVEMENT = 4;
 
 
     public Snake(Position position) {
@@ -26,6 +26,7 @@ public class Snake implements Drawable{
         snake.add(new SnakeBody(new Position(position.getX()-directionX, position.getY()-directionY)));
         size = 2;
         pace = 0;
+        velocity = 2;
     }
 
     public List<Element> getSnake() {
@@ -110,7 +111,31 @@ public class Snake implements Drawable{
     }
 
     public void eatFruit(Fruit fruit){
-
+        if(size + fruit.getSize()<2){
+            while(size>2){
+                snake.remove(size-1);
+                size--;
+            }
+        }
+        else if(fruit.getSize()<0){
+            for(int i = 0;i > fruit.getSize();i--){
+                snake.remove(size-1);
+                size--;
+            }
+        }
+        else if(fruit.getSize()>0){
+            for(int i = 0;i < fruit.getSize();i++){
+                snake.add(new SnakeBody(new Position(snake.get(size-1).getPosition().getX()-directionX, snake.get(size-1).getPosition().getY()-directionY)));
+                size++;
+            }
+        }
+        velocity *= fruit.getVelocity();
+        if(velocity>PACE_TO_MOVEMENT){
+            velocity=PACE_TO_MOVEMENT;
+        }
+        if(velocity<1){
+            velocity = 1;
+        }
     }
 
 }
