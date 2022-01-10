@@ -37,7 +37,7 @@ public class MenuState extends State {
                 if(key.getKeyType()== KeyType.Character && key.getCharacter()=='q'){
                     screen.getScreen().stopScreen();
                     screen.getScreen().close();
-                    System.exit(0);
+                    changeState(game,null);
                 }
             }
         }catch (IOException e){

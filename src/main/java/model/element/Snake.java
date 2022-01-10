@@ -2,6 +2,7 @@ package model.element;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import model.Position;
+import model.element.fruit.Fruit;
 import model.element.snake.SnakeBody;
 import model.element.snake.SnakeHead;
 
@@ -110,4 +111,5 @@ public class Snake implements Drawable{
             newposition = oldposition;
         }
     }
+
 }

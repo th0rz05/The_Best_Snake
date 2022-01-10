@@ -5,7 +5,7 @@ import model.Position;
 import model.element.Element;
 
 
-abstract class Fruit extends Element {
+public abstract class Fruit extends Element {
     private double velocity = 1;
     private int size = 1;
 
