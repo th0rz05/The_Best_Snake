@@ -2,6 +2,7 @@ package model.element;
 
 import model.Position;
 import model.element.fruit.Apple;
+import model.element.fruit.Banana;
 import model.element.fruit.Kiwi;
 import model.element.fruit.Orange;
 import org.junit.jupiter.api.Assertions;
@@ -54,5 +55,12 @@ public class SnakeTest {
         s1.eatFruit(new Orange(new Position(0,0)));
         Assertions.assertEquals(3,s1.getSize());
         Assertions.assertEquals(2,s1.getVelocity());
+    }
+
+    @Test
+    public void eatBanana(){
+        s1.eatFruit(new Banana(new Position(0,0)));
+        Assertions.assertEquals(7,s1.getSize());
+        Assertions.assertEquals(4,s1.getVelocity());
     }
 }
