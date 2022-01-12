@@ -5,8 +5,13 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class LanternaGUI {
     TerminalScreen screen;
@@ -18,13 +23,18 @@ public class LanternaGUI {
         this.height = h;
         this.width = w;
         try{
-            TerminalSize terminalSize = new TerminalSize(width, height);
+            TerminalSize terminalSize = new TerminalSize(width, height +1 );
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+            terminalFactory.setForceAWTOverSwing(true);
+            terminalFactory.setTerminalEmulatorFontConfiguration(loadFont());
             Terminal terminal = terminalFactory.createTerminal();
             this.screen = new TerminalScreen(terminal);
             this.graphics = screen.newTextGraphics();
+            screen.setCursorPosition(null);
+            screen.startScreen();
+            screen.doResizeIfNecessary();
         }
-        catch (IOException e){
+        catch (IOException | FontFormatException | URISyntaxException e){
             e.printStackTrace();
         }
 
@@ -60,5 +70,17 @@ public class LanternaGUI {
 
     public void setWidth(int width) {
         this.width = width;
+    }
+
+    public AWTTerminalFontConfiguration loadFont() throws FontFormatException, IOException, URISyntaxException {
+        File fontFile = new File("src/main/resources/fonts/square.ttf");
+        Font font = Font.createFont(Font.PLAIN,fontFile);
+
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(font);
+
+        Font loadedFont = font.deriveFont(Font.PLAIN, 15);
+        return AWTTerminalFontConfiguration.newInstance(loadedFont);
+
     }
 }

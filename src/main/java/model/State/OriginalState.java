@@ -36,14 +36,13 @@ public class OriginalState extends State {
     @Override
     public void step(Game game){
         try{
-            screen.getScreen().startScreen();
             screen.getScreen().clear();
             arena.draw(screen.getGraphics());
-            arena.execute();
             checkInput(game);
-            drawText("Press Q to exit","#FFFFFF",new TerminalPosition(44,29));
-            drawText("Score: " + (snake.getSize()-2),"#FFFFFF",new TerminalPosition(1,29));
-            drawText("|  Timer: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "s","#FFFFFF",new TerminalPosition(12,29));
+            arena.execute();
+            drawText("Press Q to exit","#FFFFFF",new TerminalPosition(44,30));
+            drawText("Score: " + (snake.getSize()-2),"#FFFFFF",new TerminalPosition(1,30));
+            drawText("|  Timer: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "s","#FFFFFF",new TerminalPosition(12,30));
             screen.getScreen().refresh();
         }catch (IOException e){
             e.printStackTrace();
@@ -87,7 +86,7 @@ public class OriginalState extends State {
                     try {
                         screen.getScreen().stopScreen();
                         screen.getScreen().close();
-                        changeState(game, new MenuState(new LanternaGUI(30, 60)));
+                        changeState(game, new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }break;
@@ -104,9 +103,9 @@ public class OriginalState extends State {
         long initialTime = System.currentTimeMillis();
         while(true){
             drawText("PAUSE","#FF0000",new TerminalPosition(28, 15));
-            drawText("Press any key to continue","#FFFFFF",new TerminalPosition(34,29));
-            drawText("Score: " + (snake.getSize()-2),"#FFFFFF",new TerminalPosition(1,29));
-            drawText("|  Timer: " + (floor(((initialTime-startTime-pauseTime)/1000f)*10)/10) + "s","#FFFFFF",new TerminalPosition(12,29));
+            drawText("Press any key to continue","#FFFFFF",new TerminalPosition(34,30));
+            drawText("Score: " + (snake.getSize()-2),"#FFFFFF",new TerminalPosition(1,30));
+            drawText("|  Timer: " + (floor(((initialTime-startTime-pauseTime)/1000f)*10)/10) + "s","#FFFFFF",new TerminalPosition(12,30));
             screen.getScreen().refresh();
             if(observer.readinput()){
                 KeyStroke key = observer.getKeys().get(0);
