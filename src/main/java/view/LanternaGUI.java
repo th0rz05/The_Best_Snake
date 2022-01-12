@@ -34,7 +34,7 @@ public class LanternaGUI {
             screen.startScreen();
             screen.doResizeIfNecessary();
         }
-        catch (IOException | FontFormatException | URISyntaxException e){
+        catch (IOException  | FontFormatException e){
             e.printStackTrace();
         }
 
@@ -72,7 +72,7 @@ public class LanternaGUI {
         this.width = width;
     }
 
-    public AWTTerminalFontConfiguration loadFont() throws FontFormatException, IOException, URISyntaxException {
+    public AWTTerminalFontConfiguration loadFont() throws FontFormatException, IOException{
         File fontFile = new File("src/main/resources/fonts/square.ttf");
         Font font = Font.createFont(Font.PLAIN,fontFile);
 
