@@ -17,7 +17,7 @@ public class SnakeTest {
     }
     @Test
     public void move(){
-        s1.move();
+        s1.move(20,20);
         Assertions.assertEquals(new Position(11,10),s1.getSnakeHead().getPosition());
         Assertions.assertEquals(new Position(10,10),s1.getSnake().get(1).getPosition());
     }

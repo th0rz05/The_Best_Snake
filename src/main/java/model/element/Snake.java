@@ -101,8 +101,8 @@ public class Snake implements Drawable{
         setDirectionY(y);
     }
 
-    public void move(){
-        Position newposition = new Position(getSnakeHead().getPosition().getX()+directionX,getSnakeHead().getPosition().getY()+directionY);
+    public void move(int height,int width){
+        Position newposition = checkScreenLimits(new Position(getSnakeHead().getPosition().getX()+directionX,getSnakeHead().getPosition().getY()+directionY),height,width);
         for(Element element:snake){
             Position oldposition = element.getPosition();
             element.setPosition(newposition);
@@ -125,7 +125,8 @@ public class Snake implements Drawable{
         }
         else if(fruit.getSize()>0){
             for(int i = 0;i < fruit.getSize();i++){
-                snake.add(new SnakeBody(new Position(snake.get(size-1).getPosition().getX()-directionX, snake.get(size-1).getPosition().getY()-directionY)));
+                Position position = checkScreenLimits(new Position(snake.get(size-1).getPosition().getX()-directionX, snake.get(size-1).getPosition().getY()-directionY),height,width);
+                snake.add(new SnakeBody(position));
                 size++;
             }
         }

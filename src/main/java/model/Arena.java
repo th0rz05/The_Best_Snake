@@ -17,10 +17,11 @@ public class Arena implements Drawable {
 
     int height;
     int width;
+    Fruit fruit1;
+    Fruit fruit2;
 
     private List<Drawable> elements = new ArrayList<>();
     private List<Snake> snakes = new ArrayList<>();
-    private List<Fruit> fruits = new ArrayList<>();
     private final List<Fruit> POSSIBLE_FRUITS = new ArrayList<>();
 
     public Arena(Snake snake, LanternaGUI screen) {
@@ -44,42 +45,25 @@ public class Arena implements Drawable {
 
     public void execute(){
         for(Snake snake:snakes){
-            snake.move();
-            checkScreenLimits(snake);
-            if(snake.getSnakeHead().getPosition().equals(fruits.get(0).getPosition())){
-                snake.eatFruit(fruits.get(0),height,width);
-                elements.remove(fruits.get(0));
-                elements.remove(fruits.get(1));
-                fruits.clear();
-            }
-            else if(snake.getSnakeHead().getPosition().equals(fruits.get(1).getPosition())){
-                snake.eatFruit(fruits.get(1),height,width);
-                elements.remove(fruits.get(0));
-                elements.remove(fruits.get(1));
-                fruits.clear();
-            }
-            if(fruits.isEmpty()){
-                addFruits();
-            }
+            snake.move(height,width);
+            checkEatFruits(snake);
         }
     }
 
-    public void checkScreenLimits(Snake snake){
-        if(snake.getSnakeHead().getPosition().getX()>=width){
-            snake.getSnakeHead().setPosition(new Position(0,snake.getSnakeHead().getPosition().getY()));
+    public void checkEatFruits(Snake snake){
+        if(snake.getSnakeHead().getPosition().equals(fruit1.getPosition())){
+            snake.eatFruit(fruit1,height,width);
+            addFruits();
         }
-        if(snake.getSnakeHead().getPosition().getX()<0){
-            snake.getSnakeHead().setPosition(new Position(width,snake.getSnakeHead().getPosition().getY()));
-        }
-        if(snake.getSnakeHead().getPosition().getY()>height){
-            snake.getSnakeHead().setPosition(new Position(snake.getSnakeHead().getPosition().getX(),0));
-        }
-        if(snake.getSnakeHead().getPosition().getY()<0){
-            snake.getSnakeHead().setPosition(new Position(snake.getSnakeHead().getPosition().getX(),height));
+        if(snake.getSnakeHead().getPosition().equals(fruit2.getPosition())){
+            snake.eatFruit(fruit2,height,width);
+            addFruits();
         }
     }
 
     public void addFruits(){
+        elements.remove(fruit1);
+        elements.remove(fruit2);
         double number1 = floor(random() * POSSIBLE_FRUITS.size());
         double number2 = number1;
         while(number2 == number1){
@@ -89,10 +73,10 @@ public class Arena implements Drawable {
         Fruit f2 = POSSIBLE_FRUITS.get(((int) number2));
         f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
         f2.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
-        fruits.add(f1);
-        fruits.add(f2);
-        elements.add(f1);
-        elements.add(f2);
+        fruit1 = f1;
+        fruit2 = f2;
+        elements.add(fruit1);
+        elements.add(fruit2);
     }
 
 }
