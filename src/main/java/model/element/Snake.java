@@ -110,7 +110,7 @@ public class Snake implements Drawable{
         }
     }
 
-    public void eatFruit(Fruit fruit){
+    public void eatFruit(Fruit fruit, int height, int width){
         if(size + fruit.getSize()<2){
             while(size>2){
                 snake.remove(size-1);
@@ -136,6 +136,11 @@ public class Snake implements Drawable{
         if(velocity<1){
             velocity = 1;
         }
+    }
+
+    public Position checkScreenLimits(Position position,int height,int width){
+        Position p = new Position(0,0);
+        return p;
     }
 
 }

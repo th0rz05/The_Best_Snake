@@ -47,13 +47,13 @@ public class Arena implements Drawable {
             snake.move();
             checkScreenLimits(snake);
             if(snake.getSnakeHead().getPosition().equals(fruits.get(0).getPosition())){
-                snake.eatFruit(fruits.get(0));
+                snake.eatFruit(fruits.get(0),height,width);
                 elements.remove(fruits.get(0));
                 elements.remove(fruits.get(1));
                 fruits.clear();
             }
             else if(snake.getSnakeHead().getPosition().equals(fruits.get(1).getPosition())){
-                snake.eatFruit(fruits.get(1));
+                snake.eatFruit(fruits.get(1),height,width);
                 elements.remove(fruits.get(0));
                 elements.remove(fruits.get(1));
                 fruits.clear();

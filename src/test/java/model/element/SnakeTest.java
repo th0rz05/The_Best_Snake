@@ -38,29 +38,57 @@ public class SnakeTest {
 
     @Test
     public void eatApple(){
-        s1.eatFruit(new Apple(new Position(0,0)));
+        s1.eatFruit(new Apple(new Position(0,0)),50,50);
         Assertions.assertEquals(5,s1.getSize());
         Assertions.assertEquals(1,s1.getVelocity());
     }
 
     @Test
     public void eatKiwi(){
-        s1.eatFruit(new Kiwi(new Position(0,0)));
+        s1.eatFruit(new Kiwi(new Position(0,0)),50,50);
         Assertions.assertEquals(2,s1.getSize());
         Assertions.assertEquals(4,s1.getVelocity());
     }
 
     @Test
     public void eatOrange(){
-        s1.eatFruit(new Orange(new Position(0,0)));
+        s1.eatFruit(new Orange(new Position(0,0)),50,50);
         Assertions.assertEquals(3,s1.getSize());
         Assertions.assertEquals(2,s1.getVelocity());
     }
 
     @Test
     public void eatBanana(){
-        s1.eatFruit(new Banana(new Position(0,0)));
+        s1.eatFruit(new Banana(new Position(0,0)),50,50);
         Assertions.assertEquals(7,s1.getSize());
         Assertions.assertEquals(4,s1.getVelocity());
+    }
+
+    @Test
+    public void checkScreenLimitsX1(){
+        Position p =  new Position(11,7);
+        p= s1.checkScreenLimits(p,10,10);
+        Assertions.assertEquals(new Position(0,7),p);
+    }
+
+    @Test
+    public void checkScreenLimitsX2(){
+        Position p =  new Position(-1,7);
+        p= s1.checkScreenLimits(p,10,10);
+        Assertions.assertEquals(new Position(10,7),p);
+    }
+
+    @Test
+    public void checkScreenLimitsY1(){
+        Position p =  new Position(7,11);
+        p= s1.checkScreenLimits(p,10,10);
+        Assertions.assertEquals(new Position(7,0),p);
+    }
+
+    @Test
+    public void checkScreenLimitsY2(){
+        Position p =  new Position(7,-1);
+        p= s1.checkScreenLimits(p,10,10);
+        Assertions.assertEquals(new Position(7,10),p);
     }
 }
