@@ -34,24 +34,36 @@ public class OriginalState extends State {
 
 
     @Override
-    public void step(Game game){
-        try{
-            screen.getScreen().clear();
-            arena.draw(screen.getGraphics());
-            checkInput(game);
-            arena.execute();
-            drawText("Press Q to exit","#FFFFFF",new TerminalPosition(44,30));
-            drawText("Score: " + (snake.getSize()-2),"#FFFFFF",new TerminalPosition(1,30));
-            drawText("|  Timer: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "s","#FFFFFF",new TerminalPosition(12,30));
-            screen.getScreen().refresh();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+    public void step(Game game) throws  IOException{
+        screen.getScreen().clear();
+        drawBackground("#61861C");
+        drawAllText("#000000");
+        arena.draw(screen.getGraphics());
+        checkInput(game);
+        arena.execute();
+        screen.getScreen().refresh();
     }
 
     public void drawText(String text,String color,TerminalPosition position){
         screen.getGraphics().setForegroundColor(TextColor.Factory.fromString(color));
         screen.getGraphics().putString(position, text);
+    }
+
+    public void drawAllText(String color){
+        drawText("Press Q to exit",color,new TerminalPosition(screen.getWidth()-15, screen.getHeight()));
+        drawText("Score: " + (snake.getSize()-2),color,new TerminalPosition(1,screen.getHeight()));
+        drawText("|  Timer: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "s",color,new TerminalPosition(12,screen.getHeight()));
+        for(int i = 0; i<screen.getWidth();i++){
+            screen.getGraphics().putString(new TerminalPosition(i, screen.getHeight()-1),"_");
+        }
+    }
+
+    public void drawBackground(String color){
+        screen.getGraphics().setBackgroundColor(TextColor.Factory.fromString(color));
+        for (int i = 0;i<screen.getWidth();i++){
+            for (int j = 0;j<=screen.getHeight();j++)
+                screen.getGraphics().putString(new TerminalPosition(i,j), " ");
+        }
     }
 
     public void checkInput(Game game) throws IOException{
@@ -81,8 +93,8 @@ public class OriginalState extends State {
 
     public void checkAction(Game game, KeyStroke key) throws IOException{
         if(key.getKeyType()==KeyType.Character) {
-            switch (key.getCharacter()) {
-                case ('q'): {
+            switch (key.getCharacter().toString().toLowerCase()) {
+                case ("q"): {
                     try {
                         screen.getScreen().stopScreen();
                         screen.getScreen().close();
@@ -91,7 +103,7 @@ public class OriginalState extends State {
                         e.printStackTrace();
                     }break;
                 }
-                case ('p'): {
+                case ("p"): {
                     pause();
                     break;
                 }
@@ -102,10 +114,10 @@ public class OriginalState extends State {
     public void pause() throws  IOException{
         long initialTime = System.currentTimeMillis();
         while(true){
-            drawText("PAUSE","#FF0000",new TerminalPosition(28, 15));
-            drawText("Press any key to continue","#FFFFFF",new TerminalPosition(34,30));
-            drawText("Score: " + (snake.getSize()-2),"#FFFFFF",new TerminalPosition(1,30));
-            drawText("|  Timer: " + (floor(((initialTime-startTime-pauseTime)/1000f)*10)/10) + "s","#FFFFFF",new TerminalPosition(12,30));
+            drawText("PAUSE","#FF0000",new TerminalPosition((screen.getWidth()/2)-2, screen.getHeight()/2));
+            drawText("Press any key to continue","#FFFFFF",new TerminalPosition((screen.getWidth()/2)-12, (screen.getHeight()/2)+3));
+            drawText("Score: " + (snake.getSize()-2),"#FFFFFF",new TerminalPosition(1,screen.getHeight()));
+            drawText("|  Timer: " + (floor(((initialTime-startTime-pauseTime)/1000f)*10)/10) + "s","#FFFFFF",new TerminalPosition(12,screen.getHeight()));
             screen.getScreen().refresh();
             if(observer.readinput()){
                 KeyStroke key = observer.getKeys().get(0);

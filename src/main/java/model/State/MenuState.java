@@ -19,35 +19,49 @@ public class MenuState extends State {
     }
 
     @Override
-    public void step(Game game) {
-        try{
-            screen.getScreen().clear();
-            drawText("THE BEST SNAKE","#FFFFFF",new TerminalPosition(23,1));
-            drawText("ORIGINAL(PRESS 1)","#FFFFFF",new TerminalPosition(22,6));
-            drawText("Press Q to exit","#FFFFFF",new TerminalPosition(45,30));
-            screen.getScreen().refresh();
-            if(observer.readinput()){
-                KeyStroke key = observer.getKeys().get(0);
-                if(key.getKeyType()== KeyType.Character && key.equals(new KeyStroke('1',false,false,false))){
-                    screen.getScreen().stopScreen();
-                    screen.getScreen().close();
-                    changeState(game,new OriginalState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
-                }
-                if(key.getKeyType()== KeyType.Character && key.getCharacter()=='q'){
-                    screen.getScreen().stopScreen();
-                    screen.getScreen().close();
-                    changeState(game,null);
-                }
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+    public void step(Game game) throws IOException {
+        screen.getScreen().clear();
+        drawBackground("#31B2D8");
+        drawAllText("#000097");
+        screen.getScreen().refresh();
+        checkInput(game);
     }
 
 
     public void drawText(String text,String color,TerminalPosition position){
         screen.getGraphics().setForegroundColor(TextColor.Factory.fromString(color));
         screen.getGraphics().putString(position, text);
+    }
+
+    public void drawBackground(String color){
+        screen.getGraphics().setBackgroundColor(TextColor.Factory.fromString(color));
+        for (int i = 0;i<screen.getWidth();i++){
+            for (int j = 0;j<=screen.getHeight();j++)
+                screen.getGraphics().putString(new TerminalPosition(i,j), " ");
+        }
+    }
+
+    public void drawAllText(String color){
+        drawText("THE BEST SNAKE",color,new TerminalPosition((screen.getWidth()/2)-7, 1));
+        drawText("ORIGINAL",color,new TerminalPosition((screen.getWidth()/2)-4,6));
+        drawText("Press Q to exit",color,new TerminalPosition(screen.getWidth()-15,screen.getHeight()));
+
+    }
+
+    public void checkInput(Game game) throws IOException{
+        if(observer.readinput()){
+            KeyStroke key = observer.getKeys().get(0);
+            if(key.getKeyType()== KeyType.Character && key.equals(new KeyStroke('1',false,false,false))){
+                screen.getScreen().stopScreen();
+                screen.getScreen().close();
+                changeState(game,new OriginalState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+            }
+            if(key.getKeyType()== KeyType.Character && key.getCharacter().toString().equalsIgnoreCase("q")){
+                screen.getScreen().stopScreen();
+                screen.getScreen().close();
+                changeState(game,null);
+            }
+        }
     }
 }
 

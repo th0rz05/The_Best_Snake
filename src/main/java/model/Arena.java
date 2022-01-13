@@ -71,11 +71,11 @@ public class Arena implements Drawable {
         if(snake.getSnakeHead().getPosition().getX()<0){
             snake.getSnakeHead().setPosition(new Position(width,snake.getSnakeHead().getPosition().getY()));
         }
-        if(snake.getSnakeHead().getPosition().getY()>=height){
+        if(snake.getSnakeHead().getPosition().getY()>height){
             snake.getSnakeHead().setPosition(new Position(snake.getSnakeHead().getPosition().getX(),0));
         }
         if(snake.getSnakeHead().getPosition().getY()<0){
-            snake.getSnakeHead().setPosition(new Position(snake.getSnakeHead().getPosition().getX(),height-1));
+            snake.getSnakeHead().setPosition(new Position(snake.getSnakeHead().getPosition().getX(),height));
         }
     }
 
@@ -87,8 +87,8 @@ public class Arena implements Drawable {
         }
         Fruit f1 = POSSIBLE_FRUITS.get(((int) number1));
         Fruit f2 = POSSIBLE_FRUITS.get(((int) number2));
-        f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height-1))));
-        f2.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height-1))));
+        f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
+        f2.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
         fruits.add(f1);
         fruits.add(f2);
         elements.add(f1);

@@ -7,6 +7,6 @@ public class SnakeBody extends Element {
     public SnakeBody(Position position) {
         super(position);
         setSymbol("X");
-        setColor("#00ff00");
+        setColor("#000000");
     }
 }

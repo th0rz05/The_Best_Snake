@@ -3,6 +3,8 @@ package view;
 import model.State.MenuState;
 import model.State.State;
 
+import java.io.IOException;
+
 public class Game {
     State gamestate;
     int fps;
@@ -22,7 +24,13 @@ public class Game {
         while(gamestate!= null){
             long startTime = System.currentTimeMillis();
 
-            gamestate.step(this);
+            try{
+                gamestate.step(this);
+            }
+            catch(IOException e){
+                e.printStackTrace();
+            }
+
 
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frametime - elapsedTime;

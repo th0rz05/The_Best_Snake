@@ -10,8 +10,6 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 
 public class LanternaGUI {
     TerminalScreen screen;
@@ -74,12 +72,12 @@ public class LanternaGUI {
 
     public AWTTerminalFontConfiguration loadFont() throws FontFormatException, IOException{
         File fontFile = new File("src/main/resources/fonts/square.ttf");
-        Font font = Font.createFont(Font.PLAIN,fontFile);
+        Font font = Font.createFont(Font.TRUETYPE_FONT,fontFile);
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 15);
+        Font loadedFont = font.deriveFont(Font.BOLD, 25);
         return AWTTerminalFontConfiguration.newInstance(loadedFont);
 
     }
