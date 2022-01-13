@@ -139,8 +139,19 @@ public class Snake implements Drawable{
     }
 
     public Position checkScreenLimits(Position position,int height,int width){
-        Position p = new Position(0,0);
-        return p;
+        if(position.getX()>width){
+            return new Position(0,position.getY());
+        }
+        if(position.getX()<0){
+            return new Position(width,position.getY());
+        }
+        if(position.getY()>height){
+            return new Position(position.getX(),0);
+        }
+        if(position.getY()<0){
+            return new Position(position.getX(),height);
+        }
+        return position;
     }
 
 }

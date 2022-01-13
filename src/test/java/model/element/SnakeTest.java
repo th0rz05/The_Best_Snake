@@ -91,4 +91,11 @@ public class SnakeTest {
         p= s1.checkScreenLimits(p,10,10);
         Assertions.assertEquals(new Position(7,10),p);
     }
+
+    @Test
+    public void checkScreenLimits(){
+        Position p =  new Position(7,7);
+        p= s1.checkScreenLimits(p,10,10);
+        Assertions.assertEquals(new Position(7,7),p);
+    }
 }
