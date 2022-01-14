@@ -65,14 +65,13 @@ public class Arena implements Drawable {
         }
     }
 
-    public boolean check_snake_collisions(Snake snake){
+    public void check_snake_collisions(Snake snake){
         Position SnakeHeadPosition = snake.getSnakeHead().getPosition();
         for(Element b : snake.getSnake().subList(1,snake.getSnake().size())){
             if(b.getPosition().equals(SnakeHeadPosition))
                 snake.set_Alive(false);
-                return true;
+
         }
-        return false;
     }
 
 

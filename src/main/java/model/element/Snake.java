@@ -93,6 +93,7 @@ public class Snake implements Drawable{
     public boolean isAlive() {
         return alive;
     }
+
     public void set_Alive(boolean alive){
         this.alive = alive;
     }
