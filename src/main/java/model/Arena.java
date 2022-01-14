@@ -43,11 +43,15 @@ public class Arena implements Drawable {
         }
     }
 
-    public void execute(){
+    public Boolean execute(){
         for(Snake snake:snakes){
             snake.move(height,width);
             checkEatFruits(snake);
+            check_snake_collisions(snake);
+            if(!snake.isAlive())
+                return true;
         }
+        return false;
     }
 
     public void checkEatFruits(Snake snake){
@@ -61,9 +65,14 @@ public class Arena implements Drawable {
         }
     }
 
-    public void check_snake_collisions(){
-
-
+    public boolean check_snake_collisions(Snake snake){
+        Position SnakeHeadPosition = snake.getSnakeHead().getPosition();
+        for(Element b : snake.getSnake().subList(1,snake.getSnake().size())){
+            if(b.getPosition().equals(SnakeHeadPosition))
+                snake.set_Alive(false);
+                return true;
+        }
+        return false;
     }
 
 
@@ -86,5 +95,7 @@ public class Arena implements Drawable {
         elements.add(fruit1);
         elements.add(fruit2);
     }
+
+
 
 }

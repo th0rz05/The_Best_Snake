@@ -1,11 +1,14 @@
 package model;
 
+import model.element.Element;
 import model.element.Snake;
 import model.element.snake.SnakeBody;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import view.LanternaGUI;
+
+import java.util.List;
 
 public class ArenaTest {
     Snake s1;
@@ -19,15 +22,18 @@ public class ArenaTest {
 
     @Test
     public void check_snake_collisions_test1(){
-        SnakeBody b = new SnakeBody(new Position(10,10));
-        a.check_snake_collisions();
+        Element b = new SnakeBody(new Position(11,10));
+        List<Element> Coliding_snake = s1.getSnake();
+        Coliding_snake.add(b);
+        s1.setSnake(Coliding_snake);
+        Assertions.assertTrue(a.check_snake_collisions(s1));
         Assertions.assertFalse(s1.isAlive());
 
     }
 
     @Test
     public void snake_collisions_test2(){
-        SnakeBody b = new SnakeBody(new Position(12,10));
+        SnakeBody b = new SnakeBody(new Position(13,10));
         a.execute();
         Assertions.assertTrue(s1.isAlive());
         a.execute();
