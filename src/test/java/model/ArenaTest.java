@@ -22,11 +22,10 @@ public class ArenaTest {
 
     @Test
     public void check_snake_collisions_test1(){
-        Element b = new SnakeBody(new Position(11,10));
+        Element b = new SnakeBody(new Position(10,10));
         List<Element> Coliding_snake = s1.getSnake();
         Coliding_snake.add(b);
         s1.setSnake(Coliding_snake);
-        //Assertions.assertTrue(a.check_snake_collisions(s1));
         Assertions.assertFalse(s1.isAlive());
 
     }

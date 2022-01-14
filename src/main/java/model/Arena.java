@@ -26,7 +26,7 @@ public class Arena implements Drawable {
 
     public Arena(Snake snake, LanternaGUI screen) {
         height = screen.getHeight()-1;
-        width = screen.getWidth();
+        width = screen.getWidth()-1;
         elements.add(snake);
         snakes.add(snake);
         POSSIBLE_FRUITS.add(new Apple(new Position(0,0)));

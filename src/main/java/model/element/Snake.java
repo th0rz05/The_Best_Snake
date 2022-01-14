@@ -16,7 +16,7 @@ public class Snake implements Drawable{
     private int pace;
     private int directionX;
     private int directionY;
-    private int PACE_TO_MOVEMENT = 4;
+    private int PACE_TO_MOVEMENT = 12;
     private boolean alive;
 
     public Snake(Position position) {
@@ -148,8 +148,8 @@ public class Snake implements Drawable{
             }
         }
         velocity *= fruit.getVelocity();
-        if(velocity>PACE_TO_MOVEMENT){
-            velocity=PACE_TO_MOVEMENT;
+        if(velocity>4){
+            velocity=4;
         }
         if(velocity<1){
             velocity = 1;
