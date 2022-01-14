@@ -102,7 +102,11 @@ public class Snake implements Drawable{
     }
 
     public void move(int height,int width){
-        
+        pace += velocity;
+        if(pace==PACE_TO_MOVEMENT) {
+            pace = 0;
+            moveSnake(height, width);
+        }
     }
 
     public void moveSnake(int height, int width) {
