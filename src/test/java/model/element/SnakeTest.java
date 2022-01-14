@@ -5,6 +5,7 @@ import model.element.fruit.Apple;
 import model.element.fruit.Banana;
 import model.element.fruit.Kiwi;
 import model.element.fruit.Orange;
+import model.element.snake.SnakeBody;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -98,4 +99,7 @@ public class SnakeTest {
         p= s1.checkScreenLimits(p,10,10);
         Assertions.assertEquals(new Position(7,7),p);
     }
+
+
+
 }

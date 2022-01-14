@@ -17,9 +17,10 @@ public class Snake implements Drawable{
     private int directionX;
     private int directionY;
     private int PACE_TO_MOVEMENT = 4;
-
+    private boolean alive;
 
     public Snake(Position position) {
+        alive = true;
         directionX = 1;
         directionY = 0;
         snake.add(new SnakeHead(new Position(position.getX(), position.getY())));
@@ -87,6 +88,13 @@ public class Snake implements Drawable{
 
     public Element getSnakeHead(){
         return snake.get(0);
+    }
+
+    public boolean isAlive() {
+        return alive;
+    }
+    public void set_Alive(boolean alive){
+        this.alive = alive;
     }
 
     @Override

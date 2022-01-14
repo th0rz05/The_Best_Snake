@@ -61,6 +61,14 @@ public class Arena implements Drawable {
         }
     }
 
+    public void check_snake_collisions(){
+
+
+    }
+
+
+
+
     public void addFruits(){
         elements.remove(fruit1);
         elements.remove(fruit2);
