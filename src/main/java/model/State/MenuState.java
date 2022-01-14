@@ -19,11 +19,16 @@ public class MenuState extends State {
 
     KeyboardObserver observer;
     List<Button> buttonList = new ArrayList<>();
+    Button actualbutton;
 
     public MenuState(LanternaGUI screen) {
         super(screen);
         observer = new KeyboardObserver(screen);
-        buttonList.add(new Button(new Position((screen.getWidth()/2)-6, 6),"ORIGINAL"));
+        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 6),"  ORIGINAL   "));
+        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 11)," MULTIPLAYER "));
+        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 16),"  CHALLENGE  "));
+        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 21),"    RULES    "));
+        actualbutton=buttonList.get(0);
     }
 
     @Override
@@ -58,23 +63,50 @@ public class MenuState extends State {
 
     public void drawButtons(){
         for(Button b : buttonList){
+            if (b.equals(actualbutton)){
+                b.setHighlight(true);
+            }
             b.draw(screen.getGraphics());
+            b.setHighlight(false);
         }
     }
 
     public void checkInput(Game game) throws IOException{
         if(observer.readinput()){
             KeyStroke key = observer.getKeys().get(0);
-            if(key.getKeyType()== KeyType.Character && key.equals(new KeyStroke('1',false,false,false))){
+            if(key.getKeyType()== KeyType.Enter){
                 screen.getScreen().stopScreen();
                 screen.getScreen().close();
-                changeState(game,new OriginalState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                enterState(game);
             }
             if(key.getKeyType()== KeyType.Character && key.getCharacter().toString().equalsIgnoreCase("q")){
                 screen.getScreen().stopScreen();
                 screen.getScreen().close();
                 changeState(game,null);
             }
+            if(key.getKeyType()== KeyType.ArrowDown){
+                int index = (buttonList.indexOf(actualbutton)+1);
+                if(index==buttonList.size()){
+                    index = 0;
+                }
+                actualbutton = buttonList.get(index);
+            }
+            if(key.getKeyType()== KeyType.ArrowUp){
+                int index = (buttonList.indexOf(actualbutton)-1) ;
+                if(index==-1){
+                    index = buttonList.size()-1;
+                }
+                actualbutton = buttonList.get(index);
+            }
+        }
+    }
+
+    public void enterState(Game game){
+        switch(actualbutton.getText()){
+            case "  ORIGINAL   ": changeState(game,new OriginalState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
+            case " MULTIPLAYER ": changeState(game,new OriginalState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
+            case "  CHALLENGE  ": changeState(game,new OriginalState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
+            case "    RULES    ": changeState(game,new OriginalState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
         }
     }
 }
