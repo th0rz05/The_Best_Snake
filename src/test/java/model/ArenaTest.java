@@ -27,13 +27,13 @@ public class ArenaTest {
         Coliding_snake.add(b);
         s1.setSnake(Coliding_snake);
 
-        a.check_snake_collisions(s1);
+        a.check_snake_collisions(s1.getSnakeHead().getPosition());
         Assertions.assertFalse(s1.isAlive());
     }
 
     @Test
     public void snake_collisions_test2(){
-        a.check_snake_collisions(s1);
+        a.check_snake_collisions(s1.getSnakeHead().getPosition());
         Assertions.assertTrue(s1.isAlive());
     }
 
