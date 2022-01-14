@@ -24,7 +24,6 @@ public class ElementTest {
         element.draw(screen.getGraphics());
         Assertions.assertEquals(element.getSymbol(),screen.getScreen().getBackCharacter(10,10).getCharacterString());
     }
-
     @Test
     public void test_draw2(){
         element.draw(screen.getGraphics());

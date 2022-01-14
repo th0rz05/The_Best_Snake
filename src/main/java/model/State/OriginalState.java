@@ -35,13 +35,19 @@ public class OriginalState extends State {
 
     @Override
     public void step(Game game) throws  IOException{
+        Boolean Game_Over = false;
         screen.getScreen().clear();
         drawBackground("#61861C");
         drawAllText("#000000");
         arena.draw(screen.getGraphics());
         checkInput(game);
-        arena.execute();
+        Game_Over = arena.execute();
         screen.getScreen().refresh();
+        if(Game_Over){
+            screen.getScreen().stopScreen();
+            screen.getScreen().close();
+            changeState(game, new MenuState(new LanternaGUI(30,50)));
+        }
     }
 
     public void drawText(String text,String color,TerminalPosition position){
