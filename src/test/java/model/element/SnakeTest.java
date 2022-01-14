@@ -9,15 +9,38 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.mockito.Mockito.*;
+
 public class SnakeTest {
     Snake s1;
     @BeforeEach
     public void setup(){
         s1 = new Snake(new Position(10,10));
     }
+
     @Test
-    public void move(){
+    public void move1(){
         s1.move(20,20);
+        Assertions.assertEquals(2,s1.getPace());
+    }
+
+    @Test
+    public void move2(){
+        s1.move(20,20);
+        Assertions.assertEquals(3,s1.getPace());
+    }
+
+    @Test
+    public void move3(){
+        s1.move(20,20);
+        Assertions.assertEquals(4,s1.getPace());
+        Assertions.assertEquals(new Position(11,10),s1.getSnakeHead().getPosition());
+        Assertions.assertEquals(new Position(10,10),s1.getSnake().get(1).getPosition());
+    }
+
+    @Test
+    public void moveSnake(){
+        s1.moveSnake(20,20);
         Assertions.assertEquals(new Position(11,10),s1.getSnakeHead().getPosition());
         Assertions.assertEquals(new Position(10,10),s1.getSnake().get(1).getPosition());
     }

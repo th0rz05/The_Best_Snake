@@ -102,6 +102,10 @@ public class Snake implements Drawable{
     }
 
     public void move(int height,int width){
+
+    }
+
+    public void moveSnake(int height, int width) {
         Position newposition = checkScreenLimits(new Position(getSnakeHead().getPosition().getX()+directionX,getSnakeHead().getPosition().getY()+directionY),height,width);
         for(Element element:snake){
             Position oldposition = element.getPosition();
