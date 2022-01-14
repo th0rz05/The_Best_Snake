@@ -102,7 +102,7 @@ public class Snake implements Drawable{
     }
 
     public void move(int height,int width){
-
+        
     }
 
     public void moveSnake(int height, int width) {
