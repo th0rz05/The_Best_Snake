@@ -33,6 +33,9 @@ public class Arena implements Drawable {
         POSSIBLE_FRUITS.add(new Orange(new Position(0,0)));
         POSSIBLE_FRUITS.add(new Kiwi(new Position(0,0)));
         POSSIBLE_FRUITS.add(new Banana(new Position(0,0)));
+        POSSIBLE_FRUITS.add(new Peach(new Position(0,0)));
+        POSSIBLE_FRUITS.add(new Grape(new Position(0,0)));
+        POSSIBLE_FRUITS.add(new Cherry(new Position(0,0)));
         addFruits();
     }
 
@@ -73,9 +76,6 @@ public class Arena implements Drawable {
 
         }
     }
-
-
-
 
     public void addFruits(){
         elements.remove(fruit1);
