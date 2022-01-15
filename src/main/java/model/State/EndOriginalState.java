@@ -9,6 +9,8 @@ import view.Game;
 import view.LanternaGUI;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class EndOriginalState extends State{
@@ -31,8 +33,8 @@ public class EndOriginalState extends State{
         drawBackground("#31B2D8");
         drawText("You Lost! :(", "#FF0000", new TerminalPosition(20,3));
         drawText("Please Enter your name", "#000000", new TerminalPosition(15,9));
-        drawText("Score: " + String.valueOf(score), "#000000", new TerminalPosition(12,25));
-        drawText("Time: " + String.valueOf(time) + " s", "#000000", new TerminalPosition(30,25));
+        drawText("Score: " + score, "#000000", new TerminalPosition(12,25));
+        drawText("Time: " + time + " s", "#000000", new TerminalPosition(30,25));
         read_name(game);
         drawText("Your Name: " + name,"#000000", new TerminalPosition(12,16));
         screen.getScreen().refresh();
@@ -71,26 +73,41 @@ public class EndOriginalState extends State{
     }
 
     public void save_score() throws IOException {
-        File scoreboard = new File("src/main/resources/Scoreboards/OriginalScoreBoard");
-        PrintWriter scoreWriter = new PrintWriter(scoreboard);
-        Scanner scoreReader = new Scanner(scoreboard);
-        if(scoreboard.length() == 0){
-            scoreWriter.println(name + " " + String.valueOf(score) + " " +String.valueOf(time));
+        File scoreboard = new File("src/main/resources/Scoreboards/OriginalScoreBoard");   // Melhorar método!
+        BufferedWriter scoreWriter = new BufferedWriter(new FileWriter(scoreboard,true));
+        BufferedReader scoreReader = new BufferedReader(new FileReader(scoreboard));
+        List<String> scoreboard_ls = new ArrayList<>();
+        String s;
+
+        if(scoreboard.length() == 0) {
+            scoreWriter.write(name + " " + String.valueOf(score) + " " + String.valueOf(time));
             scoreWriter.close();
             scoreReader.close();
             return;
         }
-        //Falta Inserir no sítio certo
 
-/*        while (scoreReader.hasNextLine()) {
-            String[] aux = scoreReader.nextLine().split(" ");
-            scoreReader.nextLine();
-            scoreboard.
-            if(Integer.valueOf(aux[1]) > score){
-                scoreWriter.println(name + " " + String.valueOf(score) + " " +String.valueOf(time));
-            }
-        }*/
+        while((s = scoreReader.readLine()) != null)
+            scoreboard_ls.add(s);
         scoreWriter.close();
+
+        boolean added = false;
+        int size =scoreboard_ls.size();
+        for(int i = 0; i < size; i++){
+            String[] aux = scoreboard_ls.get(i).split(" ");
+            if(Integer.parseInt(aux[1]) < score || (Integer.parseInt(aux[1]) == score  && Double.parseDouble(aux[2]) > time)){
+                scoreboard_ls.add(i,name + " " + String.valueOf(score) + " " + String.valueOf(time));
+                added = true;
+                break;
+            }
+        }
+        if(!added)
+            scoreboard_ls.add(name + " " + String.valueOf(score) + " " +String.valueOf(time));
+
+        BufferedWriter scoreWriter2 = new BufferedWriter(new FileWriter(scoreboard));
+        for(int i = 0; i < scoreboard_ls.size(); i++)
+            scoreWriter2.write(scoreboard_ls.get(i) + "\n");
+
+        scoreWriter2.close();
         scoreReader.close();
     }
 
