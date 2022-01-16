@@ -40,7 +40,7 @@ public class Level2State extends State {
     public void step(Game game) throws IOException {
         Boolean Game_Over = false;
         screen.getScreen().clear();
-        drawBackground("#6475DF");
+        drawBackground("#D97EE3");
         drawAllText("#000000");
         arena.draw(screen.getGraphics());
         checkInput(game);
@@ -112,7 +112,7 @@ public class Level2State extends State {
                     try {
                         screen.getScreen().stopScreen();
                         screen.getScreen().close();
-                        changeState(game, new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                        changeState(game, new ChallengeState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }break;

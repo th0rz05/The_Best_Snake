@@ -58,7 +58,7 @@ public class Arena implements Drawable {
             if(!door_open){
                 checkEatFruits(snake);
             }
-            if(checkChallengeWin()){
+            if( door_open && checkChallengeWin()){
                 return true;
             }
             check_snake_collisions(snake.getSnakeHead().getPosition());

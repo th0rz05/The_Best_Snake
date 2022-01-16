@@ -112,7 +112,7 @@ public class Level1State extends State {
                     try {
                         screen.getScreen().stopScreen();
                         screen.getScreen().close();
-                        changeState(game, new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                        changeState(game, new ChallengeState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }break;
