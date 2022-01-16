@@ -1,10 +1,7 @@
 package model;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import model.element.Drawable;
-import model.element.Element;
-import model.element.Snake;
-import model.element.Wall;
+import model.element.*;
 import model.element.fruit.*;
 import view.LanternaGUI;
 
@@ -25,6 +22,8 @@ public class Arena implements Drawable {
     int width;
     Fruit fruit1;
     Fruit fruit2;
+    Door door = null;
+    Boolean door_open = false;
 
     private List<Drawable> elements = new ArrayList<>();
     private List<Snake> snakes = new ArrayList<>();
@@ -56,7 +55,12 @@ public class Arena implements Drawable {
     public Boolean execute(){
         for(Snake snake:snakes){
             snake.move(height,width);
-            checkEatFruits(snake);
+            if(!door_open){
+                checkEatFruits(snake);
+            }
+            if(checkChallengeWin()){
+                return true;
+            }
             check_snake_collisions(snake);
             check_wall_collisions(snake);
             if(!snake.isAlive())
@@ -112,12 +116,13 @@ public class Arena implements Drawable {
     }
 
     public void buildWalls(String File_name){
+        buildGeneralWalls();
         try {
             File myObj = new File(File_name);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                String [] position = data.split(",");
+                String [] position = data.split(" ");
                 int x = Integer.parseInt(position[0]);
                 int y = Integer.parseInt(position[1]);
                 walls.add(new Wall(new Position(x,y)));
@@ -127,6 +132,36 @@ public class Arena implements Drawable {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void buildGeneralWalls(){
+        for(int i = 0;i<=width;i++){
+            walls.add(new Wall(new Position(i,0)));
+            elements.add(new Wall(new Position(i,0)));
+            walls.add(new Wall(new Position(i,height)));
+            elements.add(new Wall(new Position(i,height)));
+        }
+        for(int i = 1;i<height;i++){
+            walls.add(new Wall(new Position(0,i)));
+            elements.add(new Wall(new Position(0,i)));
+            walls.add(new Wall(new Position(width,i)));
+            elements.add(new Wall(new Position(width,i)));
+        }
+    }
+
+    public void buildDoor(Position position){
+        door = new Door(position);
+    }
+
+    public void openDoor(){
+        door_open = true;
+        elements.add(door);
+        elements.remove(fruit1);
+        elements.remove(fruit2);
+    }
+
+    public boolean checkChallengeWin(){
+        return snakes.get(0).getSnakeHead().getPosition().equals(door.getPosition());
     }
 
 }

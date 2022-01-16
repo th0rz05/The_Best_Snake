@@ -2,6 +2,8 @@ package model.element;
 
 import model.Position;
 
+import java.util.Objects;
+
 public class Wall extends Element {
 
     public Wall(Position position) {
@@ -9,5 +11,4 @@ public class Wall extends Element {
         setSymbol("#");
         setColor("#151C4A");
     }
-
 }
