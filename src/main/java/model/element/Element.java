@@ -6,6 +6,8 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import model.Position;
 
+import java.util.Objects;
+
 public class Element implements Drawable {
     private Position position;
     private String symbol ;
@@ -43,4 +45,5 @@ public class Element implements Drawable {
         screen.setForegroundColor(TextColor.Factory.fromString(color));
         screen.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), symbol);
     }
+
 }
