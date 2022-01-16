@@ -9,8 +9,12 @@ import model.element.fruit.*;
 import view.LanternaGUI;
 
 import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import static java.lang.Math.floor;
 import static java.lang.Math.random;
@@ -32,14 +36,6 @@ public class Arena implements Drawable {
         width = screen.getWidth()-1;
         elements.add(snake);
         snakes.add(snake);
-        walls.add(new Wall(new Position(3,4)));
-        walls.add(new Wall(new Position(20,5)));
-        walls.add(new Wall(new Position(16,9)));
-        walls.add(new Wall(new Position(10,6)));
-        elements.add(new Wall(new Position(3,4)));
-        elements.add(new Wall(new Position(20,5)));
-        elements.add(new Wall(new Position(16,9)));
-        elements.add(new Wall(new Position(10,6)));
         POSSIBLE_FRUITS.add(new Apple(new Position(0,0)));
         POSSIBLE_FRUITS.add(new Orange(new Position(0,0)));
         POSSIBLE_FRUITS.add(new Kiwi(new Position(0,0)));
@@ -112,6 +108,24 @@ public class Arena implements Drawable {
         for(Wall w : walls){
             if(w.getPosition().equals(SnakeHeadPosition))
                 snake.set_Alive(false);
+        }
+    }
+
+    public void buildWalls(String File_name){
+        try {
+            File myObj = new File(File_name);
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                String [] position = data.split(",");
+                int x = Integer.parseInt(position[0]);
+                int y = Integer.parseInt(position[1]);
+                walls.add(new Wall(new Position(x,y)));
+                elements.add(new Wall(new Position(x,y)));
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

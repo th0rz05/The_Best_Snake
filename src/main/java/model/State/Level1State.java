@@ -27,6 +27,7 @@ public class Level1State extends State {
         super(screen);
         snake = new Snake(new Position(30,15));
         arena = new Arena(snake,screen);
+        arena.buildWalls("src/resources/Challenge/Level1.txt");
         observer = new KeyboardObserver(screen);
         startTime = System.currentTimeMillis();
         pauseTime = 0;
@@ -37,7 +38,7 @@ public class Level1State extends State {
     public void step(Game game) throws IOException {
         Boolean Game_Over = false;
         screen.getScreen().clear();
-        drawBackground("#61861C");
+        drawBackground("#6475DF");
         drawAllText("#000000");
         arena.draw(screen.getGraphics());
         checkInput(game);
