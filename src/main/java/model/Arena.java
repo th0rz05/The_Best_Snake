@@ -61,7 +61,7 @@ public class Arena implements Drawable {
             if(checkChallengeWin()){
                 return true;
             }
-            check_snake_collisions(snake);
+            check_snake_collisions(snake.getSnakeHead().getPosition());
             check_wall_collisions(snake);
             if(!snake.isAlive())
                 return true;
@@ -80,15 +80,19 @@ public class Arena implements Drawable {
         }
     }
 
-    public void check_snake_collisions(Snake snake){
-        Position SnakeHeadPosition = snake.getSnakeHead().getPosition();
-        for(Element b : snake.getSnake().subList(1,snake.getSnake().size())){
-            if(b.getPosition().equals(SnakeHeadPosition))
-                snake.set_Alive(false);
-
+    public Boolean check_snake_collisions(Position pos){
+        //Position SnakeHeadPosition = snake.getSnakeHead().getPosition();
+        for(Snake snake1 : snakes){
+            for(int i = 1; i <snake1.getSnake().size(); i++){
+                if(snake1.getSnake().get(i).getPosition().equals(pos)){
+                    snake1.set_Alive(false);
+                    return true;
+                }
+            }
         }
+        // Falta checkar Walls
+        return false;
     }
-
     public void addFruits(){
         elements.remove(fruit1);
         elements.remove(fruit2);
@@ -99,8 +103,15 @@ public class Arena implements Drawable {
         }
         Fruit f1 = POSSIBLE_FRUITS.get(((int) number1));
         Fruit f2 = POSSIBLE_FRUITS.get(((int) number2));
+
         f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
+        while(check_snake_collisions(f1.getPosition()))
+            f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
+
         f2.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
+        while(check_snake_collisions(f2.getPosition()) || f2.getPosition().equals(f1.getPosition()))
+            f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
+
         fruit1 = f1;
         fruit2 = f2;
         elements.add(fruit1);

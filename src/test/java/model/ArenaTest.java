@@ -26,18 +26,15 @@ public class ArenaTest {
         List<Element> Coliding_snake = s1.getSnake();
         Coliding_snake.add(b);
         s1.setSnake(Coliding_snake);
-        Assertions.assertFalse(s1.isAlive());
 
+        a.check_snake_collisions(s1.getSnakeHead().getPosition());
+        Assertions.assertFalse(s1.isAlive());
     }
 
     @Test
     public void snake_collisions_test2(){
-        SnakeBody b = new SnakeBody(new Position(13,10));
-        a.execute();
+        a.check_snake_collisions(s1.getSnakeHead().getPosition());
         Assertions.assertTrue(s1.isAlive());
-        a.execute();
-        Assertions.assertFalse(s1.isAlive());
-
     }
 
 }

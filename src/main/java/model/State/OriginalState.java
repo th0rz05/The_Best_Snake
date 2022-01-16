@@ -46,7 +46,7 @@ public class OriginalState extends State {
         if(Game_Over){
             screen.getScreen().stopScreen();
             screen.getScreen().close();
-            changeState(game, new MenuState(new LanternaGUI(30,50)));
+            changeState(game, new EndOriginalState(new LanternaGUI(screen.getHeight(),screen.getWidth()),snake.getSize()-2, (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10)));
         }
     }
 
