@@ -4,9 +4,11 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import model.element.Drawable;
 import model.element.Element;
 import model.element.Snake;
+import model.element.Wall;
 import model.element.fruit.*;
 import view.LanternaGUI;
 
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class Arena implements Drawable {
 
     private List<Drawable> elements = new ArrayList<>();
     private List<Snake> snakes = new ArrayList<>();
+    private List<Wall> walls = new ArrayList<>();
     private final List<Fruit> POSSIBLE_FRUITS = new ArrayList<>();
 
     public Arena(Snake snake, LanternaGUI screen) {
@@ -29,6 +32,14 @@ public class Arena implements Drawable {
         width = screen.getWidth()-1;
         elements.add(snake);
         snakes.add(snake);
+        walls.add(new Wall(new Position(3,4)));
+        walls.add(new Wall(new Position(20,5)));
+        walls.add(new Wall(new Position(16,9)));
+        walls.add(new Wall(new Position(10,6)));
+        elements.add(new Wall(new Position(3,4)));
+        elements.add(new Wall(new Position(20,5)));
+        elements.add(new Wall(new Position(16,9)));
+        elements.add(new Wall(new Position(10,6)));
         POSSIBLE_FRUITS.add(new Apple(new Position(0,0)));
         POSSIBLE_FRUITS.add(new Orange(new Position(0,0)));
         POSSIBLE_FRUITS.add(new Kiwi(new Position(0,0)));
@@ -51,6 +62,7 @@ public class Arena implements Drawable {
             snake.move(height,width);
             checkEatFruits(snake);
             check_snake_collisions(snake);
+            check_wall_collisions(snake);
             if(!snake.isAlive())
                 return true;
         }
@@ -95,6 +107,12 @@ public class Arena implements Drawable {
         elements.add(fruit2);
     }
 
-
+    public void check_wall_collisions(Snake snake){
+        Position SnakeHeadPosition = snake.getSnakeHead().getPosition();
+        for(Wall w : walls){
+            if(w.getPosition().equals(SnakeHeadPosition))
+                snake.set_Alive(false);
+        }
+    }
 
 }
