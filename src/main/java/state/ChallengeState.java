@@ -9,6 +9,9 @@ import observer.KeyboardObserver;
 import game.Position;
 import game.Game;
 import gui.LanternaGUI;
+import state.level.Level1State;
+import state.level.Level2State;
+import state.level.Level3State;
 
 import java.io.IOException;
 import java.util.ArrayList;
