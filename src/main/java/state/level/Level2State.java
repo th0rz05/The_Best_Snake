@@ -1,6 +1,7 @@
-package state;
+package state.level;
 
 import gui.LanternaGUI;
+import state.LevelXState;
 
 
 public class Level2State extends LevelXState {
@@ -9,6 +10,7 @@ public class Level2State extends LevelXState {
         super(screen,filename);
         setBackgroundColor("#D97EE3");
         setFINAL_SIZE(5);
+        setLevel(2);
 
     }
 

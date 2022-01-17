@@ -4,35 +4,43 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import observer.KeyboardObserver;
 import game.Game;
 import gui.LanternaGUI;
+import observer.KeyboardObserver;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EndOriginalState extends State{
+public abstract class EndLevelXState extends State {
     KeyboardObserver observer;
     String name;
-    int score;
     double time;
+    String backgroundColor;
+    String filename;
 
-    public EndOriginalState(LanternaGUI screen, int score, double time) {
+    public EndLevelXState(LanternaGUI screen, double time) {
         super(screen);
         observer = new KeyboardObserver(screen);
         name = "";
-        this.score = score;
         this.time = time;
     }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
 
     @Override
     public void step(Game game) throws IOException {
         screen.getScreen().clear();
-        drawBackground("#31B2D8");
-        drawText("You Lost! :(", "#FF0000", new TerminalPosition(20,3));
+        drawBackground(backgroundColor);
+        drawText("You Won! :)", "#FF0000", new TerminalPosition(20,3));
         drawText("Please Enter your name", "#000000", new TerminalPosition(15,9));
-        drawText("Score: " + score, "#000000", new TerminalPosition(12,25));
         drawText("Time: " + time + " s", "#000000", new TerminalPosition(30,25));
         checkInput(game);
         drawText("Your Name: " + name,"#000000", new TerminalPosition(12,16));
@@ -72,14 +80,14 @@ public class EndOriginalState extends State{
     }
 
     public void saveScore() throws IOException {
-        File scoreboard = new File("src/main/resources/Scoreboards/OriginalScoreBoard.txt");   // Melhorar método!
+        File scoreboard = new File(filename);   // Melhorar método!
         BufferedWriter scoreWriter = new BufferedWriter(new FileWriter(scoreboard,true));
         BufferedReader scoreReader = new BufferedReader(new FileReader(scoreboard));
         List<String> scoreboardLs = new ArrayList<>();
         String s;
 
         if(scoreboard.length() == 0) {
-            scoreWriter.write(name + " " + score + " " + time);
+            scoreWriter.write(name + " " + time);
             scoreWriter.close();
             scoreReader.close();
             return;
@@ -93,14 +101,14 @@ public class EndOriginalState extends State{
         int size =scoreboardLs.size();
         for(int i = 0; i < size; i++){
             String[] aux = scoreboardLs.get(i).split(" ");
-            if(Integer.parseInt(aux[1]) < score || (Integer.parseInt(aux[1]) == score  && Double.parseDouble(aux[2]) > time)){
-                scoreboardLs.add(i,name + " " + score + " " + time);
+            if(Double.parseDouble(aux[1]) > time ){
+                scoreboardLs.add(i,name + " " + time);
                 added = true;
                 break;
             }
         }
         if(!added)
-            scoreboardLs.add(name + " " + score + " " + time);
+            scoreboardLs.add(name + " " + time);
 
         BufferedWriter scoreWriter2 = new BufferedWriter(new FileWriter(scoreboard));
         for(int i = 0; i < scoreboardLs.size(); i++)
@@ -109,5 +117,6 @@ public class EndOriginalState extends State{
         scoreWriter2.close();
         scoreReader.close();
     }
-
 }
+
+

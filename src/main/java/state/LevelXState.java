@@ -10,6 +10,9 @@ import game.Position;
 import elements.Snake;
 import game.Game;
 import gui.LanternaGUI;
+import state.endlevel.EndLevel1State;
+import state.endlevel.EndLevel2State;
+import state.endlevel.EndLevel3State;
 
 import java.io.IOException;
 
@@ -24,6 +27,7 @@ public abstract class LevelXState extends State {
     long pauseTime;
     int FINAL_SIZE;
     String backgroundColor;
+    int level;
 
     public LevelXState(LanternaGUI screen,String filename) {
         super(screen);
@@ -44,6 +48,10 @@ public abstract class LevelXState extends State {
         this.backgroundColor = backgroundColor;
     }
 
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     @Override
     public void step(Game game) throws IOException {
         Boolean Game_Over = false;
@@ -59,7 +67,11 @@ public abstract class LevelXState extends State {
             if(arena.checkChallengeWin()){
                 screen.getScreen().stopScreen();
                 screen.getScreen().close();
-                changeState(game, new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                switch(level){
+                    case 1 : changeState(game, new EndLevel1State(new LanternaGUI(screen.getHeight(), screen.getWidth()),(floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10)));break;
+                    case 2 : changeState(game, new EndLevel2State(new LanternaGUI(screen.getHeight(), screen.getWidth()),(floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10)));break;
+                    case 3 : changeState(game, new EndLevel3State(new LanternaGUI(screen.getHeight(), screen.getWidth()),(floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10)));break;
+                }
             }
             else{
                 screen.getScreen().stopScreen();
