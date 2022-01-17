@@ -99,9 +99,9 @@ public class ChallengeState extends State{
 
     public void enterState(Game game){
         switch(actualbutton.getText()){
-            case "    LEVEL1   ": changeState(game,new Level1State(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
-            case "    LEVEL2   ": changeState(game,new Level2State(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
-            case "    LEVEL3   ": changeState(game,new Level3State(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
+            case "    LEVEL1   ": changeState(game,new Level1State(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Challenge/Level1.txt"));break;
+            case "    LEVEL2   ": changeState(game,new Level2State(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Challenge/Level2.txt"));break;
+            case "    LEVEL3   ": changeState(game,new Level3State(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Challenge/Level3.txt"));break;
             }
     }
 }

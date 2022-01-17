@@ -23,25 +23,32 @@ public abstract class LevelXState extends State {
     long startTime;
     long pauseTime;
     int FINAL_SIZE;
+    String backgroundColor;
 
-
-    public LevelXState(LanternaGUI screen) {
+    public LevelXState(LanternaGUI screen,String filename) {
         super(screen);
         snake = new Snake(new Position(30,15));
         arena = new Arena(snake,screen);
-        arena.buildWalls("src/main/resources/Challenge/Level1.txt");
+        arena.buildWalls(filename);
         arena.buildDoor(new Position(screen.getWidth()-1, 10));
         observer = new KeyboardObserver(screen);
         startTime = System.currentTimeMillis();
         pauseTime = 0;
     }
 
+    public void setFINAL_SIZE(int FINAL_SIZE) {
+        this.FINAL_SIZE = FINAL_SIZE;
+    }
+
+    public void setBackgroundColor(String backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
 
     @Override
     public void step(Game game) throws IOException {
         Boolean Game_Over = false;
         screen.getScreen().clear();
-        drawBackground("#6475DF");
+        drawBackground(backgroundColor);
         drawAllText("#000000");
         arena.draw(screen.getGraphics());
         checkInput(game);
