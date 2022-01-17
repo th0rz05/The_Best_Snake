@@ -29,7 +29,7 @@ public class Arena implements Drawable {
     private List<Drawable> elements = new ArrayList<>();
     private List<Snake> snakes = new ArrayList<>();
     private List<Wall> walls = new ArrayList<>();
-    private final List<Fruit> POSSIBLE_FRUITS = new ArrayList<>();
+    private  List<Fruit> POSSIBLE_FRUITS = new ArrayList<>();
 
     public Arena(Snake snake, LanternaGUI screen) {
         height = screen.getHeight()-1;
@@ -43,6 +43,7 @@ public class Arena implements Drawable {
         POSSIBLE_FRUITS.add(new Peach(new Position(0,0)));
         POSSIBLE_FRUITS.add(new Grape(new Position(0,0)));
         POSSIBLE_FRUITS.add(new Cherry(new Position(0,0)));
+        POSSIBLE_FRUITS.add(new Mistery(new Position(0,0)));
         addFruits();
     }
 
@@ -98,6 +99,10 @@ public class Arena implements Drawable {
         }
         Fruit f1 = POSSIBLE_FRUITS.get(((int) number1));
         Fruit f2 = POSSIBLE_FRUITS.get(((int) number2));
+        if(f1.getSymbol().equals("?") || f2.getSymbol().equals("?")){
+            POSSIBLE_FRUITS.remove(POSSIBLE_FRUITS.size()-1);
+            POSSIBLE_FRUITS.add(new Mistery(new Position(0,0)));
+        }
 
         f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
         while(check_snake_collisions(f1.getPosition()) || check_wall_collisions(f1.getPosition()))
