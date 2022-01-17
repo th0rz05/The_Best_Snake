@@ -39,15 +39,15 @@ Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up2020
 
 #### Contexto do problema
 
-Primeiro decidimos como estruturar o nosso programa com vista a ser usada uma GUI onde o utilizador iria jogar o nosso jogo.
+Primeiro decidimos como estruturar o nosso programa com vista a ser usada uma gui onde o utilizador iria jogar o nosso jogo.
 
 #### Pattern
 
-Decidimos assim aplicar o **_Architectural Pattern_** mais especificamente o Model-View-Controller visto ser bastante comum para lidar com GUI permitindo interligar os "models", os "viewers" e os "controllers".
+Decidimos assim aplicar o **_Architectural Pattern_** mais especificamente o Model-View-Controller visto ser bastante comum para lidar com gui permitindo interligar os "models", os "viewers" e os "controllers".
 
 #### Implementação
 
-Este pattern permite-nos assim ter classes com o objetivo de guardar informação sobre os vários elementos do jogo como as cobras e as frutas (model), permite ter outras classes que se preocupam em controlar as ações do jogo e os inputs do utilizador (controllers) e permite ter outras que tratam de mostrar no ecrã a execução do programa (viewers) e relacionam-se da seguinte forma:
+Este pattern permite-nos assim ter classes com o objetivo de guardar informação sobre os vários elementos do jogo como as cobras e as frutas (state), permite ter outras classes que se preocupam em controlar as ações do jogo e os inputs do utilizador (controllers) e permite ter outras que tratam de mostrar no ecrã a execução do programa (viewers) e relacionam-se da seguinte forma:
 
 ![MVM](../Imagens/UML/MVC.png)
 
