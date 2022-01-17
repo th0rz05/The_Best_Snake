@@ -62,10 +62,10 @@ public class Arena implements Drawable {
             if( door_open && checkChallengeWin()){
                 return true;
             }
-            check_snake_collisions(snake.getSnakeHead().getPosition());
-            check_wall_collisions(snake);
-            if(!snake.isAlive())
+            if(check_snake_collisions(snake.getSnakeHead().getPosition()) || check_wall_collisions(snake.getSnakeHead().getPosition())){
+                snake.set_Alive(false);
                 return true;
+            }
         }
         return false;
     }
@@ -82,16 +82,10 @@ public class Arena implements Drawable {
     }
 
     public Boolean check_snake_collisions(Position pos){
-        //Position SnakeHeadPosition = snake.getSnakeHead().getPosition();
-        for(Snake snake1 : snakes){
-            for(int i = 1; i <snake1.getSnake().size(); i++){
-                if(snake1.getSnake().get(i).getPosition().equals(pos)){
-                    snake1.set_Alive(false);
+        for(Snake snake1 : snakes)
+            for(int i = 1; i <snake1.getSnake().size(); i++)
+                if(snake1.getSnake().get(i).getPosition().equals(pos))
                     return true;
-                }
-            }
-        }
-        // Falta checkar Walls
         return false;
     }
     public void addFruits(){
@@ -106,12 +100,12 @@ public class Arena implements Drawable {
         Fruit f2 = POSSIBLE_FRUITS.get(((int) number2));
 
         f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
-        while(check_snake_collisions(f1.getPosition()))
+        while(check_snake_collisions(f1.getPosition()) || check_wall_collisions(f1.getPosition()))
             f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
 
         f2.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
-        while(check_snake_collisions(f2.getPosition()) || f2.getPosition().equals(f1.getPosition()))
-            f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
+        while(check_snake_collisions(f2.getPosition()) || f2.getPosition().equals(f1.getPosition()) || check_wall_collisions(f2.getPosition()))
+            f2.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
 
         fruit1 = f1;
         fruit2 = f2;
@@ -119,12 +113,12 @@ public class Arena implements Drawable {
         elements.add(fruit2);
     }
 
-    public void check_wall_collisions(Snake snake){
-        Position SnakeHeadPosition = snake.getSnakeHead().getPosition();
-        for(Wall w : walls){
+    public Boolean check_wall_collisions(Position pos){
+        Position SnakeHeadPosition = pos;
+        for(Wall w : walls)
             if(w.getPosition().equals(SnakeHeadPosition))
-                snake.set_Alive(false);
-        }
+                return true;
+        return false;
     }
 
     public void buildWalls(String File_name){
