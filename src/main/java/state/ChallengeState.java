@@ -81,7 +81,7 @@ public class ChallengeState extends State{
             if(key.getKeyType()== KeyType.Character && key.getCharacter().toString().equalsIgnoreCase("q")){
                 screen.getScreen().stopScreen();
                 screen.getScreen().close();
-                changeState(game,new MenuState(new LanternaGUI(30,50)));
+                changeState(game,new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
             }
             if(key.getKeyType()== KeyType.ArrowDown){
                 int index = (buttonList.indexOf(actualbutton)+1);
