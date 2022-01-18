@@ -21,7 +21,6 @@ import static java.lang.Math.floor;
 public abstract class LevelXState extends State {
 
     Arena arena;
-    Snake snake;
     int FINAL_SIZE;
     String backgroundColor;
     int level;
@@ -67,14 +66,9 @@ public abstract class LevelXState extends State {
                     case 3 : changeState(game, new EndLevel3State(new LanternaGUI(screen.getHeight(), screen.getWidth()),(floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10)));break;
                 }
             }
-            else{
-                screen.getScreen().stopScreen();
-                screen.getScreen().close();
-                changeState(game, new ChallengeState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
-            }
+            else{returnChallenge(game);}
         }
     }
-
 
     public void drawAllText(String color){
         drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
@@ -83,36 +77,11 @@ public abstract class LevelXState extends State {
     }
 
 
-    public void checkMovement(KeyStroke key){
-        switch (key.getKeyType()) {
-            case ArrowUp: {
-                if (!(snake.getDirectionX() == 0 && snake.getDirectionY() == 1)) {
-                    snake.changeDirection(0, -1);}break;}
-            case ArrowDown: {
-                if (!(snake.getDirectionX() == 0 && snake.getDirectionY() == -1)) {
-                    snake.changeDirection(0, 1);}break;}
-            case ArrowLeft: {
-                if (!(snake.getDirectionX() == 1 && snake.getDirectionY() == 0)) {
-                    snake.changeDirection(-1, 0);}break;}
-            case ArrowRight: {
-                if (!(snake.getDirectionX() == -1 && snake.getDirectionY() == 0)) {
-                    snake.changeDirection(1, 0);}break;}
-        }
-    }
-
     public void checkAction(Game game, KeyStroke key) throws IOException{
         if(key.getKeyType()== KeyType.Character) {
             switch (key.getCharacter().toString().toLowerCase()) {
-                case ("q"): {
-                    screen.getScreen().stopScreen();
-                    screen.getScreen().close();
-                    changeState(game, new ChallengeState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
-                    break;
-                }
-                case ("p"): {
-                    pause();
-                    break;
-                }
+                case ("q"): returnChallenge(game);break;
+                case ("p"): pause();break;
             }
         }
     }

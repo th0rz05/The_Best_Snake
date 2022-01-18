@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import elements.Snake;
 import elements.button.Button;
 import game.Game;
 import gui.LanternaGUI;
@@ -21,6 +22,8 @@ public abstract class State {
     long pauseTime;
     List<Button> buttonList = new ArrayList<>();
     Button actualbutton;
+    Snake snake;
+    String name;
 
     public State(LanternaGUI screen) {
         this.screen = screen;
@@ -39,6 +42,8 @@ public abstract class State {
         screen.getGraphics().setForegroundColor(TextColor.Factory.fromString(color));
         screen.getGraphics().putString(position, text);
     }
+
+    public abstract void drawAllText(String color);
 
     public void drawBackground(String color){
         screen.getGraphics().setBackgroundColor(TextColor.Factory.fromString(color));
@@ -62,6 +67,12 @@ public abstract class State {
         screen.getScreen().stopScreen();
         screen.getScreen().close();
         changeState(game, new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+    }
+
+    public void returnChallenge(Game game) throws IOException{
+        screen.getScreen().stopScreen();
+        screen.getScreen().close();
+        changeState(game, new ChallengeState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
     }
 
     public void pause() throws  IOException{
@@ -117,7 +128,40 @@ public abstract class State {
         }
     }
 
-    public void checkMovement(KeyStroke key){};
+    public void checkInputEndGame(Game game) throws IOException{
+        if(observer.readinput()){
+            KeyStroke key = observer.getKeys().get(0);
+            if(key.getKeyType()== KeyType.Character && name.length() <= 10 ){
+                name += key.getCharacter().toString();
+            }
+            else if(key.getKeyType()== KeyType.Enter){
+                saveScore();
+                returnMenu(game);
+            }
+            else if(key.getKeyType()== KeyType.Backspace && name.length() >=1){
+                name = name.substring(0,name.length()-1);
+            }
+        }
+    }
+
+    public void saveScore() throws IOException{};
+
+    public void checkMovement(KeyStroke key){
+        switch (key.getKeyType()) {
+            case ArrowUp: {
+                if (!(snake.getDirectionX() == 0 && snake.getDirectionY() == 1)) {
+                    snake.changeDirection(0, -1);}break;}
+            case ArrowDown: {
+                if (!(snake.getDirectionX() == 0 && snake.getDirectionY() == -1)) {
+                    snake.changeDirection(0, 1);}break;}
+            case ArrowLeft: {
+                if (!(snake.getDirectionX() == 1 && snake.getDirectionY() == 0)) {
+                    snake.changeDirection(-1, 0);}break;}
+            case ArrowRight: {
+                if (!(snake.getDirectionX() == -1 && snake.getDirectionY() == 0)) {
+                    snake.changeDirection(1, 0);}break;}
+        }
+    }
 
     public void checkAction(Game game, KeyStroke key) throws IOException{};
 

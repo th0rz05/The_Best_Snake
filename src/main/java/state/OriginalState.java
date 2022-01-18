@@ -17,7 +17,6 @@ import static java.lang.Math.floor;
 
 public class OriginalState extends State {
     Arena arena;
-    Snake snake;
 
 
     public OriginalState(LanternaGUI screen) {
@@ -53,22 +52,6 @@ public class OriginalState extends State {
         }
     }
 
-    public void checkMovement(KeyStroke key){
-        switch (key.getKeyType()) {
-            case ArrowUp: {
-                if (!(snake.getDirectionX() == 0 && snake.getDirectionY() == 1)) {
-                    snake.changeDirection(0, -1);}break;}
-            case ArrowDown: {
-                if (!(snake.getDirectionX() == 0 && snake.getDirectionY() == -1)) {
-                    snake.changeDirection(0, 1);}break;}
-            case ArrowLeft: {
-                if (!(snake.getDirectionX() == 1 && snake.getDirectionY() == 0)) {
-                    snake.changeDirection(-1, 0);}break;}
-            case ArrowRight: {
-                if (!(snake.getDirectionX() == -1 && snake.getDirectionY() == 0)) {
-                    snake.changeDirection(1, 0);}break;}
-        }
-    }
 
     public void checkAction(Game game, KeyStroke key) throws IOException{
         if(key.getKeyType()==KeyType.Character) {

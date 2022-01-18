@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EndOriginalState extends State{
-    String name;
     int score;
     double time;
 
@@ -28,32 +27,19 @@ public class EndOriginalState extends State{
     public void step(Game game) throws IOException {
         screen.getScreen().clear();
         drawBackground("#31B2D8");
-        drawText(" GAME OVER ", "#FF0000", new TerminalPosition(20,3));
-        drawText("Please Enter your name", "#000000", new TerminalPosition(15,9));
-        drawText("Score: " + score, "#000000", new TerminalPosition(12,25));
-        drawText("Time: " + time + " s", "#000000", new TerminalPosition(30,25));
-        checkInput(game);
-        drawText("Your Name: " + name,"#000000", new TerminalPosition(12,16));
+        drawAllText("#000000");
+        checkInputEndGame(game);
         screen.getScreen().refresh();
     }
 
-
-    public void checkInput(Game game) throws IOException{
-        if(observer.readinput()){
-            KeyStroke key = observer.getKeys().get(0);
-            if(key.getKeyType()== KeyType.Character && name.length() <= 10 ){
-                name += key.getCharacter().toString();
-            }
-            else if(key.getKeyType()== KeyType.Enter){
-                saveScore();
-                returnMenu(game);
-            }
-            else if(key.getKeyType()== KeyType.Backspace && name.length() >=1){
-                name = name.substring(0,name.length()-1);
-            }
-        }
-
+    public void drawAllText(String color){
+        drawText(" GAME OVER ", "#FF0000", new TerminalPosition(20,3));
+        drawText("Please Enter your name", color, new TerminalPosition(15,9));
+        drawText("Score: " + score, color, new TerminalPosition(12,25));
+        drawText("Time: " + time + " s", color, new TerminalPosition(30,25));
+        drawText("Your Name: " + name,color, new TerminalPosition(12,16));
     }
+
 
     public void saveScore() throws IOException {
         File scoreboard = new File("src/main/resources/Scoreboards/OriginalScoreBoard.txt");   // Melhorar método!

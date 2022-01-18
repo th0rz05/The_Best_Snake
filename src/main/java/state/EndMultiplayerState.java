@@ -37,33 +37,35 @@ public class EndMultiplayerState extends State{
     @Override
     public void step(Game game) throws IOException {
         screen.getScreen().clear();
-        if(draw){
-            drawBackground("#7D9BA8");
-            drawText("DRAW! :/", "#000000", new TerminalPosition(22,7));
-            checkInput(game);
-            drawText("PRESS ANY KEY TO EXIT!","#000000", new TerminalPosition(15,16));
-        }
-        else if(!firstNameDone){
-            drawBackground("#2DF168");
-            drawText("You Won! :)", "#000000", new TerminalPosition(20,3));
-            drawText("Please Enter your name", "#000000", new TerminalPosition(15,9));
-            drawText("Score: " + score1, "#000000", new TerminalPosition(12,25));
-            checkInput(game);
-            drawText("Your Name: " + name1,"#000000", new TerminalPosition(12,16));
-        }
-        else{
-            drawBackground("#F94555");
-            drawText("You Lost! :(", "#000000", new TerminalPosition(20,3));
-            drawText("Please Enter your name", "#000000", new TerminalPosition(15,9));
-            drawText("Score: " + score2, "#000000", new TerminalPosition(12,25));
-            checkInput(game);
-            drawText("Your Name: " + name2,"#000000", new TerminalPosition(12,16));
-        }
+        drawAllText("#000000");
+        checkInputEndGame(game);
         screen.getScreen().refresh();
     }
 
+    public void drawAllText(String color){
+        if(draw){
+            drawBackground("#7D9BA8");
+            drawText("DRAW! :/", color, new TerminalPosition(22,7));
+            drawText("PRESS ANY KEY TO EXIT!",color, new TerminalPosition(15,16));
+        }
+        else if(!firstNameDone){
+            drawBackground("#2DF168");
+            drawText("You Won! :)", color, new TerminalPosition(20,3));
+            drawText("Please Enter your name", color, new TerminalPosition(15,9));
+            drawText("Score: " + score1, color, new TerminalPosition(12,25));
+            drawText("Your Name: " + name1,color, new TerminalPosition(12,16));
+        }
+        else{
+            drawBackground("#F94555");
+            drawText("You Lost! :(", color, new TerminalPosition(20,3));
+            drawText("Please Enter your name", color, new TerminalPosition(15,9));
+            drawText("Score: " + score2, color, new TerminalPosition(12,25));
+            drawText("Your Name: " + name2,color, new TerminalPosition(12,16));
+        }
+    }
 
-    public void checkInput(Game game) throws IOException{
+
+    public void checkInputEndGame(Game game) throws IOException{
         if(observer.readinput()){
             KeyStroke key = observer.getKeys().get(0);
             if(draw){
