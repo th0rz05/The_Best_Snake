@@ -18,7 +18,6 @@ import static java.lang.Math.floor;
 public class OriginalState extends State {
     Arena arena;
     Snake snake;
-    KeyboardObserver observer;
     long startTime;
     long pauseTime;
 
@@ -26,7 +25,6 @@ public class OriginalState extends State {
         super(screen);
         snake = new Snake(new Position(30,15),"#000000");
         arena = new Arena(snake,screen);
-        observer = new KeyboardObserver(screen);
         startTime = System.currentTimeMillis();
         pauseTime = 0;
     }
@@ -88,9 +86,7 @@ public class OriginalState extends State {
             switch (key.getCharacter().toString().toLowerCase()) {
                 case ("q"): {
                     try {
-                        screen.getScreen().stopScreen();
-                        screen.getScreen().close();
-                        changeState(game, new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                        returnMenu(game);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }break;

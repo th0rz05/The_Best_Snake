@@ -15,11 +15,9 @@ import java.io.IOException;
 
 public class CreditsState extends State{
 
-    KeyboardObserver observer;
 
     public CreditsState(LanternaGUI screen) {
         super(screen);
-        observer = new KeyboardObserver(screen);
     }
 
     @Override
@@ -46,9 +44,7 @@ public class CreditsState extends State{
             KeyStroke key = observer.getKeys().get(0);
             if(key.getKeyType()!= KeyType.EOF) {
                 try {
-                    screen.getScreen().stopScreen();
-                    screen.getScreen().close();
-                    changeState(game, new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                    returnMenu(game);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

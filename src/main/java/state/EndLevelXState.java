@@ -1,7 +1,6 @@
 package state;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import game.Game;
@@ -13,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class EndLevelXState extends State {
-    KeyboardObserver observer;
     String name;
     double time;
     String backgroundColor;
@@ -21,7 +19,6 @@ public abstract class EndLevelXState extends State {
 
     public EndLevelXState(LanternaGUI screen, double time) {
         super(screen);
-        observer = new KeyboardObserver(screen);
         name = "";
         this.time = time;
     }
@@ -56,10 +53,8 @@ public abstract class EndLevelXState extends State {
                 name += key.getCharacter().toString();
             }
             else if(key.getKeyType()== KeyType.Enter){
-                screen.getScreen().stopScreen();
-                screen.getScreen().close();
                 saveScore();
-                changeState(game,new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                returnMenu(game);
             }
             else if(key.getKeyType()== KeyType.Backspace && name.length() >=1){
                 name = name.substring(0,name.length()-1);

@@ -15,13 +15,11 @@ import java.io.IOException;
 
 public class RulesState extends State{
 
-    KeyboardObserver observer;
     String filepath;
     int page, initialRow;
 
     public RulesState(LanternaGUI screen) {
         super(screen);
-        observer = new KeyboardObserver(screen);
         filepath = "src/main/resources/rules1.txt";
         page = 1;
         initialRow = 4;
@@ -61,7 +59,7 @@ public class RulesState extends State{
         }
     }
 
-    public void checkInput(Game game) {
+    public void checkInput(Game game) throws IOException{
         if(observer.readinput()){
             KeyStroke key = observer.getKeys().get(0);
             if(key.getKeyType()!= KeyType.EOF) {
@@ -76,13 +74,7 @@ public class RulesState extends State{
                     initialRow = 5;
                 }
                 else if(page==3){
-                    try {
-                        screen.getScreen().stopScreen();
-                        screen.getScreen().close();
-                        changeState(game, new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    returnMenu(game);
                 }
             }
         }

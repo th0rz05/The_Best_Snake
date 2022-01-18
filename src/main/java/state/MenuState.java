@@ -1,7 +1,6 @@
 package state;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import elements.button.BigButton;
@@ -18,13 +17,11 @@ import java.util.List;
 
 public class MenuState extends State {
 
-    KeyboardObserver observer;
     List<Button> buttonList = new ArrayList<>();
     Button actualbutton;
 
     public MenuState(LanternaGUI screen) {
         super(screen);
-        observer = new KeyboardObserver(screen);
         buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 6),"  ORIGINAL   "));
         buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 11)," MULTIPLAYER "));
         buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 16),"  CHALLENGE  "));

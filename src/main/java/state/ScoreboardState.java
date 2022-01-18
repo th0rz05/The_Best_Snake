@@ -1,7 +1,6 @@
 package state;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import elements.button.BigButton;
@@ -20,13 +19,11 @@ import java.util.List;
 
 public class ScoreboardState extends State{
 
-    KeyboardObserver observer;
     List<Button> buttonList = new ArrayList<>();
     Button actualbutton;
 
     public ScoreboardState(LanternaGUI screen) {
         super(screen);
-        observer = new KeyboardObserver(screen);
         buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 4),"  ORIGINAL   "));
         buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 9)," MULTIPLAYER "));
         buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 14),"    LEVEL1   "));
@@ -70,9 +67,7 @@ public class ScoreboardState extends State{
                 enterState(game);
             }
             if(key.getKeyType()== KeyType.Character && key.getCharacter().toString().equalsIgnoreCase("q")){
-                screen.getScreen().stopScreen();
-                screen.getScreen().close();
-                changeState(game,new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                returnMenu(game);
             }
             if(key.getKeyType()== KeyType.ArrowDown){
                 int index = (buttonList.indexOf(actualbutton)+1);

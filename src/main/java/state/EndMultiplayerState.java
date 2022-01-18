@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EndMultiplayerState extends State{
-    KeyboardObserver observer;
     String name1;
     String name2;
     int score1;
@@ -24,7 +23,6 @@ public class EndMultiplayerState extends State{
 
     public EndMultiplayerState(LanternaGUI screen, int score1, int score2, double time) {
         super(screen);
-        observer = new KeyboardObserver(screen);
         name1 = "";
         name2 = "";
         this.score1 = score1;
@@ -70,9 +68,7 @@ public class EndMultiplayerState extends State{
             KeyStroke key = observer.getKeys().get(0);
             if(draw){
                 if(key.getKeyType()!=KeyType.EOF){
-                    screen.getScreen().stopScreen();
-                    screen.getScreen().close();
-                    changeState(game,new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                    returnMenu(game);
                 }
             }
             else if(!firstNameDone){
@@ -91,10 +87,8 @@ public class EndMultiplayerState extends State{
                     name2 += key.getCharacter().toString();
                 }
                 else if(key.getKeyType()== KeyType.Enter){
-                    screen.getScreen().stopScreen();
-                    screen.getScreen().close();
                     saveScore();
-                    changeState(game,new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                    returnMenu(game);
                 }
                 else if(key.getKeyType()== KeyType.Backspace && name2.length() >=1){
                     name2 = name2.substring(0,name2.length()-1);

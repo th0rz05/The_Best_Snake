@@ -22,7 +22,6 @@ public abstract class LevelXState extends State {
 
     Arena arena;
     Snake snake;
-    KeyboardObserver observer;
     long startTime;
     long pauseTime;
     int FINAL_SIZE;
@@ -35,7 +34,6 @@ public abstract class LevelXState extends State {
         arena = new Arena(snake,screen);
         arena.buildWalls(filename);
         arena.buildDoor(new Position(screen.getWidth()-1, 10));
-        observer = new KeyboardObserver(screen);
         startTime = System.currentTimeMillis();
         pauseTime = 0;
     }

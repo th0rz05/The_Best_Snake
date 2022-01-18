@@ -20,13 +20,11 @@ import java.util.List;
 
 public class ChallengeState extends State{
 
-    KeyboardObserver observer;
     List<Button> buttonList = new ArrayList<>();
     Button actualbutton;
 
     public ChallengeState(LanternaGUI screen) {
         super(screen);
-        observer = new KeyboardObserver(screen);
         buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 6),"    LEVEL1   "));
         buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 11),"    LEVEL2   "));
         buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 16),"    LEVEL3   "));
@@ -67,9 +65,7 @@ public class ChallengeState extends State{
                 enterState(game);
             }
             if(key.getKeyType()== KeyType.Character && key.getCharacter().toString().equalsIgnoreCase("q")){
-                screen.getScreen().stopScreen();
-                screen.getScreen().close();
-                changeState(game,new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                returnMenu(game);
             }
             if(key.getKeyType()== KeyType.ArrowDown){
                 int index = (buttonList.indexOf(actualbutton)+1);

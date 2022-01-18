@@ -13,14 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EndOriginalState extends State{
-    KeyboardObserver observer;
     String name;
     int score;
     double time;
 
     public EndOriginalState(LanternaGUI screen, int score, double time) {
         super(screen);
-        observer = new KeyboardObserver(screen);
         name = "";
         this.score = score;
         this.time = time;
@@ -47,10 +45,8 @@ public class EndOriginalState extends State{
                 name += key.getCharacter().toString();
             }
             else if(key.getKeyType()== KeyType.Enter){
-                screen.getScreen().stopScreen();
-                screen.getScreen().close();
                 saveScore();
-                changeState(game,new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                returnMenu(game);
             }
             else if(key.getKeyType()== KeyType.Backspace && name.length() >=1){
                 name = name.substring(0,name.length()-1);

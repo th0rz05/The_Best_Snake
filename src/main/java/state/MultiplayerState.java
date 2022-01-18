@@ -21,7 +21,6 @@ public class MultiplayerState extends State {
     Arena arena;
     Snake snake1,snake2;
     List<Snake> snakes = new ArrayList<>();
-    KeyboardObserver observer;
     long startTime;
     long pauseTime;
 
@@ -32,7 +31,6 @@ public class MultiplayerState extends State {
         snakes.add(snake1);
         snakes.add(snake2);
         arena = new Arena(snakes,screen);
-        observer = new KeyboardObserver(screen);
         startTime = System.currentTimeMillis();
         pauseTime = 0;
     }
@@ -122,13 +120,8 @@ public class MultiplayerState extends State {
         if(key.getKeyType()==KeyType.Character) {
             switch (key.getCharacter().toString().toLowerCase()) {
                 case ("q"): {
-                    try {
-                        screen.getScreen().stopScreen();
-                        screen.getScreen().close();
-                        changeState(game, new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }break;
+                    returnMenu(game);
+                    break;
                 }
                 case ("p"): {
                     pause();
