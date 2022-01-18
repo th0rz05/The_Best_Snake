@@ -1,0 +1,22 @@
+in all game modes you'll have different fruits
+that affect your speed and size.
+
+
+eating an APPLE will divide your speed in half
+and increase your size by 3.
+
+
+eating a BANANA will double your speed and
+increase your size by 5.
+
+
+eating a CHERRY will double your speed and
+decrease your size by 2.
+
+
+eating a GRAPE will not affect your speed but
+increase your size by 2.
+
+
+eating a KIWI will double your speed and
+decrease your size by 5.

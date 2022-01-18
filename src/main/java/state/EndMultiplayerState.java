@@ -41,9 +41,9 @@ public class EndMultiplayerState extends State{
         screen.getScreen().clear();
         if(draw){
             drawBackground("#7D9BA8");
-            drawText("DRAW! :/", "#000000", new TerminalPosition(22,3));
+            drawText("DRAW! :/", "#000000", new TerminalPosition(22,7));
             checkInput(game);
-            drawText("PRESS ANY KEY TO EXIT!","#000000", new TerminalPosition(18,16));
+            drawText("PRESS ANY KEY TO EXIT!","#000000", new TerminalPosition(15,16));
         }
         else if(!firstNameDone){
             drawBackground("#2DF168");
