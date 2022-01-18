@@ -61,10 +61,10 @@ public class MultiplayerState extends State {
     }
 
     public void drawAllText(String color){
-        //drawText("Press Q to exit",color,new TerminalPosition(screen.getWidth()-15, screen.getHeight()));
+        drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
         drawText("Snake1: " + (snake1.getSize()-2),color,new TerminalPosition(1,screen.getHeight()));
         drawText("Snake2: " + (snake2.getSize()-2),color,new TerminalPosition(12,screen.getHeight()));
-        drawText("|  Timer: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "s",color,new TerminalPosition(21,screen.getHeight()));
+        drawText(" | Timer: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "s",color,new TerminalPosition(21,screen.getHeight()));
         for(int i = 0; i<screen.getWidth();i++){
             screen.getGraphics().putString(new TerminalPosition(i, screen.getHeight()-1),"_");
         }
