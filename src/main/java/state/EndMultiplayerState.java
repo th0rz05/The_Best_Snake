@@ -106,13 +106,13 @@ public class EndMultiplayerState extends State{
         String s;
 
         if(scoreboard.length() == 0) {
-            scoreWriter.write(name1 + " (" + score1 + ") " + name2 + " (" + score2 + ") " + time);
+            scoreWriter.write(name1 + " " + score1 + " " + name2 + " " + score2 + " " + time);
             scoreWriter.close();
             scoreReader.close();
             return;
         }
 
-        scoreboardLs.add(name1 + " (" + score1 + ") " + name2 + " (" + score2 + ") " + time);
+        scoreboardLs.add(name1 + " " + score1 + " " + name2 + " " + score2 + " " + time);
 
         while((s = scoreReader.readLine()) != null)
             scoreboardLs.add(s);
