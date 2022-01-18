@@ -75,6 +75,7 @@ public class Arena implements Drawable {
     public Boolean execute(){
         for(Snake snake:snakes){
             snake.move(height,width);
+            check_snake_head_collisions();
             if(!door_open){
                 checkEatFruits(snake);
             }
@@ -107,6 +108,14 @@ public class Arena implements Drawable {
                     return true;
         return false;
     }
+
+    public void check_snake_head_collisions(){
+        if(snakes.size()==2 && snakes.get(0).getSnakeHead().getPosition()==snakes.get(1).getSnakeHead().getPosition()) {
+            snakes.get(0).set_Alive(false);
+            snakes.get(1).set_Alive(false);
+        }
+    }
+
     public void addFruits(){
         elements.remove(fruit1);
         elements.remove(fruit2);
