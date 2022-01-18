@@ -10,13 +10,20 @@ public class Mistery extends Fruit{
         super(position);
         setSymbol("?");
         setColor("#F1CE1B");
-        int a = (int)floor(random());
-        if(a == 0)
-            setSize((int)floor(random()*5));
+        int s = (int)floor(random());
+        if(s == 0)
+            setSize((int)floor(random()*4)+1);
         else
-            setSize((int)floor(random()*(-5)));
-        setVelocity(1);
-        //setVelocity((int)floor(random()*2 +1));
+            setSize((int)floor(random()*(-4)-1));
+        int v = (int)floor(random()*2);
+        if(v == 0)
+            setVelocity(2);
+        else if(v==1){
+            setVelocity(1);
+        }
+        else{
+            setVelocity(0.5);
+        }
     }
 
 }
