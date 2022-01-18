@@ -29,8 +29,6 @@ public class CreditsState extends State{
         checkInput(game);
     }
 
-
-
     public void drawAllText(String color){
         drawText("CREDITS",color,new TerminalPosition((screen.getWidth()/2)-3, 1));
         drawText("DUARTE  LOPES",color,new TerminalPosition((screen.getWidth()/2)-6, 8));
@@ -39,15 +37,11 @@ public class CreditsState extends State{
         drawText("Press any key to exit",color,new TerminalPosition(screen.getWidth()-21,screen.getHeight()));
     }
 
-    public void checkInput(Game game) {
+    public void checkInput(Game game) throws IOException {
         if(observer.readinput()){
             KeyStroke key = observer.getKeys().get(0);
             if(key.getKeyType()!= KeyType.EOF) {
-                try {
-                    returnMenu(game);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                returnMenu(game);
             }
         }
     }

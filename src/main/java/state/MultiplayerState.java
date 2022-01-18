@@ -1,10 +1,8 @@
 package state;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import observer.KeyboardObserver;
 import game.Arena;
 import game.Position;
 import elements.Snake;

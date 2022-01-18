@@ -11,9 +11,6 @@ import java.util.List;
 public class KeyboardObserver {
     LanternaGUI screen;
     List<KeyStroke> keys = new ArrayList();
-    List<KeyType> arrows = new ArrayList<>();
-    List<String> wasd = new ArrayList<>();
-
 
     public List<KeyStroke> getKeys() {
         return keys;
@@ -25,86 +22,78 @@ public class KeyboardObserver {
 
     public KeyboardObserver(LanternaGUI screen) {
         this.screen = screen;
-        arrows.add(KeyType.ArrowDown);
-        arrows.add(KeyType.ArrowUp);
-        arrows.add(KeyType.ArrowRight);
-        arrows.add(KeyType.ArrowLeft);
-        wasd.add("w");
-        wasd.add("a");
-        wasd.add("s");
-        wasd.add("d");
     }
 
-    public boolean readinput(){
-        try{
-            keys.clear();
-            KeyStroke key = screen.getScreen().pollInput();
-            if(key != null) {
-                if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().toLowerCase() == ("q") || key.getCharacter().toString().toLowerCase() == ("p"))) {
-                    keys.add(key);
-                    while (key != null) {
-                        key = screen.getScreen().pollInput();
-                    }
-                    return true;
-                } else if (key.getKeyType() == KeyType.ArrowUp || key.getKeyType() == KeyType.ArrowDown || key.getKeyType() == KeyType.ArrowLeft || key.getKeyType() == KeyType.ArrowRight) {
-                    keys.add(key);
-                    while (key != null && (key.getKeyType() == KeyType.ArrowUp || key.getKeyType() == KeyType.ArrowDown || key.getKeyType() == KeyType.ArrowLeft || key.getKeyType() == KeyType.ArrowRight)) {
-                        key = screen.getScreen().pollInput();
-                    }
-                    if (key == null) {
-                        return true;
-                    }
-                    if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().toLowerCase() == ("a") || key.getCharacter().toString().toLowerCase() == ("w") || key.getCharacter().toString().toLowerCase() == ("s") || key.getCharacter().toString().toLowerCase() == ("d"))) {
-                        keys.add(key);
-                        while (key != null) {
-                            key = screen.getScreen().pollInput();
-                        }
-                    }
-                    if (key == null) {
-                        return true;
-                    }
-                    if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().toLowerCase() == ("q") || key.getCharacter().toString().toLowerCase() == ("p"))) {
-                        keys.add(key);
-                        while (key != null) {
-                            key = screen.getScreen().pollInput();
-                        }
-                        return true;
-                    }
-                } else if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().toLowerCase() == ("a") || key.getCharacter().toString().toLowerCase() == ("w") || key.getCharacter().toString().toLowerCase() == ("s") || key.getCharacter().toString().toLowerCase() == ("d"))) {
-                    keys.add(key);
-                    while (key != null && (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().toLowerCase() == ("a") || key.getCharacter().toString().toLowerCase() == ("w") || key.getCharacter().toString().toLowerCase() == ("s") || key.getCharacter().toString().toLowerCase() == ("d")))) {
-                        key = screen.getScreen().pollInput();
-                    }
-                    if (key == null) {
-                        return true;
-                    }
-                    if (key.getKeyType() == KeyType.ArrowUp || key.getKeyType() == KeyType.ArrowDown || key.getKeyType() == KeyType.ArrowLeft || key.getKeyType() == KeyType.ArrowRight) {
-                        keys.add(key);
-                        while (key != null) {
-                            key = screen.getScreen().pollInput();
-                        }
-                    }
-                    if (key == null) {
-                        return true;
-                    }
-                    if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().toLowerCase() == ("q") || key.getCharacter().toString().toLowerCase() == ("p"))) {
-                        keys.add(key);
-                        while (key != null) {
-                            key = screen.getScreen().pollInput();
-                        }
-                        return true;
-                    }
-                } else {
-                    keys.add(key);
-                    while (key != null) {
-                        key = screen.getScreen().pollInput();
-                    }
-                    return true;
-                }
+    public boolean readinput() throws IOException{
+        keys.clear();
+        KeyStroke key = screen.getScreen().pollInput();
+        if(key != null) {
+            if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("q") || key.getCharacter().toString().equalsIgnoreCase("p"))) {
+                return quitPause(key);
+            } else if (key.getKeyType() == KeyType.ArrowUp || key.getKeyType() == KeyType.ArrowDown || key.getKeyType() == KeyType.ArrowLeft || key.getKeyType() == KeyType.ArrowRight) {
+                return arrows(key);
+            } else if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("a") || key.getCharacter().toString().equalsIgnoreCase("w") || key.getCharacter().toString().equalsIgnoreCase("s") || key.getCharacter().toString().equalsIgnoreCase("d"))) {
+                return wasd(key);
+            } else {
+                return quitPause(key);
             }
-        }catch (IOException e){
-            e.printStackTrace();
         }
         return false;
+    }
+
+    public boolean quitPause(KeyStroke key) throws IOException{
+        deleteBuffer(key);
+        return true;
+    }
+
+    public boolean arrows(KeyStroke key) throws IOException{
+        keys.add(key);
+        while (key != null && (key.getKeyType() == KeyType.ArrowUp || key.getKeyType() == KeyType.ArrowDown || key.getKeyType() == KeyType.ArrowLeft || key.getKeyType() == KeyType.ArrowRight)) {
+            key = screen.getScreen().pollInput();
+        }
+        if(keyNull(key)){
+            return true;
+        }
+        if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("a") || key.getCharacter().toString().equalsIgnoreCase("w") || key.getCharacter().toString().equalsIgnoreCase("s") || key.getCharacter().toString().equalsIgnoreCase("d"))) {
+            deleteBuffer(key);
+        }
+        if(keyNull(key)){
+            return true;
+        }
+        if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("q") || key.getCharacter().toString().equalsIgnoreCase("p"))) {
+            deleteBuffer(key);
+            return true;
+        }
+        return  true;
+    }
+
+    public boolean wasd(KeyStroke key) throws IOException{
+        keys.add(key);
+        while (key != null && (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("a") || key.getCharacter().toString().equalsIgnoreCase("w") || key.getCharacter().toString().equalsIgnoreCase("s") || key.getCharacter().toString().equalsIgnoreCase("d")))) {
+            key = screen.getScreen().pollInput();
+        }
+        if(keyNull(key)){
+            return true;
+        }
+        if (key.getKeyType() == KeyType.ArrowUp || key.getKeyType() == KeyType.ArrowDown || key.getKeyType() == KeyType.ArrowLeft || key.getKeyType() == KeyType.ArrowRight) {
+            deleteBuffer(key);
+        }
+        keyNull(key);
+        if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("q") || key.getCharacter().toString().equalsIgnoreCase("p"))) {
+            deleteBuffer(key);
+            return true;
+        }
+        return true;
+    }
+
+    public void deleteBuffer(KeyStroke key) throws IOException{
+        keys.add(key);
+        while (key != null) {
+            key = screen.getScreen().pollInput();
+        }
+    }
+
+    public boolean keyNull(KeyStroke key){
+        return key==null;
     }
 }
