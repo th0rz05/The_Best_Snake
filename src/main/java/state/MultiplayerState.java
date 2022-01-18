@@ -21,8 +21,6 @@ public class MultiplayerState extends State {
     Arena arena;
     Snake snake1,snake2;
     List<Snake> snakes = new ArrayList<>();
-    long startTime;
-    long pauseTime;
 
     public MultiplayerState(LanternaGUI screen) {
         super(screen);
@@ -31,8 +29,6 @@ public class MultiplayerState extends State {
         snakes.add(snake1);
         snakes.add(snake2);
         arena = new Arena(snakes,screen);
-        startTime = System.currentTimeMillis();
-        pauseTime = 0;
     }
 
 
@@ -43,7 +39,7 @@ public class MultiplayerState extends State {
         drawBackground("#64DF89");
         drawAllText("#000000");
         arena.draw(screen.getGraphics());
-        checkInput(game);
+        checkInputPlay(game);
         Game_Over = arena.execute();
         screen.getScreen().refresh();
         if(Game_Over){
@@ -70,16 +66,6 @@ public class MultiplayerState extends State {
         drawText(" | Timer: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "s",color,new TerminalPosition(21,screen.getHeight()));
         for(int i = 0; i<screen.getWidth();i++){
             screen.getGraphics().putString(new TerminalPosition(i, screen.getHeight()-1),"_");
-        }
-    }
-
-
-    public void checkInput(Game game) throws IOException{
-        if(observer.readinput()){
-            for(KeyStroke key : observer.getKeys()){
-                checkMovement(key);
-                checkAction(game,key);
-            }
         }
     }
 
@@ -119,33 +105,12 @@ public class MultiplayerState extends State {
     public void checkAction(Game game, KeyStroke key) throws IOException{
         if(key.getKeyType()==KeyType.Character) {
             switch (key.getCharacter().toString().toLowerCase()) {
-                case ("q"): {
-                    returnMenu(game);
-                    break;
-                }
-                case ("p"): {
-                    pause();
-                    break;
-                }
+                case ("q"): returnMenu(game);break;
+                case ("p"): pause();break;
             }
         }
     }
 
-    public void pause() throws  IOException{
-        long initialTime = System.currentTimeMillis();
-        while(true){
-            drawText("PAUSE","#FF0000",new TerminalPosition((screen.getWidth()/2)-2, screen.getHeight()/2));
-            drawText("Press any key to continue","#FFFFFF",new TerminalPosition((screen.getWidth()/2)-12, (screen.getHeight()/2)+3));
-            screen.getScreen().refresh();
-            if(observer.readinput()){
-                KeyStroke key = observer.getKeys().get(0);
-                if(key.getKeyType()!=KeyType.EOF){
-                    pauseTime += System.currentTimeMillis()-initialTime;
-                    break;
-                }
-            }
-        }
-    }
 }
 
 
