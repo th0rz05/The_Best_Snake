@@ -13,7 +13,7 @@ public class SnakeTest {
     Snake s1;
     @BeforeEach
     public void setup(){
-        s1 = new Snake(new Position(10,10));
+        s1 = new Snake(new Position(10,10),"#000000");
     }
 
     @Test

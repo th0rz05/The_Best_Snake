@@ -31,7 +31,7 @@ public abstract class LevelXState extends State {
 
     public LevelXState(LanternaGUI screen,String filename) {
         super(screen);
-        snake = new Snake(new Position(30,15));
+        snake = new Snake(new Position(30,15),"#000000");
         arena = new Arena(snake,screen);
         arena.buildWalls(filename);
         arena.buildDoor(new Position(screen.getWidth()-1, 10));

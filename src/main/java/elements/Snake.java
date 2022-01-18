@@ -18,16 +18,30 @@ public class Snake implements Drawable {
     private int directionY;
     private int PACE_TO_MOVEMENT = 12;
     private boolean alive;
+    String bodyColor;
 
-    public Snake(Position position) {
+    public Snake(Position position,String color) {
         alive = true;
         directionX = 1;
         directionY = 0;
+        bodyColor = color;
         snake.add(new SnakeHead(new Position(position.getX(), position.getY())));
-        snake.add(new SnakeBody(new Position(position.getX()-directionX, position.getY()-directionY)));
+        snake.add(new SnakeBody(new Position(position.getX()-directionX, position.getY()-directionY),bodyColor));
         size = 2;
         pace = 0;
         velocity = 2;
+    }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
+    public String getBodyColor() {
+        return bodyColor;
+    }
+
+    public void setBodyColor(String bodyColor) {
+        this.bodyColor = bodyColor;
     }
 
     public List<Element> getSnake() {
@@ -143,7 +157,7 @@ public class Snake implements Drawable {
         else if(fruit.getSize()>0){
             for(int i = 0;i < fruit.getSize();i++){
                 Position position = checkScreenLimits(new Position(snake.get(size-1).getPosition().getX()-directionX, snake.get(size-1).getPosition().getY()-directionY),height,width);
-                snake.add(new SnakeBody(position));
+                snake.add(new SnakeBody(position,bodyColor));
                 size++;
             }
         }
