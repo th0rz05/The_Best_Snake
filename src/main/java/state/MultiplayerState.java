@@ -1,15 +1,162 @@
 package state;
 
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.input.KeyStroke;
+import com.googlecode.lanterna.input.KeyType;
+import observer.KeyboardObserver;
+import game.Arena;
+import game.Position;
+import elements.Snake;
 import game.Game;
 import gui.LanternaGUI;
 
-public class MultiplayerState extends State{
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.lang.Math.floor;
+
+public class MultiplayerState extends State {
+    Arena arena;
+    Snake snake1,snake2;
+    List<Snake> snakes = new ArrayList<>();
+    KeyboardObserver observer;
+    long startTime;
+    long pauseTime;
+
     public MultiplayerState(LanternaGUI screen) {
         super(screen);
+        snake1 = new Snake(new Position(30,5));
+        snake2 = new Snake(new Position(30,25));
+        snakes.add(snake1);
+        snakes.add(snake2);
+        arena = new Arena(snakes,screen);
+        observer = new KeyboardObserver(screen);
+        startTime = System.currentTimeMillis();
+        pauseTime = 0;
     }
 
+
     @Override
-    public void step(Game game) {
-        System.out.println("On Multiplayer!");
+    public void step(Game game) throws  IOException{
+        Boolean Game_Over = false;
+        screen.getScreen().clear();
+        drawBackground("#64DF89");
+        drawAllText("#000000");
+        arena.draw(screen.getGraphics());
+        checkInput(game);
+        Game_Over = arena.execute();
+        screen.getScreen().refresh();
+        if(Game_Over){
+            screen.getScreen().stopScreen();
+            screen.getScreen().close();
+            //changeState(game, new EndOriginalState(new LanternaGUI(screen.getHeight(),screen.getWidth()),snake.getSize()-2, (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10)));
+        }
+    }
+
+    public void drawText(String text,String color,TerminalPosition position){
+        screen.getGraphics().setForegroundColor(TextColor.Factory.fromString(color));
+        screen.getGraphics().putString(position, text);
+    }
+
+    public void drawAllText(String color){
+        //drawText("Press Q to exit",color,new TerminalPosition(screen.getWidth()-15, screen.getHeight()));
+        drawText("Snake1: " + (snake1.getSize()-2),color,new TerminalPosition(1,screen.getHeight()));
+        drawText("Snake2: " + (snake2.getSize()-2),color,new TerminalPosition(12,screen.getHeight()));
+        drawText("|  Timer: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "s",color,new TerminalPosition(21,screen.getHeight()));
+        for(int i = 0; i<screen.getWidth();i++){
+            screen.getGraphics().putString(new TerminalPosition(i, screen.getHeight()-1),"_");
+        }
+    }
+
+    public void drawBackground(String color){
+        screen.getGraphics().setBackgroundColor(TextColor.Factory.fromString(color));
+        for (int i = 0;i<screen.getWidth();i++){
+            for (int j = 0;j<=screen.getHeight();j++)
+                screen.getGraphics().putString(new TerminalPosition(i,j), " ");
+        }
+    }
+
+    public void checkInput(Game game) throws IOException{
+        if(observer.readinput()){
+            for(KeyStroke key : observer.getKeys()){
+                checkMovement(key);
+                checkAction(game,key);
+            }
+        }
+    }
+
+    public void checkMovement(KeyStroke key){
+        switch (key.getKeyType()) {
+            case ArrowUp: {
+                if (!(snake1.getDirectionX() == 0 && snake1.getDirectionY() == 1)) {
+                    snake1.changeDirection(0, -1);}break;}
+            case ArrowDown: {
+                if (!(snake1.getDirectionX() == 0 && snake1.getDirectionY() == -1)) {
+                    snake1.changeDirection(0, 1);}break;}
+            case ArrowLeft: {
+                if (!(snake1.getDirectionX() == 1 && snake1.getDirectionY() == 0)) {
+                    snake1.changeDirection(-1, 0);}break;}
+            case ArrowRight: {
+                if (!(snake1.getDirectionX() == -1 && snake1.getDirectionY() == 0)) {
+                    snake1.changeDirection(1, 0);}break;}
+            case Character: {
+                switch (key.getCharacter().toString().toLowerCase()){
+                    case ("w"): {
+                        if (!(snake2.getDirectionX() == 0 && snake2.getDirectionY() == 1)) {
+                            snake2.changeDirection(0, -1);}break;}
+                    case ("s"): {
+                        if (!(snake2.getDirectionX() == 0 && snake2.getDirectionY() == -1)) {
+                            snake2.changeDirection(0, 1);}break;}
+                    case ("a"): {
+                        if (!(snake2.getDirectionX() == 1 && snake2.getDirectionY() == 0)) {
+                            snake2.changeDirection(-1, 0);}break;}
+                    case ("d"): {
+                        if (!(snake2.getDirectionX() == -1 && snake2.getDirectionY() == 0)) {
+                            snake2.changeDirection(1, 0);}break;}
+                }
+            }
+        }
+    }
+
+    public void checkAction(Game game, KeyStroke key) throws IOException{
+        if(key.getKeyType()==KeyType.Character) {
+            switch (key.getCharacter().toString().toLowerCase()) {
+                case ("q"): {
+                    try {
+                        screen.getScreen().stopScreen();
+                        screen.getScreen().close();
+                        changeState(game, new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }break;
+                }
+                case ("p"): {
+                    pause();
+                    break;
+                }
+            }
+        }
+    }
+
+    public void pause() throws  IOException{
+        long initialTime = System.currentTimeMillis();
+        while(true){
+            drawText("PAUSE","#FF0000",new TerminalPosition((screen.getWidth()/2)-2, screen.getHeight()/2));
+            drawText("Press any key to continue","#FFFFFF",new TerminalPosition((screen.getWidth()/2)-12, (screen.getHeight()/2)+3));
+            //drawText("Score: " + (snake.getSize()-2),"#FFFFFF",new TerminalPosition(1,screen.getHeight()));
+            drawText("|  Timer: " + (floor(((initialTime-startTime-pauseTime)/1000f)*10)/10) + "s","#FFFFFF",new TerminalPosition(12,screen.getHeight()));
+            screen.getScreen().refresh();
+            if(observer.readinput()){
+                KeyStroke key = observer.getKeys().get(0);
+                if(key.getKeyType()!=KeyType.EOF){
+                    pauseTime += System.currentTimeMillis()-initialTime;
+                    break;
+                }
+            }
+        }
     }
 }
+
+
