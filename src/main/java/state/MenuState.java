@@ -4,7 +4,9 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import elements.Button;
+import elements.button.BigButton;
+import elements.button.Button;
+import elements.button.SmallButton;
 import observer.KeyboardObserver;
 import game.Position;
 import game.Game;
@@ -23,11 +25,12 @@ public class MenuState extends State {
     public MenuState(LanternaGUI screen) {
         super(screen);
         observer = new KeyboardObserver(screen);
-        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 6),"  ORIGINAL   "));
-        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 11)," MULTIPLAYER "));
-        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 16),"  CHALLENGE  "));
-        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 21)," SCOREBOARD  "));
-        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 26),"    RULES    "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 6),"  ORIGINAL   "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 11)," MULTIPLAYER "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 16),"  CHALLENGE  "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 21)," SCOREBOARD  "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 26),"    RULES    "));
+        buttonList.add(new SmallButton(new Position(3, 26),"CREDITS"));
         actualbutton=buttonList.get(0);
     }
 
@@ -107,6 +110,7 @@ public class MenuState extends State {
             case "  CHALLENGE  ": changeState(game,new ChallengeState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
             case " SCOREBOARD  ": changeState(game,new ScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
             case "    RULES    ": changeState(game,new RulesState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
+            case "CREDITS": changeState(game,new CreditsState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
         }
     }
 }

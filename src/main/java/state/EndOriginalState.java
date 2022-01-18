@@ -30,7 +30,7 @@ public class EndOriginalState extends State{
     public void step(Game game) throws IOException {
         screen.getScreen().clear();
         drawBackground("#31B2D8");
-        drawText("You Lost! :(", "#FF0000", new TerminalPosition(20,3));
+        drawText(" GAME OVER ", "#FF0000", new TerminalPosition(20,3));
         drawText("Please Enter your name", "#000000", new TerminalPosition(15,9));
         drawText("Score: " + score, "#000000", new TerminalPosition(12,25));
         drawText("Time: " + time + " s", "#000000", new TerminalPosition(30,25));

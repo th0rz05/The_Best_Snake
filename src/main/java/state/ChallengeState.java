@@ -4,7 +4,8 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import elements.Button;
+import elements.button.BigButton;
+import elements.button.Button;
 import observer.KeyboardObserver;
 import game.Position;
 import game.Game;
@@ -26,9 +27,9 @@ public class ChallengeState extends State{
     public ChallengeState(LanternaGUI screen) {
         super(screen);
         observer = new KeyboardObserver(screen);
-        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 6),"    LEVEL1   "));
-        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 11),"    LEVEL2   "));
-        buttonList.add(new Button(new Position((screen.getWidth()/2)-7, 16),"    LEVEL3   "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 6),"    LEVEL1   "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 11),"    LEVEL2   "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 16),"    LEVEL3   "));
         actualbutton=buttonList.get(0);
     }
 
