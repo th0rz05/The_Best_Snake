@@ -64,10 +64,6 @@ public class MultiplayerState extends State {
         }
     }
 
-    public void drawText(String text,String color,TerminalPosition position){
-        screen.getGraphics().setForegroundColor(TextColor.Factory.fromString(color));
-        screen.getGraphics().putString(position, text);
-    }
 
     public void drawAllText(String color){
         drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
@@ -79,13 +75,6 @@ public class MultiplayerState extends State {
         }
     }
 
-    public void drawBackground(String color){
-        screen.getGraphics().setBackgroundColor(TextColor.Factory.fromString(color));
-        for (int i = 0;i<screen.getWidth();i++){
-            for (int j = 0;j<=screen.getHeight();j++)
-                screen.getGraphics().putString(new TerminalPosition(i,j), " ");
-        }
-    }
 
     public void checkInput(Game game) throws IOException{
         if(observer.readinput()){
@@ -154,9 +143,6 @@ public class MultiplayerState extends State {
         while(true){
             drawText("PAUSE","#FF0000",new TerminalPosition((screen.getWidth()/2)-2, screen.getHeight()/2));
             drawText("Press any key to continue","#FFFFFF",new TerminalPosition((screen.getWidth()/2)-12, (screen.getHeight()/2)+3));
-            drawText("Snake1: " + (snake1.getSize()-2),"#FFFFFF",new TerminalPosition(1,screen.getHeight()));
-            drawText("Snake2: " + (snake2.getSize()-2),"#FFFFFF",new TerminalPosition(12,screen.getHeight()));
-            drawText(" | Timer: " + (floor(((initialTime-startTime-pauseTime)/1000f)*10)/10) + "s","#FFFFFF",new TerminalPosition(21,screen.getHeight()));
             screen.getScreen().refresh();
             if(observer.readinput()){
                 KeyStroke key = observer.getKeys().get(0);

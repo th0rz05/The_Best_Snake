@@ -43,19 +43,6 @@ public class ChallengeState extends State{
     }
 
 
-    public void drawText(String text, String color, TerminalPosition position){
-        screen.getGraphics().setForegroundColor(TextColor.Factory.fromString(color));
-        screen.getGraphics().putString(position, text);
-    }
-
-    public void drawBackground(String color){
-        screen.getGraphics().setBackgroundColor(TextColor.Factory.fromString(color));
-        for (int i = 0;i<screen.getWidth();i++){
-            for (int j = 0;j<=screen.getHeight();j++)
-                screen.getGraphics().putString(new TerminalPosition(i,j), " ");
-        }
-    }
-
     public void drawAllText(String color){
         drawText("CHALLENGE MODE",color,new TerminalPosition((screen.getWidth()/2)-7, 1));
         drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));

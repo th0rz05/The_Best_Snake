@@ -64,18 +64,6 @@ public class EndMultiplayerState extends State{
         screen.getScreen().refresh();
     }
 
-    public void drawText(String text, String color, TerminalPosition position){
-        screen.getGraphics().setForegroundColor(TextColor.Factory.fromString(color));
-        screen.getGraphics().putString(position, text);
-    }
-
-    public void drawBackground(String color){
-        screen.getGraphics().setBackgroundColor(TextColor.Factory.fromString(color));
-        for (int i = 0;i<screen.getWidth();i++){
-            for (int j = 0;j<=screen.getHeight();j++)
-                screen.getGraphics().putString(new TerminalPosition(i,j), " ");
-        }
-    }
 
     public void checkInput(Game game) throws IOException{
         if(observer.readinput()){
