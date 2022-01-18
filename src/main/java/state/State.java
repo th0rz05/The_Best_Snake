@@ -23,6 +23,7 @@ public abstract class State {
     List<Button> buttonList = new ArrayList<>();
     Button actualbutton;
     Snake snake;
+    Snake snake2;
     String name;
 
     public State(LanternaGUI screen) {
@@ -147,6 +148,11 @@ public abstract class State {
     public void saveScore() throws IOException{};
 
     public void checkMovement(KeyStroke key){
+        moveArrows(key);
+        moveWasd(key);
+    }
+
+    public void moveArrows(KeyStroke key){
         switch (key.getKeyType()) {
             case ArrowUp: {
                 if (!(snake.getDirectionX() == 0 && snake.getDirectionY() == 1)) {
@@ -160,6 +166,25 @@ public abstract class State {
             case ArrowRight: {
                 if (!(snake.getDirectionX() == -1 && snake.getDirectionY() == 0)) {
                     snake.changeDirection(1, 0);}break;}
+            }
+    }
+
+    public void moveWasd(KeyStroke key){
+        if(snake2!=null && key.getKeyType()==KeyType.Character){
+            switch (key.getCharacter().toString().toLowerCase()){
+                case ("w"): {
+                    if (!(snake2.getDirectionX() == 0 && snake2.getDirectionY() == 1)) {
+                        snake2.changeDirection(0, -1);}break;}
+                case ("s"): {
+                    if (!(snake2.getDirectionX() == 0 && snake2.getDirectionY() == -1)) {
+                        snake2.changeDirection(0, 1);}break;}
+                case ("a"): {
+                    if (!(snake2.getDirectionX() == 1 && snake2.getDirectionY() == 0)) {
+                        snake2.changeDirection(-1, 0);}break;}
+                case ("d"): {
+                    if (!(snake2.getDirectionX() == -1 && snake2.getDirectionY() == 0)) {
+                        snake2.changeDirection(1, 0);}break;}
+            }
         }
     }
 
