@@ -1,12 +1,10 @@
 package state;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import elements.button.BigButton;
 import elements.button.Button;
-import observer.KeyboardObserver;
 import game.Position;
 import game.Game;
 import gui.LanternaGUI;
@@ -15,13 +13,8 @@ import state.level.Level2State;
 import state.level.Level3State;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ChallengeState extends State{
-
-    List<Button> buttonList = new ArrayList<>();
-    Button actualbutton;
 
     public ChallengeState(LanternaGUI screen) {
         super(screen);
@@ -37,51 +30,16 @@ public class ChallengeState extends State{
         drawAllText("#000097");
         drawButtons();
         screen.getScreen().refresh();
-        checkInput(game);
+        checkInputButtons(game);
     }
-
 
     public void drawAllText(String color){
         drawText("CHALLENGE MODE",color,new TerminalPosition((screen.getWidth()/2)-7, 1));
         drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
     }
 
-    public void drawButtons(){
-        for(Button b : buttonList){
-            if (b.equals(actualbutton)){
-                b.setHighlight(true);
-            }
-            b.draw(screen.getGraphics());
-            b.setHighlight(false);
-        }
-    }
-
-    public void checkInput(Game game) throws IOException {
-        if(observer.readinput()){
-            KeyStroke key = observer.getKeys().get(0);
-            if(key.getKeyType()== KeyType.Enter){
-                screen.getScreen().stopScreen();
-                screen.getScreen().close();
-                enterState(game);
-            }
-            if(key.getKeyType()== KeyType.Character && key.getCharacter().toString().equalsIgnoreCase("q")){
-                returnMenu(game);
-            }
-            if(key.getKeyType()== KeyType.ArrowDown){
-                int index = (buttonList.indexOf(actualbutton)+1);
-                if(index==buttonList.size()){
-                    index = 0;
-                }
-                actualbutton = buttonList.get(index);
-            }
-            if(key.getKeyType()== KeyType.ArrowUp){
-                int index = (buttonList.indexOf(actualbutton)-1) ;
-                if(index==-1){
-                    index = buttonList.size()-1;
-                }
-                actualbutton = buttonList.get(index);
-            }
-        }
+    public void exit(Game game) throws IOException{
+        returnMenu(game);
     }
 
     public void enterState(Game game){

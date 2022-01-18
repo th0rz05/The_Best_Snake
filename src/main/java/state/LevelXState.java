@@ -22,8 +22,6 @@ public abstract class LevelXState extends State {
 
     Arena arena;
     Snake snake;
-    long startTime;
-    long pauseTime;
     int FINAL_SIZE;
     String backgroundColor;
     int level;
@@ -34,8 +32,6 @@ public abstract class LevelXState extends State {
         arena = new Arena(snake,screen);
         arena.buildWalls(filename);
         arena.buildDoor(new Position(screen.getWidth()-1, 10));
-        startTime = System.currentTimeMillis();
-        pauseTime = 0;
     }
 
     public void setFINAL_SIZE(int FINAL_SIZE) {
@@ -52,16 +48,16 @@ public abstract class LevelXState extends State {
 
     @Override
     public void step(Game game) throws IOException {
-        Boolean Game_Over = false;
+        Boolean GameOver;
         screen.getScreen().clear();
         drawBackground(backgroundColor);
         drawAllText("#000000");
         arena.draw(screen.getGraphics());
-        checkInput(game);
-        Game_Over = arena.execute();
+        checkInputPlay(game);
+        GameOver = arena.execute();
         checkForFinalSize();
         screen.getScreen().refresh();
-        if(Game_Over){
+        if(GameOver){
             if(arena.checkChallengeWin()){
                 screen.getScreen().stopScreen();
                 screen.getScreen().close();
@@ -86,13 +82,6 @@ public abstract class LevelXState extends State {
         drawText("|  Timer: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "s",color,new TerminalPosition(12,screen.getHeight()));
     }
 
-    public void checkInput(Game game) throws IOException{
-        if(observer.readinput()){
-            KeyStroke key = observer.getKeys().get(0);
-            checkMovement(key);
-            checkAction(game,key);
-        }
-    }
 
     public void checkMovement(KeyStroke key){
         switch (key.getKeyType()) {
@@ -115,32 +104,13 @@ public abstract class LevelXState extends State {
         if(key.getKeyType()== KeyType.Character) {
             switch (key.getCharacter().toString().toLowerCase()) {
                 case ("q"): {
-                    try {
-                        screen.getScreen().stopScreen();
-                        screen.getScreen().close();
-                        changeState(game, new ChallengeState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }break;
+                    screen.getScreen().stopScreen();
+                    screen.getScreen().close();
+                    changeState(game, new ChallengeState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                    break;
                 }
                 case ("p"): {
                     pause();
-                    break;
-                }
-            }
-        }
-    }
-
-    public void pause() throws  IOException{
-        long initialTime = System.currentTimeMillis();
-        while(true){
-            drawText("PAUSE","#FF0000",new TerminalPosition((screen.getWidth()/2)-2, screen.getHeight()/2));
-            drawText("Press any key to continue","#FFFFFF",new TerminalPosition((screen.getWidth()/2)-12, (screen.getHeight()/2)+3));
-            screen.getScreen().refresh();
-            if(observer.readinput()){
-                KeyStroke key = observer.getKeys().get(0);
-                if(key.getKeyType()!=KeyType.EOF){
-                    pauseTime += System.currentTimeMillis()-initialTime;
                     break;
                 }
             }

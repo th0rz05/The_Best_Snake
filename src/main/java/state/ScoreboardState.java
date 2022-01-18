@@ -14,13 +14,8 @@ import gui.LanternaGUI;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ScoreboardState extends State{
-
-    List<Button> buttonList = new ArrayList<>();
-    Button actualbutton;
 
     public ScoreboardState(LanternaGUI screen) {
         super(screen);
@@ -39,7 +34,7 @@ public class ScoreboardState extends State{
         drawAllText("#000097");
         drawButtons();
         screen.getScreen().refresh();
-        checkInput(game);
+        checkInputButtons(game);
     }
 
 
@@ -48,43 +43,6 @@ public class ScoreboardState extends State{
         drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
     }
 
-    public void drawButtons(){
-        for(Button b : buttonList){
-            if (b.equals(actualbutton)){
-                b.setHighlight(true);
-            }
-            b.draw(screen.getGraphics());
-            b.setHighlight(false);
-        }
-    }
-
-    public void checkInput(Game game) throws IOException {
-        if(observer.readinput()){
-            KeyStroke key = observer.getKeys().get(0);
-            if(key.getKeyType()== KeyType.Enter){
-                screen.getScreen().stopScreen();
-                screen.getScreen().close();
-                enterState(game);
-            }
-            if(key.getKeyType()== KeyType.Character && key.getCharacter().toString().equalsIgnoreCase("q")){
-                returnMenu(game);
-            }
-            if(key.getKeyType()== KeyType.ArrowDown){
-                int index = (buttonList.indexOf(actualbutton)+1);
-                if(index==buttonList.size()){
-                    index = 0;
-                }
-                actualbutton = buttonList.get(index);
-            }
-            if(key.getKeyType()== KeyType.ArrowUp){
-                int index = (buttonList.indexOf(actualbutton)-1) ;
-                if(index==-1){
-                    index = buttonList.size()-1;
-                }
-                actualbutton = buttonList.get(index);
-            }
-        }
-    }
 
     public void resetFiles() throws FileNotFoundException {
         PrintWriter pw1 = new PrintWriter("src/main/resources/Scoreboards/OriginalScoreBoard.txt");
@@ -93,6 +51,10 @@ public class ScoreboardState extends State{
         PrintWriter pw4 = new PrintWriter("src/main/resources/Scoreboards/Level2ScoreBoard.txt");
         PrintWriter pw5 = new PrintWriter("src/main/resources/Scoreboards/Level3ScoreBoard.txt");
         pw1.close();pw2.close();pw3.close();pw4.close();pw5.close();
+    }
+
+    public void exit(Game game) throws IOException{
+        returnMenu(game);
     }
 
     public void enterState(Game game) throws FileNotFoundException{
