@@ -1,4 +1,6 @@
+joao 5 rui 0 10.8
 ok 0 ok 0 9.9
 Tiago 7 Duarte 0 4.3
 JOAO 0 TIAGO 3 1.8
+
 

@@ -55,7 +55,7 @@ public class EndOriginalState extends State{
     public void checkInput(Game game) throws IOException{
         if(observer.readinput()){
             KeyStroke key = observer.getKeys().get(0);
-            if(key.getKeyType()== KeyType.Character && name.length() <= 15 ){
+            if(key.getKeyType()== KeyType.Character && name.length() <= 10 ){
                 name += key.getCharacter().toString();
             }
             else if(key.getKeyType()== KeyType.Enter){

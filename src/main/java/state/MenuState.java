@@ -57,7 +57,7 @@ public class MenuState extends State {
 
     public void drawAllText(String color){
         drawText("THE BEST SNAKE",color,new TerminalPosition((screen.getWidth()/2)-7, 1));
-        drawText("Press Q to exit",color,new TerminalPosition(screen.getWidth()-15,screen.getHeight()));
+        drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
     }
 
     public void drawButtons(){

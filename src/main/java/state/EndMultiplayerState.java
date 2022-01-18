@@ -41,9 +41,9 @@ public class EndMultiplayerState extends State{
         screen.getScreen().clear();
         if(draw){
             drawBackground("#7D9BA8");
-            drawText("DRAW! :/", "#000000", new TerminalPosition(20,3));
+            drawText("DRAW! :/", "#000000", new TerminalPosition(22,3));
             checkInput(game);
-            drawText("PRESS ANY KEY TO EXIT!","#000000", new TerminalPosition(12,16));
+            drawText("PRESS ANY KEY TO EXIT!","#000000", new TerminalPosition(18,16));
         }
         else if(!firstNameDone){
             drawBackground("#2DF168");
@@ -88,7 +88,7 @@ public class EndMultiplayerState extends State{
                 }
             }
             else if(!firstNameDone){
-                if(key.getKeyType()== KeyType.Character && name1.length() <= 15 ){
+                if(key.getKeyType()== KeyType.Character && name1.length() <= 10 ){
                     name1 += key.getCharacter().toString();
                 }
                 else if(key.getKeyType()== KeyType.Enter){
@@ -99,7 +99,7 @@ public class EndMultiplayerState extends State{
                 }
             }
             else{
-                if(key.getKeyType()== KeyType.Character && name2.length() <= 15 ){
+                if(key.getKeyType()== KeyType.Character && name2.length() <= 10 ){
                     name2 += key.getCharacter().toString();
                 }
                 else if(key.getKeyType()== KeyType.Enter){

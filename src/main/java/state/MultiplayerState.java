@@ -154,8 +154,9 @@ public class MultiplayerState extends State {
         while(true){
             drawText("PAUSE","#FF0000",new TerminalPosition((screen.getWidth()/2)-2, screen.getHeight()/2));
             drawText("Press any key to continue","#FFFFFF",new TerminalPosition((screen.getWidth()/2)-12, (screen.getHeight()/2)+3));
-            //drawText("Score: " + (snake.getSize()-2),"#FFFFFF",new TerminalPosition(1,screen.getHeight()));
-            drawText("|  Timer: " + (floor(((initialTime-startTime-pauseTime)/1000f)*10)/10) + "s","#FFFFFF",new TerminalPosition(12,screen.getHeight()));
+            drawText("Snake1: " + (snake1.getSize()-2),"#FFFFFF",new TerminalPosition(1,screen.getHeight()));
+            drawText("Snake2: " + (snake2.getSize()-2),"#FFFFFF",new TerminalPosition(12,screen.getHeight()));
+            drawText(" | Timer: " + (floor(((initialTime-startTime-pauseTime)/1000f)*10)/10) + "s","#FFFFFF",new TerminalPosition(21,screen.getHeight()));
             screen.getScreen().refresh();
             if(observer.readinput()){
                 KeyStroke key = observer.getKeys().get(0);

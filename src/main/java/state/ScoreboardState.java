@@ -9,9 +9,6 @@ import observer.KeyboardObserver;
 import game.Position;
 import game.Game;
 import gui.LanternaGUI;
-import state.level.Level1State;
-import state.level.Level2State;
-import state.level.Level3State;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,7 +56,7 @@ public class ScoreboardState extends State{
 
     public void drawAllText(String color){
         drawText("SCOREBOARD",color,new TerminalPosition((screen.getWidth()/2)-5, 1));
-        drawText("Press Q to exit",color,new TerminalPosition(screen.getWidth()-15,screen.getHeight()));
+        drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
     }
 
     public void drawButtons(){
