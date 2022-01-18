@@ -20,6 +20,7 @@ public class EndMultiplayerState extends State{
     int score2;
     double time;
     boolean firstNameDone;
+    boolean draw = false;
 
     public EndMultiplayerState(LanternaGUI screen, int score1, int score2, double time) {
         super(screen);
@@ -30,12 +31,21 @@ public class EndMultiplayerState extends State{
         this.score2 = score2;
         this.time = time;
         this.firstNameDone = false;
+        if(score1==-1){
+            draw = true;
+        }
     }
 
     @Override
     public void step(Game game) throws IOException {
         screen.getScreen().clear();
-        if(!firstNameDone){
+        if(draw){
+            drawBackground("#7D9BA8");
+            drawText("DRAW! :/", "#000000", new TerminalPosition(20,3));
+            checkInput(game);
+            drawText("PRESS ANY KEY TO EXIT!","#000000", new TerminalPosition(12,16));
+        }
+        else if(!firstNameDone){
             drawBackground("#2DF168");
             drawText("You Won! :)", "#000000", new TerminalPosition(20,3));
             drawText("Please Enter your name", "#000000", new TerminalPosition(15,9));
@@ -70,7 +80,14 @@ public class EndMultiplayerState extends State{
     public void checkInput(Game game) throws IOException{
         if(observer.readinput()){
             KeyStroke key = observer.getKeys().get(0);
-            if(!firstNameDone){
+            if(draw){
+                if(key.getKeyType()!=KeyType.EOF){
+                    screen.getScreen().stopScreen();
+                    screen.getScreen().close();
+                    changeState(game,new MenuState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
+                }
+            }
+            else if(!firstNameDone){
                 if(key.getKeyType()== KeyType.Character && name1.length() <= 15 ){
                     name1 += key.getCharacter().toString();
                 }

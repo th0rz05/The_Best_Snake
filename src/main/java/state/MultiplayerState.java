@@ -51,7 +51,16 @@ public class MultiplayerState extends State {
         if(Game_Over){
             screen.getScreen().stopScreen();
             screen.getScreen().close();
-            changeState(game, new EndMultiplayerState(new LanternaGUI(screen.getHeight(),screen.getWidth()),snake1.getSize()-2, snake2.getSize()-2,floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10));
+            if(!snake1.isAlive() && !snake2.isAlive()){
+                changeState(game, new EndMultiplayerState(new LanternaGUI(screen.getHeight(),screen.getWidth()),-1,-1,0));
+            }
+            else if (!snake1.isAlive()){
+                changeState(game, new EndMultiplayerState(new LanternaGUI(screen.getHeight(),screen.getWidth()),snake2.getSize()-2, snake1.getSize()-2,floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10));
+            }
+            else{
+                changeState(game, new EndMultiplayerState(new LanternaGUI(screen.getHeight(),screen.getWidth()),snake1.getSize()-2, snake2.getSize()-2,floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10));
+            }
+
         }
     }
 
