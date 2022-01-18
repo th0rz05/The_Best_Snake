@@ -53,12 +53,26 @@ public class ShowScoreboardState extends State{
     }
 
     public void drawFromFile(String file) {
-        int i = 6;
+        int i = 7;
         try {
             Scanner scanner = new Scanner(new File(file));
-            while (scanner.hasNextLine()) {
-                drawText(scanner.nextLine(), "#FFFFFF", new TerminalPosition(2, i));
-                i += 1;
+            while (scanner.hasNextLine() && i < 28) {
+                String[] aux = scanner.nextLine().split(" ");
+                if(aux.length == 3){
+                    drawText("Name", "#FF0000", new TerminalPosition(8, 4));
+                    drawText("Score", "#FF0000", new TerminalPosition(26, 4));
+                    drawText("Time", "#FF0000", new TerminalPosition(38, 4));
+                    drawText(aux[0], "#FFFFFF", new TerminalPosition(8, i));
+                    drawText(aux[1], "#FFFFFF", new TerminalPosition(26, i));
+                    drawText(aux[2] + " s", "#FFFFFF", new TerminalPosition(38, i));
+                }
+                else if(aux.length == 2){
+                    drawText("Name", "#FF0000", new TerminalPosition(12, 4));
+                    drawText("Time", "#FF0000", new TerminalPosition(30, 4));
+                    drawText(aux[0], "#FFFFFF", new TerminalPosition(12, i));
+                    drawText(aux[1] + " s", "#FFFFFF", new TerminalPosition(30, i));
+                }
+                i += 2;
             }
             scanner.close();
         } catch(FileNotFoundException e) {
