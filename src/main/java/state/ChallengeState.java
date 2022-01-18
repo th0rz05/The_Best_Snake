@@ -26,7 +26,7 @@ public class ChallengeState extends State{
 
     public void step(Game game) throws IOException{
         screen.getScreen().clear();
-        drawBackground("#31B2D8");
+        drawBackground("#EFB361");
         drawAllText("#000097");
         drawButtons();
         screen.getScreen().refresh();

@@ -45,22 +45,6 @@ public abstract class EndLevelXState extends State {
         drawText("Your Name: " + name,color, new TerminalPosition(12,16));
     }
 
-    public void checkInput(Game game) throws IOException{
-        if(observer.readinput()){
-            KeyStroke key = observer.getKeys().get(0);
-            if(key.getKeyType()== KeyType.Character && name.length() <= 10 ){
-                name += key.getCharacter().toString();
-            }
-            else if(key.getKeyType()== KeyType.Enter){
-                saveScore();
-                returnMenu(game);
-            }
-            else if(key.getKeyType()== KeyType.Backspace && name.length() >=1){
-                name = name.substring(0,name.length()-1);
-            }
-        }
-
-    }
 
     public void saveScore() throws IOException {
         File scoreboard = new File(filename);

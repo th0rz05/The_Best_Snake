@@ -15,18 +15,18 @@ public class ScoreboardState extends State{
 
     public ScoreboardState(LanternaGUI screen) {
         super(screen);
-        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 4),"  ORIGINAL   "));
-        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 9)," MULTIPLAYER "));
-        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 14),"    LEVEL1   "));
-        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 19),"    LEVEL2   "));
-        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 24),"    LEVEL3   "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 6),"  ORIGINAL   "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 11)," MULTIPLAYER "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 16),"    LEVEL1   "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 21),"    LEVEL2   "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 26),"    LEVEL3   "));
         buttonList.add(new SmallButton(new Position(3, 26)," RESET "));
         actualbutton=buttonList.get(0);
     }
 
     public void step(Game game) throws IOException{
         screen.getScreen().clear();
-        drawBackground("#31B2D8");
+        drawBackground("#7DE1AF");
         drawAllText("#000097");
         drawButtons();
         screen.getScreen().refresh();
