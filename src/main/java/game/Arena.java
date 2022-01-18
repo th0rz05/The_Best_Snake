@@ -47,6 +47,24 @@ public class Arena implements Drawable {
         addFruits();
     }
 
+    public Arena(List<Snake> two_snakes, LanternaGUI screen) {
+        height = screen.getHeight()-1;
+        width = screen.getWidth()-1;
+        for(Snake snake : two_snakes){
+            elements.add(snake);
+            snakes.add(snake);
+        }
+        POSSIBLE_FRUITS.add(new Apple(new Position(0,0)));
+        POSSIBLE_FRUITS.add(new Orange(new Position(0,0)));
+        POSSIBLE_FRUITS.add(new Kiwi(new Position(0,0)));
+        POSSIBLE_FRUITS.add(new Banana(new Position(0,0)));
+        POSSIBLE_FRUITS.add(new Peach(new Position(0,0)));
+        POSSIBLE_FRUITS.add(new Grape(new Position(0,0)));
+        POSSIBLE_FRUITS.add(new Cherry(new Position(0,0)));
+        POSSIBLE_FRUITS.add(new Mistery(new Position(0,0)));
+        addFruits();
+    }
+
     @Override
     public void draw(TextGraphics screen) {
         for(Drawable drawable:elements){
