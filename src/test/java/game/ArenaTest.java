@@ -17,14 +17,14 @@ public class ArenaTest {
     Arena a;
     @BeforeEach
     public void setup(){
-        s1 = new Snake(new Position(10,10));
+        s1 = new Snake(new Position(10,10),"#000000");
         a = new Arena(s1, new LanternaGUI(50,50));
     }
 
 
     @Test
     public void check_snake_collisions_test1(){
-        Element b = new SnakeBody(new Position(10,10));
+        Element b = new SnakeBody(new Position(10,10),"#000000");
         List<Element> Coliding_snake = s1.getSnake();
         Coliding_snake.add(b);
         s1.setSnake(Coliding_snake);

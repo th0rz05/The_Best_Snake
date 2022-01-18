@@ -1,17 +1,18 @@
-package elements;
+package elements.button;
 
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import elements.Drawable;
 import game.Position;
 import state.State;
 
-public class Button implements Drawable {
+public abstract class Button implements Drawable {
 
     Position position;
-    int height = 3;
-    int width = 15;
+    int height;
+    int width;
     String text;
     boolean highlight = false;
     String color = "#FFFFFF";
