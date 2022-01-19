@@ -105,6 +105,10 @@ public class Arena implements Drawable {
         }
     }
 
+    public int maximumGrowingSize(){
+        return 0;
+    }
+
     public Boolean check_snake_collisions(Position pos){
         for(Snake snake1 : snakes)
             for(int i = 1; i <snake1.getSnake().size(); i++)
@@ -155,6 +159,10 @@ public class Arena implements Drawable {
             if(w.getPosition().equals(SnakeHeadPosition))
                 return true;
         return false;
+    }
+
+    public void addWall(Wall w){
+        walls.add(w);
     }
 
     public void buildWalls(String File_name){

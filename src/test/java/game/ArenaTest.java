@@ -2,6 +2,7 @@ package game;
 
 import elements.Element;
 import elements.Snake;
+import elements.Wall;
 import elements.snake.SnakeBody;
 import game.Arena;
 import game.Position;
@@ -37,6 +38,12 @@ public class ArenaTest {
     public void snake_collisions_test2(){
         a.check_snake_collisions(s1.getSnakeHead().getPosition());
         Assertions.assertTrue(s1.isAlive());
+    }
+
+    @Test
+    public void notCollidingAgainstWalls(){
+        a.addWall(new Wall(new Position(7,10)));
+        Assertions.assertEquals(3,a.maximumGrowingSize());
     }
 
 }
