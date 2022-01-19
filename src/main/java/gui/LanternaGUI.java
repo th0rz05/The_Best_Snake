@@ -25,6 +25,7 @@ public class LanternaGUI {
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             terminalFactory.setForceAWTOverSwing(true);
             terminalFactory.setTerminalEmulatorFontConfiguration(loadFont());
+            terminalFactory.setTerminalEmulatorTitle("THE BEST SNAKE");
             Terminal terminal = terminalFactory.createTerminal();
             this.screen = new TerminalScreen(terminal);
             this.graphics = screen.newTextGraphics();
@@ -71,13 +72,14 @@ public class LanternaGUI {
     }
 
     public AWTTerminalFontConfiguration loadFont() throws FontFormatException, IOException{
-        File fontFile = new File("src/main/resources/fonts/square.ttf");
+        //File fontFile = new File("src/main/resources/fonts/square.ttf");
+        File fontFile = new File("src/main/resources/fonts/Square-Regular.ttf");
         Font font = Font.createFont(Font.TRUETYPE_FONT,fontFile);
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.BOLD, 25);
+        Font loadedFont = font.deriveFont(Font.BOLD, 30);
         return AWTTerminalFontConfiguration.newInstance(loadedFont);
 
     }
