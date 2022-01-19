@@ -104,6 +104,10 @@ public class Snake implements Drawable {
         return snake.get(0);
     }
 
+    public Element getSnakeTail(){
+        return snake.get(size-1);
+    }
+
     public boolean isAlive() {
         return alive;
     }
@@ -141,7 +145,7 @@ public class Snake implements Drawable {
         }
     }
 
-    public void eatFruit(Fruit fruit, int height, int width){
+    public void eatFruit(Fruit fruit, int height, int width , int maxSize){
         if(size + fruit.getSize()<2){
             while(size>2){
                 snake.remove(size-1);
@@ -155,10 +159,12 @@ public class Snake implements Drawable {
             }
         }
         else if(fruit.getSize()>0){
-            for(int i = 0;i < fruit.getSize();i++){
-                Position position = checkScreenLimits(new Position(snake.get(size-1).getPosition().getX()-directionX, snake.get(size-1).getPosition().getY()-directionY),height,width);
-                snake.add(new SnakeBody(position,bodyColor));
-                size++;
+            for(int i = 1;i <= fruit.getSize();i++){
+                if(i<=maxSize){
+                    Position position = checkScreenLimits(new Position(snake.get(size-1).getPosition().getX()-directionX, snake.get(size-1).getPosition().getY()-directionY),height,width);
+                    snake.add(new SnakeBody(position,bodyColor));
+                    size++;
+                }
             }
         }
         velocity *= fruit.getVelocity();

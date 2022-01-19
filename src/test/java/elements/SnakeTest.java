@@ -57,28 +57,42 @@ public class SnakeTest {
 
     @Test
     public void eatApple(){
-        s1.eatFruit(new Apple(new Position(0,0)),50,50);
+        s1.eatFruit(new Apple(new Position(0,0)),50,50,5);
         Assertions.assertEquals(5,s1.getSize());
         Assertions.assertEquals(1,s1.getVelocity());
     }
 
     @Test
+    public void eatAppleMaxSize(){
+        s1.eatFruit(new Apple(new Position(0,0)),50,50,2);
+        Assertions.assertEquals(4,s1.getSize());
+        Assertions.assertEquals(1,s1.getVelocity());
+    }
+
+    @Test
     public void eatKiwi(){
-        s1.eatFruit(new Kiwi(new Position(0,0)),50,50);
+        s1.eatFruit(new Kiwi(new Position(0,0)),50,50,5);
         Assertions.assertEquals(2,s1.getSize());
         Assertions.assertEquals(4,s1.getVelocity());
     }
 
     @Test
     public void eatOrange(){
-        s1.eatFruit(new Orange(new Position(0,0)),50,50);
+        s1.eatFruit(new Orange(new Position(0,0)),50,50,5);
         Assertions.assertEquals(3,s1.getSize());
         Assertions.assertEquals(2,s1.getVelocity());
     }
 
     @Test
     public void eatBanana(){
-        s1.eatFruit(new Banana(new Position(0,0)),50,50);
+        s1.eatFruit(new Banana(new Position(0,0)),50,50,3);
+        Assertions.assertEquals(5,s1.getSize());
+        Assertions.assertEquals(4,s1.getVelocity());
+    }
+
+    @Test
+    public void eatBananaMaxSize(){
+        s1.eatFruit(new Banana(new Position(0,0)),50,50,5);
         Assertions.assertEquals(7,s1.getSize());
         Assertions.assertEquals(4,s1.getVelocity());
     }

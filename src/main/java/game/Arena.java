@@ -93,19 +93,18 @@ public class Arena implements Drawable {
 
     public void checkEatFruits(Snake snake){
         if(snake.getSnakeHead().getPosition().equals(fruit1.getPosition())){
-            snake.eatFruit(fruit1,height,width);
+            snake.eatFruit(fruit1,height,width,maximumGrowingSize(snake));
             addFruits();
         }
         if(snake.getSnakeHead().getPosition().equals(fruit2.getPosition())){
-            snake.eatFruit(fruit2,height,width);
+            snake.eatFruit(fruit2,height,width,maximumGrowingSize(snake));
             addFruits();
         }
     }
 
     public int maximumGrowingSize(Snake s){
         int maxSize = 0;
-        List<Element> body = s.getSnake();
-        Position pos = body.get(body.size()-1).getPosition();
+        Position pos = new Position(s.getSnakeTail().getPosition().getX(),s.getSnakeTail().getPosition().getY());
         for (int i = 1;i<=5;i++){
             pos.setX(pos.getX()-s.getDirectionX());
             pos.setY(pos.getY()-s.getDirectionY());
