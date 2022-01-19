@@ -6,7 +6,7 @@ public class SnakeHead extends Element {
 
     public SnakeHead(Position position) {
         super(position);
-        setSymbol("q");
+        setSymbol("O");
         setColor("#000000");
     }
 

@@ -33,7 +33,7 @@ public class EndOriginalState extends State{
     }
 
     public void drawAllText(String color){
-        drawText(" GAME OVER ", "#FF0000", new TerminalPosition(20,3));
+        drawText(" GAME OVER ", "#00FF00", new TerminalPosition(20,3));
         drawText("Please Enter your name", color, new TerminalPosition(15,9));
         drawText("Score: " + score, color, new TerminalPosition(12,25));
         drawText("Time: " + time + " s", color, new TerminalPosition(30,25));
