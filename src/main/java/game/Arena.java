@@ -44,6 +44,18 @@ public class Arena implements Drawable {
         return walls;
     }
 
+    public void setSnakes(List<Snake> snakes) {
+        this.snakes = snakes;
+    }
+
+    public void setWalls(List<Wall> walls) {
+        this.walls = walls;
+    }
+
+    public Arena() {
+        snakes.add(new Snake(new Position(10,10),"#000000"));
+    }
+
     @Override
     public void draw(TextGraphics screen) {
         for(Drawable drawable:elements){

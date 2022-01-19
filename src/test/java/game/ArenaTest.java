@@ -4,35 +4,37 @@ import elements.Element;
 import elements.Snake;
 import elements.Wall;
 import elements.snake.SnakeBody;
-import game.Arena;
-import game.Position;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import gui.LanternaGUI;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class ArenaTest {
     Snake s1;
+    List<Snake> snakeList = new ArrayList<>();
+    ArenaBuilder ab;
     Arena a;
+
     @BeforeEach
     public void setup(){
         s1 = new Snake(new Position(10,10),"#000000");
-        a = new Arena(s1, new LanternaGUI(50,50));
+        snakeList.add(s1);
+        ab = new ArenaBuilder(snakeList,new LanternaGUI(50,50));
+        a = ab.getArena();
     }
 
-
-    //@Test
-    /*public void check_snake_collisions_test1(){
+    @Test
+    public void check_snake_collisions_test1(){
         Element b = new SnakeBody(new Position(10,10),"#000000");
         List<Element> Coliding_snake = s1.getSnake();
         Coliding_snake.add(b);
         s1.setSnake(Coliding_snake);
-
-        a.check_snake_collisions(s1.getSnakeHead().getPosition());
-        Assertions.assertFalse(s1.isAlive());
-    }*/
+        Assertions.assertTrue(a.check_snake_collisions(s1.getSnakeHead().getPosition()));
+    }
 
     @Test
     public void snake_collisions_test2(){

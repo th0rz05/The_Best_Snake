@@ -1,6 +1,5 @@
 package game;
 
-import elements.Door;
 import elements.Snake;
 import elements.Wall;
 import elements.fruit.*;
