@@ -72,8 +72,8 @@ public class LanternaGUI {
     }
 
     public AWTTerminalFontConfiguration loadFont() throws FontFormatException, IOException{
-        //File fontFile = new File("src/main/resources/fonts/square.ttf");
-        File fontFile = new File("src/main/resources/fonts/Square-Regular.ttf");
+        File fontFile = new File("src/main/resources/fonts/square.ttf");
+        //File fontFile = new File("src/main/resources/fonts/Square-Regular.ttf");
         Font font = Font.createFont(Font.TRUETYPE_FONT,fontFile);
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
