@@ -24,11 +24,11 @@ public class KeyboardObserver {
         keys.clear();
         KeyStroke key = screen.getScreen().pollInput();
         if(key != null) {
-            if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("q") || key.getCharacter().toString().equalsIgnoreCase("p"))) {
+            if (isPauseorQuit(key)) {
                 return quitPause(key);
-            } else if (key.getKeyType() == KeyType.ArrowUp || key.getKeyType() == KeyType.ArrowDown || key.getKeyType() == KeyType.ArrowLeft || key.getKeyType() == KeyType.ArrowRight) {
+            } else if (isArrow(key)) {
                 return arrows(key);
-            } else if (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("a") || key.getCharacter().toString().equalsIgnoreCase("w") || key.getCharacter().toString().equalsIgnoreCase("s") || key.getCharacter().toString().equalsIgnoreCase("d"))) {
+            } else if (isWasd(key)) {
                 return wasd(key);
             } else {
                 return quitPause(key);
@@ -44,13 +44,13 @@ public class KeyboardObserver {
 
     public boolean arrows(KeyStroke key) throws IOException{
         keys.add(key);
-        while (key != null && (key.getKeyType() == KeyType.ArrowUp || key.getKeyType() == KeyType.ArrowDown || key.getKeyType() == KeyType.ArrowLeft || key.getKeyType() == KeyType.ArrowRight)) {
+        while (isArrow(key)) {
             key = screen.getScreen().pollInput();
         }
-        if (key!=null && key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("a") || key.getCharacter().toString().equalsIgnoreCase("w") || key.getCharacter().toString().equalsIgnoreCase("s") || key.getCharacter().toString().equalsIgnoreCase("d"))) {
+        if (isWasd(key)) {
             deleteBuffer(key);
         }
-        if (key!=null && key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("q") || key.getCharacter().toString().equalsIgnoreCase("p"))) {
+        if (isPauseorQuit(key)) {
             deleteBuffer(key);
             return true;
         }
@@ -59,13 +59,13 @@ public class KeyboardObserver {
 
     public boolean wasd(KeyStroke key) throws IOException{
         keys.add(key);
-        while (key != null && (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("a") || key.getCharacter().toString().equalsIgnoreCase("w") || key.getCharacter().toString().equalsIgnoreCase("s") || key.getCharacter().toString().equalsIgnoreCase("d")))) {
+        while (isWasd(key)) {
             key = screen.getScreen().pollInput();
         }
-        if (key!=null && (key.getKeyType() == KeyType.ArrowUp || key.getKeyType() == KeyType.ArrowDown || key.getKeyType() == KeyType.ArrowLeft || key.getKeyType() == KeyType.ArrowRight)) {
+        if (isArrow(key)) {
             deleteBuffer(key);
         }
-        if (key!=null && key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("q") || key.getCharacter().toString().equalsIgnoreCase("p"))) {
+        if (isPauseorQuit(key)) {
             deleteBuffer(key);
             return true;
         }
@@ -77,6 +77,18 @@ public class KeyboardObserver {
         while (key != null) {
             key = screen.getScreen().pollInput();
         }
+    }
+
+    public boolean isArrow(KeyStroke key){
+        return key != null && (key.getKeyType() == KeyType.ArrowUp || key.getKeyType() == KeyType.ArrowDown || key.getKeyType() == KeyType.ArrowLeft || key.getKeyType() == KeyType.ArrowRight);
+    }
+
+    public boolean isWasd(KeyStroke key){
+        return key != null && (key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("a") || key.getCharacter().toString().equalsIgnoreCase("w") || key.getCharacter().toString().equalsIgnoreCase("s") || key.getCharacter().toString().equalsIgnoreCase("d")));
+    }
+
+    public boolean isPauseorQuit(KeyStroke key){
+        return key!=null && key.getKeyType() == KeyType.Character && (key.getCharacter().toString().equalsIgnoreCase("q") || key.getCharacter().toString().equalsIgnoreCase("p"));
     }
 
 }
