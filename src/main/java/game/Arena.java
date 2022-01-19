@@ -52,10 +52,6 @@ public class Arena implements Drawable {
         this.walls = walls;
     }
 
-    public Arena() {
-        snakes.add(new Snake(new Position(10,10),"#000000"));
-    }
-
     @Override
     public void draw(TextGraphics screen) {
         for(Drawable drawable:elements){

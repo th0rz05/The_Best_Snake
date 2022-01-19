@@ -32,7 +32,6 @@ public class MultiplayerState extends State {
         arena.addFruits();
     }
 
-
     @Override
     public void step(Game game) throws  IOException{
         Boolean GameOver;

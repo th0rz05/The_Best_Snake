@@ -43,30 +43,13 @@ public class ShowScoreboardState extends State{
         while (scanner.hasNextLine() && i < 28) {
             String[] aux = scanner.nextLine().split(" ");
             if(aux.length == 2){
-                drawText("Name", "#FF0000", new TerminalPosition(12, 4));
-                drawText("Time", "#FF0000", new TerminalPosition(30, 4));
-                drawText(aux[0], "#FFFFFF", new TerminalPosition(12, i));
-                drawText(aux[1] + " s", "#FFFF00", new TerminalPosition(30, i));
+                drawTextAux2(aux,i);
             }
             else if(aux.length == 3){
-                drawText("Name", "#FF0000", new TerminalPosition(8, 4));
-                drawText("Score", "#FF0000", new TerminalPosition(26, 4));
-                drawText("Time", "#FF0000", new TerminalPosition(38, 4));
-                drawText(aux[0], "#FFFFFF", new TerminalPosition(8, i));
-                drawText(aux[1], "#00FF00", new TerminalPosition(26, i));
-                drawText(aux[2] + " s", "#FFFF00", new TerminalPosition(38, i));
+                drawTextAux3(aux,i);
             }
             else if(aux.length == 5){
-                drawText("Winner", "#00FF00", new TerminalPosition(2, 4));
-                drawText("Score", "#00FF00", new TerminalPosition(14, 4));
-                drawText("Loser", "#FF0000", new TerminalPosition(20, 4));
-                drawText("Score", "#FF0000", new TerminalPosition(32, 4));
-                drawText("Time", "#FFFF00", new TerminalPosition(40, 4));
-                drawText(aux[0], "#FFFFFF", new TerminalPosition(2, i));
-                drawText(aux[1], "#FFFFFF", new TerminalPosition(14, i));
-                drawText(aux[2], "#FFFFFF", new TerminalPosition(20, i));
-                drawText(aux[3], "#FFFFFF", new TerminalPosition(32, i));
-                drawText(aux[4] + " s", "#FFFFFF", new TerminalPosition(40, i));
+                drawTextAux5(aux,i);
             }
             i += 2;
         }
@@ -82,5 +65,34 @@ public class ShowScoreboardState extends State{
                 changeState(game, new ScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth())));
             }
         }
+    }
+
+    public void drawTextAux2(String[] aux,int i){
+        drawText("Name", "#FF0000", new TerminalPosition(12, 4));
+        drawText("Time", "#FF0000", new TerminalPosition(30, 4));
+        drawText(aux[0], "#FFFFFF", new TerminalPosition(12, i));
+        drawText(aux[1] + " s", "#FFFF00", new TerminalPosition(30, i));
+    }
+
+    public void drawTextAux3(String[] aux,int i){
+        drawText("Name", "#FF0000", new TerminalPosition(8, 4));
+        drawText("Score", "#FF0000", new TerminalPosition(26, 4));
+        drawText("Time", "#FF0000", new TerminalPosition(38, 4));
+        drawText(aux[0], "#FFFFFF", new TerminalPosition(8, i));
+        drawText(aux[1], "#00FF00", new TerminalPosition(26, i));
+        drawText(aux[2] + " s", "#FFFF00", new TerminalPosition(38, i));
+    }
+
+    public void drawTextAux5(String[] aux,int i){
+        drawText("Winner", "#00FF00", new TerminalPosition(2, 4));
+        drawText("Score", "#00FF00", new TerminalPosition(14, 4));
+        drawText("Loser", "#FF0000", new TerminalPosition(20, 4));
+        drawText("Score", "#FF0000", new TerminalPosition(32, 4));
+        drawText("Time", "#FFFF00", new TerminalPosition(40, 4));
+        drawText(aux[0], "#FFFFFF", new TerminalPosition(2, i));
+        drawText(aux[1], "#FFFFFF", new TerminalPosition(14, i));
+        drawText(aux[2], "#FFFFFF", new TerminalPosition(20, i));
+        drawText(aux[3], "#FFFFFF", new TerminalPosition(32, i));
+        drawText(aux[4] + " s", "#FFFFFF", new TerminalPosition(40, i));
     }
 }
