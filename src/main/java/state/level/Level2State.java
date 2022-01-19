@@ -1,5 +1,6 @@
 package state.level;
 
+import game.Position;
 import gui.LanternaGUI;
 import state.LevelXState;
 
@@ -11,7 +12,6 @@ public class Level2State extends LevelXState {
         setBackgroundColor("#D97EE3");
         setFINAL_SIZE(5);
         setLevel(2);
-
     }
 
 }
