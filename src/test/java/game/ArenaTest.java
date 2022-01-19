@@ -43,7 +43,19 @@ public class ArenaTest {
     @Test
     public void notCollidingAgainstWalls(){
         a.addWall(new Wall(new Position(7,10)));
-        Assertions.assertEquals(3,a.maximumGrowingSize());
+        Assertions.assertEquals(1,a.maximumGrowingSize(s1));
+    }
+
+    @Test
+    public void notCollidingAgainstWalls2(){
+        a.addWall(new Wall(new Position(3,10)));
+        Assertions.assertEquals(5,a.maximumGrowingSize(s1));
+    }
+
+    @Test
+    public void notCollidingAgainstWalls3(){
+        a.addWall(new Wall(new Position(2,10)));
+        Assertions.assertEquals(5,a.maximumGrowingSize(s1));
     }
 
 }

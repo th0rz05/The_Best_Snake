@@ -1,10 +1,7 @@
 package game;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import elements.Door;
-import elements.Drawable;
-import elements.Snake;
-import elements.Wall;
+import elements.*;
 import elements.fruit.*;
 import gui.LanternaGUI;
 
@@ -105,8 +102,21 @@ public class Arena implements Drawable {
         }
     }
 
-    public int maximumGrowingSize(){
-        return 0;
+    public int maximumGrowingSize(Snake s){
+        int maxSize = 0;
+        List<Element> body = s.getSnake();
+        Position pos = body.get(body.size()-1).getPosition();
+        for (int i = 1;i<=5;i++){
+            pos.setX(pos.getX()-s.getDirectionX());
+            pos.setY(pos.getY()-s.getDirectionY());
+            for(Wall w:walls){
+                if(w.getPosition().equals(pos)){
+                    return maxSize;
+                }
+            }
+            maxSize++;
+        }
+        return maxSize;
     }
 
     public Boolean check_snake_collisions(Position pos){
