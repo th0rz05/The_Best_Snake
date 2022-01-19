@@ -1,10 +1,7 @@
 package game;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import elements.Door;
-import elements.Drawable;
-import elements.Snake;
-import elements.Wall;
+import elements.*;
 import elements.fruit.*;
 import gui.LanternaGUI;
 
@@ -96,13 +93,29 @@ public class Arena implements Drawable {
 
     public void checkEatFruits(Snake snake){
         if(snake.getSnakeHead().getPosition().equals(fruit1.getPosition())){
-            snake.eatFruit(fruit1,height,width);
+            snake.eatFruit(fruit1,height,width,maximumGrowingSize(snake));
             addFruits();
         }
         if(snake.getSnakeHead().getPosition().equals(fruit2.getPosition())){
-            snake.eatFruit(fruit2,height,width);
+            snake.eatFruit(fruit2,height,width,maximumGrowingSize(snake));
             addFruits();
         }
+    }
+
+    public int maximumGrowingSize(Snake s){
+        int maxSize = 0;
+        Position pos = new Position(s.getSnakeTail().getPosition().getX(),s.getSnakeTail().getPosition().getY());
+        for (int i = 1;i<=5;i++){
+            pos.setX(pos.getX()-s.getDirectionX());
+            pos.setY(pos.getY()-s.getDirectionY());
+            for(Wall w:walls){
+                if(w.getPosition().equals(pos)){
+                    return maxSize;
+                }
+            }
+            maxSize++;
+        }
+        return maxSize;
     }
 
     public Boolean check_snake_collisions(Position pos){
@@ -155,6 +168,10 @@ public class Arena implements Drawable {
             if(w.getPosition().equals(SnakeHeadPosition))
                 return true;
         return false;
+    }
+
+    public void addWall(Wall w){
+        walls.add(w);
     }
 
     public void buildWalls(String File_name){
