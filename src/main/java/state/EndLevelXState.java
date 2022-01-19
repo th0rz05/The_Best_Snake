@@ -1,8 +1,6 @@
 package state;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import game.Game;
 import gui.LanternaGUI;
 import java.io.*;

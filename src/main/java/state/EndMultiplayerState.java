@@ -9,6 +9,8 @@ import game.Game;
 import gui.LanternaGUI;
 
 import java.io.*;
+import java.security.Key;
+import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,28 +76,36 @@ public class EndMultiplayerState extends State{
                 }
             }
             else if(!firstNameDone){
-                if(key.getKeyType()== KeyType.Character && name1.length() <= 10 ){
-                    name1 += key.getCharacter().toString();
-                }
-                else if(key.getKeyType()== KeyType.Enter){
-                    firstNameDone = true;
-                }
-                else if(key.getKeyType()== KeyType.Backspace && name1.length() >=1){
-                    name1 = name1.substring(0,name1.length()-1);
-                }
+                readFirstName(key);
             }
             else{
-                if(key.getKeyType()== KeyType.Character && name2.length() <= 10 ){
-                    name2 += key.getCharacter().toString();
-                }
-                else if(key.getKeyType()== KeyType.Enter){
-                    saveScore();
-                    returnMenu(game);
-                }
-                else if(key.getKeyType()== KeyType.Backspace && name2.length() >=1){
-                    name2 = name2.substring(0,name2.length()-1);
-                }
+                readSecondName(key,game);
             }
+        }
+    }
+
+    public void readFirstName(KeyStroke key){
+        if(key.getKeyType()== KeyType.Character && name1.length() <= 10 ){
+            name1 += key.getCharacter().toString();
+        }
+        else if(key.getKeyType()== KeyType.Enter){
+            firstNameDone = true;
+        }
+        else if(key.getKeyType()== KeyType.Backspace && name1.length() >=1){
+            name1 = name1.substring(0,name1.length()-1);
+        }
+    }
+
+    public void readSecondName(KeyStroke key,Game game) throws IOException{
+        if(key.getKeyType()== KeyType.Character && name2.length() <= 10 ){
+            name2 += key.getCharacter().toString();
+        }
+        else if(key.getKeyType()== KeyType.Enter){
+            saveScore();
+            returnMenu(game);
+        }
+        else if(key.getKeyType()== KeyType.Backspace && name2.length() >=1){
+            name2 = name2.substring(0,name2.length()-1);
         }
     }
 
