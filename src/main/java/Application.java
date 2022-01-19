@@ -1,5 +1,4 @@
-package game;
-
+import game.Game;
 import gui.LanternaGUI;
 import state.MenuState;
 

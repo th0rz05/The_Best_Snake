@@ -22,8 +22,8 @@ public class ArenaTest {
     }
 
 
-    @Test
-    public void check_snake_collisions_test1(){
+    //@Test
+    /*public void check_snake_collisions_test1(){
         Element b = new SnakeBody(new Position(10,10),"#000000");
         List<Element> Coliding_snake = s1.getSnake();
         Coliding_snake.add(b);
@@ -31,7 +31,7 @@ public class ArenaTest {
 
         a.check_snake_collisions(s1.getSnakeHead().getPosition());
         Assertions.assertFalse(s1.isAlive());
-    }
+    }*/
 
     @Test
     public void snake_collisions_test2(){
