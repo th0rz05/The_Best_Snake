@@ -25,7 +25,7 @@ public class ShowScoreboardState extends State{
     @Override
     public void step(Game game) throws IOException {
         screen.getScreen().clear();
-        drawBackground("#31B2D8");
+        drawBackground("#B3B1E1");
         drawAllText("#000097");
         drawFromFile(filename);
         screen.getScreen().refresh();

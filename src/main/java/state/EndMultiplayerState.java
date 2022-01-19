@@ -1,16 +1,14 @@
 package state;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import observer.KeyboardObserver;
+import elements.Snake;
 import game.Game;
+import game.Position;
 import gui.LanternaGUI;
 
 import java.io.*;
-import java.security.Key;
-import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,17 +21,21 @@ public class EndMultiplayerState extends State{
     boolean firstNameDone;
     boolean draw = false;
 
-    public EndMultiplayerState(LanternaGUI screen, int score1, int score2, double time) {
+    public EndMultiplayerState(LanternaGUI screen, Snake s1, Snake s2,double time) {
         super(screen);
         name1 = "";
         name2 = "";
-        this.score1 = score1;
-        this.score2 = score2;
+        snake = s1;
+        snake2 = s2;
+        this.score1 = snake.getSize()-2;
+        this.score2 = snake2.getSize()-2;
         this.time = time;
         this.firstNameDone = false;
-        if(score1==-1){
-            draw = true;
-        }
+    }
+
+    public EndMultiplayerState(LanternaGUI screen) {
+        super(screen);
+        draw = true;
     }
 
     @Override
@@ -51,15 +53,17 @@ public class EndMultiplayerState extends State{
             drawText("PRESS ANY KEY TO EXIT!",color, new TerminalPosition(15,16));
         }
         else if(!firstNameDone){
-            drawBackground("#2DF168");
+            drawBackground("#91F474");
             drawText("You Won! :)", color, new TerminalPosition(20,3));
+            drawSnake(snake);
             drawText("Please Enter your name", color, new TerminalPosition(15,9));
             drawText("Score: " + score1, color, new TerminalPosition(12,25));
             drawText("Your Name: " + name1,color, new TerminalPosition(12,16));
         }
         else{
-            drawBackground("#F94555");
+            drawBackground("#F59797");
             drawText("You Lost! :(", color, new TerminalPosition(20,3));
+            drawSnake(snake2);
             drawText("Please Enter your name", color, new TerminalPosition(15,9));
             drawText("Score: " + score2, color, new TerminalPosition(12,25));
             drawText("Your Name: " + name2,color, new TerminalPosition(12,16));
@@ -136,6 +140,19 @@ public class EndMultiplayerState extends State{
 
         scoreWriter2.close();
         scoreReader.close();
+    }
+
+    public void drawSnake(Snake s){
+        s.getSnakeHead().setPosition(new Position(27,5));
+        s.getSnakeTail().setPosition(new Position(26,5));
+        s.getSnakeHead().draw(screen.getGraphics());
+        s.getSnakeTail().draw(screen.getGraphics());
+        s.getSnakeTail().setPosition(new Position(25,5));
+        s.getSnakeTail().draw(screen.getGraphics());
+        s.getSnakeTail().setPosition(new Position(24,5));
+        s.getSnakeTail().draw(screen.getGraphics());
+        s.getSnakeTail().setPosition(new Position(23,5));
+        s.getSnakeTail().draw(screen.getGraphics());
     }
 
 }
