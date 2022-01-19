@@ -28,7 +28,7 @@ public class MenuState extends State {
     @Override
     public void step(Game game) throws IOException {
         screen.getScreen().clear();
-        drawBackground("#31B2D8");
+        drawBackground("#69B8F9");
         drawAllText("#000097");
         drawButtons();
         screen.getScreen().refresh();

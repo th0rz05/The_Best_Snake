@@ -21,8 +21,8 @@ public class MultiplayerState extends State {
 
     public MultiplayerState(LanternaGUI screen) {
         super(screen);
-        snake = new Snake(new Position(30,5),"#ff0000");
-        snake2 = new Snake(new Position(30,25),"#ffff00");
+        snake = new Snake(new Position(15,25),"#FF2E00");
+        snake2 = new Snake(new Position(5,5),"#0400FF");
         snakes.add(snake);
         snakes.add(snake2);
         arena = new Arena(snakes,screen);
@@ -31,25 +31,25 @@ public class MultiplayerState extends State {
 
     @Override
     public void step(Game game) throws  IOException{
-        Boolean Game_Over = false;
+        Boolean GameOver;
         screen.getScreen().clear();
         drawBackground("#64DF89");
         drawAllText("#000000");
         arena.draw(screen.getGraphics());
         checkInputPlay(game);
-        Game_Over = arena.execute();
+        GameOver = arena.execute();
         screen.getScreen().refresh();
-        if(Game_Over){
+        if(GameOver){
             screen.getScreen().stopScreen();
             screen.getScreen().close();
             if(!snake.isAlive() && !snake2.isAlive()){
-                changeState(game, new EndMultiplayerState(new LanternaGUI(screen.getHeight(),screen.getWidth()),-1,-1,0));
+                changeState(game, new EndMultiplayerState(new LanternaGUI(screen.getHeight(),screen.getWidth())));
             }
             else if (!snake.isAlive()){
-                changeState(game, new EndMultiplayerState(new LanternaGUI(screen.getHeight(),screen.getWidth()),snake2.getSize()-2, snake.getSize()-2,floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10));
+                changeState(game, new EndMultiplayerState(new LanternaGUI(screen.getHeight(),screen.getWidth()),snake2, snake,floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10));
             }
             else{
-                changeState(game, new EndMultiplayerState(new LanternaGUI(screen.getHeight(),screen.getWidth()),snake.getSize()-2, snake2.getSize()-2,floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10));
+                changeState(game, new EndMultiplayerState(new LanternaGUI(screen.getHeight(),screen.getWidth()),snake, snake2,floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10));
             }
 
         }
@@ -58,8 +58,8 @@ public class MultiplayerState extends State {
 
     public void drawAllText(String color){
         drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
-        drawText("Snake1: " + (snake.getSize()-2), snake.getBodyColor(), new TerminalPosition(1,screen.getHeight()));
-        drawText("Snake2: " + (snake2.getSize()-2),snake2.getBodyColor(),new TerminalPosition(12,screen.getHeight()));
+        drawText("Snake2: " + (snake2.getSize()-2), snake2.getBodyColor(), new TerminalPosition(1,screen.getHeight()));
+        drawText("Snake1: " + (snake.getSize()-2),snake.getBodyColor(),new TerminalPosition(12,screen.getHeight()));
         drawText(" | Timer: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "s",color,new TerminalPosition(21,screen.getHeight()));
         for(int i = 0; i<screen.getWidth();i++){
             screen.getGraphics().putString(new TerminalPosition(i, screen.getHeight()-1),"_");

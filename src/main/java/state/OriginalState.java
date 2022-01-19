@@ -21,7 +21,7 @@ public class OriginalState extends State {
 
     public OriginalState(LanternaGUI screen) {
         super(screen);
-        snake = new Snake(new Position(30,15),"#000000");
+        snake = new Snake(new Position(30,15),"#544EE7");
         arena = new Arena(snake,screen);
     }
 
