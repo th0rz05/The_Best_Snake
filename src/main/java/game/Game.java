@@ -13,6 +13,10 @@ public class Game {
         this.fps = fps;
     }
 
+    public State getGamestate() {
+        return gamestate;
+    }
+
     public void setGameState(State state){
         this.gamestate = state;
     }
