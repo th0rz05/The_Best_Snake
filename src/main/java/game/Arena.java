@@ -20,46 +20,28 @@ public class Arena implements Drawable {
     int width;
     Fruit fruit1;
     Fruit fruit2;
-    Door door = null;
+    Door door = new Door(new Position(-1,-1));
     Boolean door_open = false;
 
     private List<Drawable> elements = new ArrayList<>();
     private List<Snake> snakes = new ArrayList<>();
     private List<Wall> walls = new ArrayList<>();
-    private  List<Fruit> POSSIBLE_FRUITS = new ArrayList<>();
+    private  List<Fruit> possibleFruits = new ArrayList<>();
 
-    public Arena(Snake snake, LanternaGUI screen) {
-        height = screen.getHeight()-1;
-        width = screen.getWidth()-1;
-        elements.add(snake);
-        snakes.add(snake);
-        POSSIBLE_FRUITS.add(new Apple(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Orange(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Kiwi(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Banana(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Peach(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Grape(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Cherry(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Mistery(new Position(0,0)));
-        addFruits();
+    public List<Drawable> getElements() {
+        return elements;
     }
 
-    public Arena(List<Snake> two_snakes, LanternaGUI screen) {
-        height = screen.getHeight()-1;
-        width = screen.getWidth()-1;
-        for(Snake snake : two_snakes){
-            elements.add(snake);
-            snakes.add(snake);
-        }
-        POSSIBLE_FRUITS.add(new Apple(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Orange(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Kiwi(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Banana(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Peach(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Grape(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Cherry(new Position(0,0)));
-        POSSIBLE_FRUITS.add(new Mistery(new Position(0,0)));
-        addFruits();
+    public List<Snake> getSnakes() {
+        return snakes;
+    }
+
+    public List<Fruit> getPossibleFruits() {
+        return possibleFruits;
+    }
+
+    public List<Wall> getWalls() {
+        return walls;
     }
 
     @Override
@@ -136,16 +118,16 @@ public class Arena implements Drawable {
     public void addFruits(){
         elements.remove(fruit1);
         elements.remove(fruit2);
-        double number1 = floor(random() * POSSIBLE_FRUITS.size());
+        double number1 = floor(random() * possibleFruits.size());
         double number2 = number1;
         while(number2 == number1){
-            number2 = floor(random() * POSSIBLE_FRUITS.size());
+            number2 = floor(random() * possibleFruits.size());
         }
-        Fruit f1 = POSSIBLE_FRUITS.get(((int) number1));
-        Fruit f2 = POSSIBLE_FRUITS.get(((int) number2));
+        Fruit f1 = possibleFruits.get(((int) number1));
+        Fruit f2 = possibleFruits.get(((int) number2));
         if(f1.getSymbol().equals("?") || f2.getSymbol().equals("?")){
-            POSSIBLE_FRUITS.remove(POSSIBLE_FRUITS.size()-1);
-            POSSIBLE_FRUITS.add(new Mistery(new Position(0,0)));
+            possibleFruits.remove(possibleFruits.size()-1);
+            possibleFruits.add(new Mistery(new Position(0,0)));
         }
 
         f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
@@ -172,44 +154,6 @@ public class Arena implements Drawable {
 
     public void addWall(Wall w){
         walls.add(w);
-    }
-
-    public void buildWalls(String File_name){
-        buildGeneralWalls();
-        try {
-            File myObj = new File(File_name);
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                String [] position = data.split(" ");
-                int x = Integer.parseInt(position[0]);
-                int y = Integer.parseInt(position[1]);
-                walls.add(new Wall(new Position(x,y)));
-                elements.add(new Wall(new Position(x,y)));
-            }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void buildGeneralWalls(){
-        for(int i = 0;i<=width;i++){
-            walls.add(new Wall(new Position(i,0)));
-            elements.add(new Wall(new Position(i,0)));
-            walls.add(new Wall(new Position(i,height)));
-            elements.add(new Wall(new Position(i,height)));
-        }
-        for(int i = 1;i<height;i++){
-            walls.add(new Wall(new Position(0,i)));
-            elements.add(new Wall(new Position(0,i)));
-            walls.add(new Wall(new Position(width,i)));
-            elements.add(new Wall(new Position(width,i)));
-        }
-    }
-
-    public void buildDoor(Position position){
-        door = new Door(position);
     }
 
     public void openDoor(){

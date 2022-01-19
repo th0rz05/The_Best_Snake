@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import game.Arena;
+import game.ArenaBuilder;
 import game.Position;
 import elements.Snake;
 import game.Game;
@@ -17,6 +18,7 @@ import static java.lang.Math.floor;
 
 public class MultiplayerState extends State {
     Arena arena;
+    ArenaBuilder arenaBuilder;
     List<Snake> snakes = new ArrayList<>();
 
     public MultiplayerState(LanternaGUI screen) {
@@ -25,7 +27,9 @@ public class MultiplayerState extends State {
         snake2 = new Snake(new Position(5,5),"#0400FF");
         snakes.add(snake);
         snakes.add(snake2);
-        arena = new Arena(snakes,screen);
+        arenaBuilder = new ArenaBuilder(snakes,screen);
+        arena = arenaBuilder.getArena();
+        arena.addFruits();
     }
 
 

@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import game.ArenaBuilder;
 import observer.KeyboardObserver;
 import game.Arena;
 import game.Position;
@@ -15,22 +16,30 @@ import state.endlevel.EndLevel2State;
 import state.endlevel.EndLevel3State;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Math.floor;
 
 public abstract class LevelXState extends State {
 
     Arena arena;
+    ArenaBuilder arenaBuilder;
+    List<Snake> snakeList = new ArrayList<>();
     int FINAL_SIZE;
     String backgroundColor;
     int level;
+    Position doorPosition = new Position(7,29);
 
     public LevelXState(LanternaGUI screen,String filename) {
         super(screen);
         snake = new Snake(new Position(30,15),"#2CFF00");
-        arena = new Arena(snake,screen);
-        arena.buildWalls(filename);
-        arena.buildDoor(new Position(screen.getWidth()-1, 10));
+        snakeList.add(snake);
+        arenaBuilder = new ArenaBuilder(snakeList,screen);
+        arenaBuilder.buildWalls(filename);
+        arenaBuilder.buildDoor(doorPosition);
+        arena = arenaBuilder.getArena();
+        arena.addFruits();
     }
 
     public void setFINAL_SIZE(int FINAL_SIZE) {

@@ -4,6 +4,7 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
+import game.ArenaBuilder;
 import observer.KeyboardObserver;
 import game.Arena;
 import game.Position;
@@ -12,17 +13,24 @@ import game.Game;
 import gui.LanternaGUI;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Math.floor;
 
 public class OriginalState extends State {
     Arena arena;
+    ArenaBuilder arenaBuilder;
+    List<Snake> snakeList = new ArrayList<>();
 
 
     public OriginalState(LanternaGUI screen) {
         super(screen);
         snake = new Snake(new Position(30,15),"#544EE7");
-        arena = new Arena(snake,screen);
+        snakeList.add(snake);
+        arenaBuilder = new ArenaBuilder(snakeList,screen)
+;       arena = arenaBuilder.getArena();
+        arena.addFruits();
     }
 
 
