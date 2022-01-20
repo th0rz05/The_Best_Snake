@@ -80,7 +80,7 @@ public abstract class State {
         long initialTime = System.currentTimeMillis();
         while(true){
             drawText("PAUSE","#FF0000",new TerminalPosition((screen.getWidth()/2)-2, screen.getHeight()/2));
-            drawText("Press any key to continue","#FFFFFF",new TerminalPosition((screen.getWidth()/2)-12, (screen.getHeight()/2)+3));
+            drawText("PRESS ANY KEY TO CONTINUE","#FFFFFF",new TerminalPosition((screen.getWidth()/2)-12, (screen.getHeight()/2)+3));
             screen.getScreen().refresh();
             if(observer.readinput()){
                 KeyStroke key = observer.getKeys().get(0);
@@ -133,7 +133,7 @@ public abstract class State {
         if(observer.readinput()){
             KeyStroke key = observer.getKeys().get(0);
             if(key.getKeyType()== KeyType.Character && name.length() <= 10 ){
-                name += key.getCharacter().toString();
+                name += key.getCharacter().toString().toLowerCase();
             }
             else if(key.getKeyType()== KeyType.Enter){
                 saveScore();

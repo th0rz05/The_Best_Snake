@@ -54,19 +54,19 @@ public class EndMultiplayerState extends State{
         }
         else if(!firstNameDone){
             drawBackground("#91F474");
-            drawText("You Won! :)", color, new TerminalPosition(20,3));
+            drawText("YOU WON! :)", color, new TerminalPosition(20,3));
             drawSnake(snake);
-            drawText("Please Enter your name", color, new TerminalPosition(15,9));
-            drawText("Score: " + score1, color, new TerminalPosition(12,25));
-            drawText("Your Name: " + name1,color, new TerminalPosition(12,16));
+            drawText("PLEASE ENTER YOUR NAME", color, new TerminalPosition(15,9));
+            drawText("SCORE: " + score1, color, new TerminalPosition(12,25));
+            drawText("YOUR NAME: " + name1,color, new TerminalPosition(12,16));
         }
         else{
             drawBackground("#F59797");
-            drawText("You Lost! :(", color, new TerminalPosition(20,3));
+            drawText("YOU LOST! :(", color, new TerminalPosition(20,3));
             drawSnake(snake2);
-            drawText("Please Enter your name", color, new TerminalPosition(15,9));
-            drawText("Score: " + score2, color, new TerminalPosition(12,25));
-            drawText("Your Name: " + name2,color, new TerminalPosition(12,16));
+            drawText("PLEASE ENTER YOUR NAME", color, new TerminalPosition(15,9));
+            drawText("SCORE: " + score2, color, new TerminalPosition(12,25));
+            drawText("YOUR NAME: " + name2,color, new TerminalPosition(12,16));
         }
     }
 

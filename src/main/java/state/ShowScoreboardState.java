@@ -34,7 +34,7 @@ public class ShowScoreboardState extends State{
 
     public void drawAllText(String color){
         drawText("SCOREBOARD",color,new TerminalPosition((screen.getWidth()/2)-5, 1));
-        drawText("Press any key to exit",color,new TerminalPosition(screen.getWidth()-21,screen.getHeight()));
+        drawText("press any key to exit",color,new TerminalPosition(screen.getWidth()-21,screen.getHeight()));
     }
 
     public void drawFromFile(String file) throws FileNotFoundException{
@@ -68,31 +68,31 @@ public class ShowScoreboardState extends State{
     }
 
     public void drawTextAux2(String[] aux,int i){
-        drawText("Name", "#FF0000", new TerminalPosition(12, 4));
-        drawText("Time", "#FF0000", new TerminalPosition(30, 4));
+        drawText("NAME", "#FF0000", new TerminalPosition(12, 4));
+        drawText("TIME", "#FF0000", new TerminalPosition(30, 4));
         drawText(aux[0], "#FFFFFF", new TerminalPosition(12, i));
-        drawText(aux[1] + " s", "#FFFF00", new TerminalPosition(30, i));
+        drawText(aux[1] + " S", "#FFFF00", new TerminalPosition(30, i));
     }
 
     public void drawTextAux3(String[] aux,int i){
-        drawText("Name", "#FF0000", new TerminalPosition(8, 4));
-        drawText("Score", "#FF0000", new TerminalPosition(26, 4));
-        drawText("Time", "#FF0000", new TerminalPosition(38, 4));
+        drawText("NAME", "#FF0000", new TerminalPosition(8, 4));
+        drawText("SCORE", "#FF0000", new TerminalPosition(26, 4));
+        drawText("TIME", "#FF0000", new TerminalPosition(38, 4));
         drawText(aux[0], "#FFFFFF", new TerminalPosition(8, i));
         drawText(aux[1], "#00FF00", new TerminalPosition(26, i));
-        drawText(aux[2] + " s", "#FFFF00", new TerminalPosition(38, i));
+        drawText(aux[2] + " S", "#FFFF00", new TerminalPosition(38, i));
     }
 
     public void drawTextAux5(String[] aux,int i){
-        drawText("Winner", "#00FF00", new TerminalPosition(2, 4));
-        drawText("Score", "#00FF00", new TerminalPosition(14, 4));
-        drawText("Loser", "#FF0000", new TerminalPosition(20, 4));
-        drawText("Score", "#FF0000", new TerminalPosition(32, 4));
-        drawText("Time", "#FFFF00", new TerminalPosition(40, 4));
+        drawText("WINNER", "#00FF00", new TerminalPosition(2, 4));
+        drawText("SCORE", "#00FF00", new TerminalPosition(14, 4));
+        drawText("LOSER", "#FF0000", new TerminalPosition(20, 4));
+        drawText("SCORE", "#FF0000", new TerminalPosition(32, 4));
+        drawText("TIME", "#FFFF00", new TerminalPosition(40, 4));
         drawText(aux[0], "#FFFFFF", new TerminalPosition(2, i));
         drawText(aux[1], "#FFFFFF", new TerminalPosition(14, i));
         drawText(aux[2], "#FFFFFF", new TerminalPosition(20, i));
         drawText(aux[3], "#FFFFFF", new TerminalPosition(32, i));
-        drawText(aux[4] + " s", "#FFFFFF", new TerminalPosition(40, i));
+        drawText(aux[4] + " S", "#FFFFFF", new TerminalPosition(40, i));
     }
 }

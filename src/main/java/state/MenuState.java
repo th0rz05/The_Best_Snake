@@ -48,8 +48,8 @@ public class MenuState extends State {
 
     public void enterState(Game game){
         switch(actualbutton.getText()){
-            case "  ORIGINAL   ": changeState(game,new OriginalState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
-            case " MULTIPLAYER ": changeState(game,new MultiplayerState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
+            case "  ORIGINAL   ": changeState(game,new OriginalState(new LanternaGUI(screen.getHeight(), screen.getWidth(),"src/main/resources/fonts/Square-Regular.ttf")));break;
+            case " MULTIPLAYER ": changeState(game,new MultiplayerState(new LanternaGUI(screen.getHeight(), screen.getWidth(),"src/main/resources/fonts/Square-Regular.ttf")));break;
             case "  CHALLENGE  ": changeState(game,new ChallengeState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
             case " SCOREBOARD  ": changeState(game,new ScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
             case "    RULES    ": changeState(game,new RulesState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;

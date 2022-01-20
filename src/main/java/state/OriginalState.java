@@ -52,9 +52,9 @@ public class OriginalState extends State {
     }
 
     public void drawAllText(String color){
-        drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
-        drawText("Score: " + (snake.getSize()-2),color,new TerminalPosition(1,screen.getHeight()));
-        drawText("|  Timer: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "s",color,new TerminalPosition(12,screen.getHeight()));
+        drawText("Q TO EXIT",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
+        drawText("SCORE: " + (snake.getSize()-2),color,new TerminalPosition(1,screen.getHeight()));
+        drawText("|  TIMER: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "S",color,new TerminalPosition(12,screen.getHeight()));
         for(int i = 0; i<screen.getWidth();i++){
             screen.getGraphics().putString(new TerminalPosition(i, screen.getHeight()-1),"_");
         }

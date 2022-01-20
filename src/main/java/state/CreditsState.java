@@ -34,7 +34,7 @@ public class CreditsState extends State{
         drawText("DUARTE  LOPES",color,new TerminalPosition((screen.getWidth()/2)-6, 8));
         drawText("LEANDRO SILVA",color,new TerminalPosition((screen.getWidth()/2)-6, 15));
         drawText("TIAGO BARBOSA",color,new TerminalPosition((screen.getWidth()/2)-6, 22));
-        drawText("Press any key to exit",color,new TerminalPosition(screen.getWidth()-21,screen.getHeight()));
+        drawText("press any key to exit",color,new TerminalPosition(screen.getWidth()-21,screen.getHeight()));
     }
 
     public void checkInput(Game game) throws IOException {

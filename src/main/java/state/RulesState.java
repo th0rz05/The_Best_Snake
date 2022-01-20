@@ -41,7 +41,7 @@ public class RulesState extends State{
             drawText("--next page--",color,new TerminalPosition(screen.getWidth()-13,screen.getHeight()));
         }
         else{
-            drawText("Press any key to exit", color, new TerminalPosition(screen.getWidth() - 21, screen.getHeight()));
+            drawText("press any key to exit", color, new TerminalPosition(screen.getWidth() - 21, screen.getHeight()));
         }
     }
 

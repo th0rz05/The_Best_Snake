@@ -37,10 +37,10 @@ public abstract class EndLevelXState extends State {
     }
 
     public void drawAllText(String color){
-        drawText("You Won! :)", "#FF0000", new TerminalPosition(20,3));
-        drawText("Please Enter your name", color, new TerminalPosition(15,9));
-        drawText("Time: " + time + " s", color, new TerminalPosition(30,25));
-        drawText("Your Name: " + name,color, new TerminalPosition(12,16));
+        drawText("YOU WON! :)", "#FF0000", new TerminalPosition(20,3));
+        drawText("PLEASE ENTER YOUR NAME", color, new TerminalPosition(15,9));
+        drawText("TIME: " + time + " S", color, new TerminalPosition(30,25));
+        drawText("YOUR NAME: " + name,color, new TerminalPosition(12,16));
     }
 
 
