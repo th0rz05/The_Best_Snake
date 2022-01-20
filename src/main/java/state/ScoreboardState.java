@@ -17,9 +17,9 @@ public class ScoreboardState extends State{
         super(screen);
         buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 6),"  ORIGINAL   "));
         buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 11)," MULTIPLAYER "));
-        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 16),"    LEVEL1   "));
-        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 21),"    LEVEL2   "));
-        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 26),"    LEVEL3   "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 16),"   LEVEL 1   "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 21),"   LEVEL 2   "));
+        buttonList.add(new BigButton(new Position((screen.getWidth()/2)-7, 26),"   LEVEL 3   "));
         buttonList.add(new SmallButton(new Position(3, 26)," RESET "));
         actualbutton=buttonList.get(0);
     }
@@ -57,9 +57,9 @@ public class ScoreboardState extends State{
         switch(actualbutton.getText()){
             case "  ORIGINAL   ": changeState(game,new ShowScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Scoreboards/OriginalScoreBoard.txt"));break;
             case " MULTIPLAYER ": changeState(game,new ShowScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Scoreboards/MultiplayerScoreBoard.txt"));break;
-            case "    LEVEL1   ": changeState(game,new ShowScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Scoreboards/Level1ScoreBoard.txt"));break;
-            case "    LEVEL2   ": changeState(game,new ShowScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Scoreboards/Level2ScoreBoard.txt"));break;
-            case "    LEVEL3   ": changeState(game,new ShowScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Scoreboards/Level3ScoreBoard.txt"));break;
+            case "   LEVEL 1   ": changeState(game,new ShowScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Scoreboards/Level1ScoreBoard.txt"));break;
+            case "   LEVEL 2   ": changeState(game,new ShowScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Scoreboards/Level2ScoreBoard.txt"));break;
+            case "   LEVEL 3   ": changeState(game,new ShowScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Scoreboards/Level3ScoreBoard.txt"));break;
             case " RESET ": resetFiles();changeState(game,new ScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth())));break;
         }
     }
