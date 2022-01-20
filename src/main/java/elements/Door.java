@@ -6,7 +6,7 @@ public class Door extends Element {
 
     public Door(Position position) {
         super(position);
-        setSymbol("D");
+        setSymbol("d");
         setColor("#FD6C08");
     }
 }

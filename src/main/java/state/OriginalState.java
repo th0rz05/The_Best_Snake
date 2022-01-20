@@ -38,7 +38,7 @@ public class OriginalState extends State {
     public void step(Game game) throws  IOException{
         Boolean GameOver;
         screen.getScreen().clear();
-        drawBackground("#64DF89");
+        drawBackground("#85AA89");
         drawAllText("#000000");
         arena.draw(screen.getGraphics());
         checkInputPlay(game);

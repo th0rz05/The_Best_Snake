@@ -84,6 +84,6 @@ public abstract class Button implements Drawable {
         }
         screen.setForegroundColor(TextColor.Factory.fromString(color));
         screen.putString(new TerminalPosition(position.getX()+1, position.getY() + 1), text);
-        screen.drawRectangle(new TerminalPosition(position.getX(), position.getY()),new TerminalSize(width,height),'=');
+        screen.drawRectangle(new TerminalPosition(position.getX(), position.getY()),new TerminalSize(width,height),'~');
     }
 }

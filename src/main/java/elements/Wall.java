@@ -6,7 +6,7 @@ public class Wall extends Element {
 
     public Wall(Position position) {
         super(position);
-        setSymbol("#");
+        setSymbol("f");
         setColor("#151C4A");
     }
 }

@@ -8,7 +8,7 @@ public class Mistery extends Fruit{
 
     public Mistery(Position position) {
         super(position);
-        setSymbol("?");
+        setSymbol("x");
         setColor("#F1CE1B");
         int s = (int)floor(random());
         if(s == 0)
