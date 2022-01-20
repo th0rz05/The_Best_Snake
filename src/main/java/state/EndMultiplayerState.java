@@ -55,7 +55,8 @@ public class EndMultiplayerState extends State{
         else if(!firstNameDone){
             drawBackground("#91F474");
             drawText("YOU WON! :)", color, new TerminalPosition(20,3));
-            drawSnake(snake);
+            //drawSnake(snake);
+            drawText("SNAKE1", snake.getBodyColor(), new TerminalPosition(23,5));
             drawText("PLEASE ENTER YOUR NAME", color, new TerminalPosition(15,9));
             drawText("SCORE: " + score1, color, new TerminalPosition(12,25));
             drawText("YOUR NAME: " + name1,color, new TerminalPosition(12,16));
@@ -63,7 +64,8 @@ public class EndMultiplayerState extends State{
         else{
             drawBackground("#F59797");
             drawText("YOU LOST! :(", color, new TerminalPosition(20,3));
-            drawSnake(snake2);
+            drawText("SNAKE2", snake2.getBodyColor(), new TerminalPosition(23,5));
+            //drawSnake(snake2);
             drawText("PLEASE ENTER YOUR NAME", color, new TerminalPosition(15,9));
             drawText("SCORE: " + score2, color, new TerminalPosition(12,25));
             drawText("YOUR NAME: " + name2,color, new TerminalPosition(12,16));
