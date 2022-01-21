@@ -5,8 +5,13 @@ import general.Game;
 import gui.LanternaGUI;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.nio.file.StandardOpenOption.APPEND;
+import static java.nio.file.StandardOpenOption.CREATE;
 
 public class EndOriginalState extends State{
     int score;
@@ -27,7 +32,7 @@ public class EndOriginalState extends State{
         checkInputEndGame(game);
         screen.getScreen().refresh();
     }
-
+    @Override
     public void drawAllText(String color){
         drawText(" GAME OVER ", "#00FF00", new TerminalPosition(20,3));
         drawText("PLEASE ENTER YOUR NAME", color, new TerminalPosition(15,9));
@@ -36,11 +41,10 @@ public class EndOriginalState extends State{
         drawText("YOUR NAME: " + name,color, new TerminalPosition(12,16));
     }
 
-
     public void saveScore() throws IOException {
         File scoreboard = new File("src/main/resources/Scoreboards/OriginalScoreBoard.txt");   // Melhorar método!
-        BufferedWriter scoreWriter = new BufferedWriter(new FileWriter(scoreboard,true));
-        BufferedReader scoreReader = new BufferedReader(new FileReader(scoreboard));
+        BufferedWriter scoreWriter = Files.newBufferedWriter(scoreboard.toPath(), UTF_8, CREATE, APPEND);
+        BufferedReader scoreReader = Files.newBufferedReader(scoreboard.toPath(), UTF_8);
         List<String> scoreboardLs = new ArrayList<>();
         String s;
 
@@ -68,7 +72,7 @@ public class EndOriginalState extends State{
         if(!added)
             scoreboardLs.add(name + " " + score + " " + time);
 
-        BufferedWriter scoreWriter2 = new BufferedWriter(new FileWriter(scoreboard));
+        BufferedWriter scoreWriter2 = Files.newBufferedWriter(scoreboard.toPath(), UTF_8);
         for(int i = 0; i < scoreboardLs.size(); i++)
             scoreWriter2.write(scoreboardLs.get(i) + "\n");
 

@@ -76,14 +76,14 @@ public abstract class LevelXState extends State {
             else{returnChallenge(game);}
         }
     }
-
+    @Override
     public void drawAllText(String color){
         drawText("Q TO EXIT",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
         drawText("SCORE: " + (snake.getSize()-2),color,new TerminalPosition(1,screen.getHeight()));
         drawText("|  TIMER: " + (floor(((System.currentTimeMillis()-startTime-pauseTime)/1000f)*10)/10) + "S",color,new TerminalPosition(12,screen.getHeight()));
     }
 
-
+    @Override
     public void checkAction(Game game, KeyStroke key) throws IOException{
         if(key.getKeyType()== KeyType.Character) {
             switch (key.getCharacter().toString().toLowerCase()) {

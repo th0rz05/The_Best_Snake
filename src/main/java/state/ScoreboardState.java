@@ -57,11 +57,11 @@ public class ScoreboardState extends State{
         }
 
     }
-
+    @Override
     public void exit(Game game) throws IOException{
         returnMenu(game);
     }
-
+    @Override
     public void enterState(Game game) throws FileNotFoundException{
         switch(actualbutton.getText()){
             case "  ORIGINAL   ": changeState(game,new ShowScoreboardState(new LanternaGUI(screen.getHeight(), screen.getWidth()),"src/main/resources/Scoreboards/OriginalScoreBoard.txt"));break;

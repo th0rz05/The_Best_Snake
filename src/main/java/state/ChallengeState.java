@@ -41,7 +41,7 @@ public class ChallengeState extends State{
     public void exit(Game game) throws IOException{
         returnMenu(game);
     }
-
+    @Override
     public void enterState(Game game){
         switch(actualbutton.getText()){
             case "   LEVEL 1   ": changeState(game,new Level1State(new LanternaGUI(screen.getHeight(), screen.getWidth(),"src/main/resources/fonts/Square-Regular.ttf"),"src/main/resources/Challenge/Level1.txt"));break;
