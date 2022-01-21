@@ -31,17 +31,20 @@ public class MenuState extends State {
         checkInputButtons(game);
     }
 
+    @Override
     public void drawAllText(String color){
         drawText("THE BEST SNAKE",color,new TerminalPosition((screen.getWidth()/2)-7, 1));
         drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
     }
 
+    @Override
     public void exit(Game game) throws IOException{
         screen.getScreen().stopScreen();
         screen.getScreen().close();
         changeState(game, null);
     }
 
+    @Override
     public void enterState(Game game){
         switch(actualbutton.getText()){
             case "  ORIGINAL   ": changeState(game,new OriginalState(new LanternaGUI(screen.getHeight(), screen.getWidth(),"src/main/resources/fonts/Square-Regular.ttf")));break;

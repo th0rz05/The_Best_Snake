@@ -24,6 +24,7 @@ public class CreditsState extends State{
         checkInput(game);
     }
 
+    @Override
     public void drawAllText(String color){
         drawText("CREDITS",color,new TerminalPosition((screen.getWidth()/2)-3, 1));
         drawText("DUARTE  LOPES",color,new TerminalPosition((screen.getWidth()/2)-6, 8));

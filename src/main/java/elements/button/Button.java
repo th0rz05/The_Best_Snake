@@ -75,6 +75,7 @@ public abstract class Button implements Drawable {
         return state;
     }
 
+    @Override
     public void draw(TextGraphics screen) {
         if(highlight){
             color = "#F9F204";

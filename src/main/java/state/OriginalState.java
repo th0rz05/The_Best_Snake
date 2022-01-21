@@ -49,6 +49,7 @@ public class OriginalState extends State {
         }
     }
 
+    @Override
     public void drawAllText(String color){
         drawText("Q TO EXIT",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
         drawText("SCORE: " + (snake.getSize()-2),color,new TerminalPosition(1,screen.getHeight()));
@@ -58,7 +59,7 @@ public class OriginalState extends State {
         }
     }
 
-
+    @Override
     public void checkAction(Game game, KeyStroke key) throws IOException{
         if(key.getKeyType()==KeyType.Character) {
             switch (key.getCharacter().toString().toLowerCase()) {

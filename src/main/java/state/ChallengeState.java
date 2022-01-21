@@ -21,6 +21,7 @@ public class ChallengeState extends State{
         actualbutton=buttonList.get(0);
     }
 
+    @Override
     public void step(Game game) throws IOException{
         screen.getScreen().clear();
         drawBackground("#EFB361");
@@ -30,11 +31,13 @@ public class ChallengeState extends State{
         checkInputButtons(game);
     }
 
+    @Override
     public void drawAllText(String color){
         drawText("CHALLENGE MODE",color,new TerminalPosition((screen.getWidth()/2)-7, 1));
         drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
     }
 
+    @Override
     public void exit(Game game) throws IOException{
         returnMenu(game);
     }

@@ -10,6 +10,9 @@ import gui.LanternaGUI;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class ScoreboardState extends State{
 
@@ -24,6 +27,7 @@ public class ScoreboardState extends State{
         actualbutton=buttonList.get(0);
     }
 
+    @Override
     public void step(Game game) throws IOException{
         screen.getScreen().clear();
         drawBackground("#7DE1AF");
@@ -33,20 +37,25 @@ public class ScoreboardState extends State{
         checkInputButtons(game);
     }
 
-
+    @Override
     public void drawAllText(String color){
         drawText("SCOREBOARD",color,new TerminalPosition((screen.getWidth()/2)-5, 1));
         drawText("Q to exit",color,new TerminalPosition(screen.getWidth()-9, screen.getHeight()));
     }
 
 
-    public void resetFiles() throws FileNotFoundException {
-        PrintWriter pw1 = new PrintWriter("src/main/resources/Scoreboards/OriginalScoreBoard.txt");
-        PrintWriter pw2 = new PrintWriter("src/main/resources/Scoreboards/MultiplayerScoreBoard.txt");
-        PrintWriter pw3 = new PrintWriter("src/main/resources/Scoreboards/Level1ScoreBoard.txt");
-        PrintWriter pw4 = new PrintWriter("src/main/resources/Scoreboards/Level2ScoreBoard.txt");
-        PrintWriter pw5 = new PrintWriter("src/main/resources/Scoreboards/Level3ScoreBoard.txt");
-        pw1.close();pw2.close();pw3.close();pw4.close();pw5.close();
+    public void resetFiles() throws FileNotFoundException{
+        try{
+            PrintWriter pw1 = new PrintWriter("src/main/resources/Scoreboards/OriginalScoreBoard.txt", UTF_8.name());
+            PrintWriter pw2 = new PrintWriter("src/main/resources/Scoreboards/MultiplayerScoreBoard.txt",UTF_8.name());
+            PrintWriter pw3 = new PrintWriter("src/main/resources/Scoreboards/Level1ScoreBoard.txt",UTF_8.name());
+            PrintWriter pw4 = new PrintWriter("src/main/resources/Scoreboards/Level2ScoreBoard.txt",UTF_8.name());
+            PrintWriter pw5 = new PrintWriter("src/main/resources/Scoreboards/Level3ScoreBoard.txt",UTF_8.name());
+            pw1.close();pw2.close();pw3.close();pw4.close();pw5.close();
+        }catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+        }
+
     }
 
     public void exit(Game game) throws IOException{

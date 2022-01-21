@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 public class ArenaBuilder {
 
     Arena arena;
@@ -36,7 +38,7 @@ public class ArenaBuilder {
         buildGeneralWalls();
         try {
             File myObj = new File(File_name);
-            Scanner myReader = new Scanner(myObj);
+            Scanner myReader = new Scanner(myObj,UTF_8.name());
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
                 String [] position = data.split(" ");

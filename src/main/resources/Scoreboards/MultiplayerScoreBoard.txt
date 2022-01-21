@@ -1,3 +1,0 @@
-filipe 6 ana 5 17.8
-duarte 7 leandro 16 40.5
-tiago 3 duarte 0 12.9
