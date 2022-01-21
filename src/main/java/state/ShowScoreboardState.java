@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.IOException;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 public class ShowScoreboardState extends State{
 
     String filename;
@@ -30,6 +32,7 @@ public class ShowScoreboardState extends State{
         checkInput(game);
     }
 
+    @Override
     public void drawAllText(String color){
         drawText("SCOREBOARD",color,new TerminalPosition((screen.getWidth()/2)-5, 1));
         drawText("press any key to exit",color,new TerminalPosition(screen.getWidth()-21,screen.getHeight()));
@@ -37,7 +40,7 @@ public class ShowScoreboardState extends State{
 
     public void drawFromFile(String file) throws FileNotFoundException{
         int i = 7;
-        Scanner scanner = new Scanner(new File(file));
+        Scanner scanner = new Scanner(new File(file),UTF_8.name());
         while (scanner.hasNextLine() && i < 28) {
             String[] aux = scanner.nextLine().split(" ");
             if(aux.length == 2){

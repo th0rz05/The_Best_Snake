@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.IOException;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 public class RulesState extends State{
 
     String filepath;
@@ -33,6 +35,7 @@ public class RulesState extends State{
         checkInput(game);
     }
 
+    @Override
     public void drawAllText(String color){
         drawText("RULES",color,new TerminalPosition((screen.getWidth()/2)-2, 1));
         if(page!=3){
@@ -46,7 +49,7 @@ public class RulesState extends State{
     public void drawFromFile(String file) {
         int i = initialRow;
         try {
-            Scanner scanner = new Scanner(new File(file));
+            Scanner scanner = new Scanner(new File(file), UTF_8.name());
             while (scanner.hasNextLine()) {
                 drawText(scanner.nextLine(), "#000000", new TerminalPosition(2, i));
                 i += 1;

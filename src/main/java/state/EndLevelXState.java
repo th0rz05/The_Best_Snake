@@ -4,8 +4,13 @@ import com.googlecode.lanterna.TerminalPosition;
 import general.Game;
 import gui.LanternaGUI;
 import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.nio.file.StandardOpenOption.APPEND;
+import static java.nio.file.StandardOpenOption.CREATE;
 
 public abstract class EndLevelXState extends State {
     double time;
@@ -36,6 +41,7 @@ public abstract class EndLevelXState extends State {
         screen.getScreen().refresh();
     }
 
+    @Override
     public void drawAllText(String color){
         drawText("YOU WON! :)", "#FF0000", new TerminalPosition(20,3));
         drawText("PLEASE ENTER YOUR NAME", color, new TerminalPosition(15,9));
@@ -43,11 +49,11 @@ public abstract class EndLevelXState extends State {
         drawText("YOUR NAME: " + name,color, new TerminalPosition(12,16));
     }
 
-
+    @Override
     public void saveScore() throws IOException {
         File scoreboard = new File(filename);
-        BufferedWriter scoreWriter = new BufferedWriter(new FileWriter(scoreboard,true));
-        BufferedReader scoreReader = new BufferedReader(new FileReader(scoreboard));
+        BufferedWriter scoreWriter = Files.newBufferedWriter(scoreboard.toPath(), UTF_8, CREATE, APPEND);
+        BufferedReader scoreReader = Files.newBufferedReader(scoreboard.toPath(), UTF_8);
         List<String> scoreboardLs = new ArrayList<>();
         String s;
 
@@ -75,7 +81,7 @@ public abstract class EndLevelXState extends State {
         if(!added)
             scoreboardLs.add(name + " " + time);
 
-        BufferedWriter scoreWriter2 = new BufferedWriter(new FileWriter(scoreboard));
+        BufferedWriter scoreWriter2 = Files.newBufferedWriter(scoreboard.toPath(), UTF_8);
         for(int i = 0; i < scoreboardLs.size(); i++)
             scoreWriter2.write(scoreboardLs.get(i) + "\n");
 

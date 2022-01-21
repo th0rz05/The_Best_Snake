@@ -9,8 +9,13 @@ import general.Position;
 import gui.LanternaGUI;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.nio.file.StandardOpenOption.APPEND;
+import static java.nio.file.StandardOpenOption.CREATE;
 
 public class EndMultiplayerState extends State{
     String name1;
@@ -46,6 +51,7 @@ public class EndMultiplayerState extends State{
         screen.getScreen().refresh();
     }
 
+    @Override
     public void drawAllText(String color){
         if(draw){
             drawBackground("#7D9BA8");
@@ -115,10 +121,11 @@ public class EndMultiplayerState extends State{
         }
     }
 
+    @Override
     public void saveScore() throws IOException {
         File scoreboard = new File("src/main/resources/Scoreboards/MultiplayerScoreBoard.txt");
-        BufferedWriter scoreWriter = new BufferedWriter(new FileWriter(scoreboard,true));
-        BufferedReader scoreReader = new BufferedReader(new FileReader(scoreboard));
+        BufferedWriter scoreWriter = Files.newBufferedWriter(scoreboard.toPath(), UTF_8, CREATE, APPEND);
+        BufferedReader scoreReader = Files.newBufferedReader(scoreboard.toPath(), UTF_8);
         List<String> scoreboardLs = new ArrayList<>();
         String s;
 
@@ -136,7 +143,7 @@ public class EndMultiplayerState extends State{
         scoreWriter.close();
 
 
-        BufferedWriter scoreWriter2 = new BufferedWriter(new FileWriter(scoreboard));
+        BufferedWriter scoreWriter2 = Files.newBufferedWriter(scoreboard.toPath(), UTF_8);
         for(int i = 0; i < scoreboardLs.size(); i++)
             scoreWriter2.write(scoreboardLs.get(i) + "\n");
 
