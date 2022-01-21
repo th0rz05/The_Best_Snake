@@ -1,7 +1,7 @@
 package elements;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
-import game.Position;
+import general.Position;
 import elements.fruit.Fruit;
 import elements.snake.SnakeBody;
 import elements.snake.SnakeHead;
@@ -11,9 +11,9 @@ import java.util.List;
 
 public class Snake implements Drawable {
     private List<Element> snake = new ArrayList<>();
-    private int velocity;
+    private double velocity;
     private int size;
-    private int pace;
+    private double pace;
     private int directionX;
     private int directionY;
     private int PACE_TO_MOVEMENT = 12;
@@ -52,11 +52,11 @@ public class Snake implements Drawable {
         this.snake = snake;
     }
 
-    public int getVelocity() {
+    public double getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(int velocity) {
+    public void setVelocity(double velocity) {
         this.velocity = velocity;
     }
 
@@ -68,11 +68,11 @@ public class Snake implements Drawable {
         this.size = size;
     }
 
-    public int getPace() {
+    public double getPace() {
         return pace;
     }
 
-    public void setPace(int pace) {
+    public void setPace(double pace) {
         this.pace = pace;
     }
 

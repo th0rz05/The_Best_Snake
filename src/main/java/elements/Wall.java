@@ -1,6 +1,6 @@
 package elements;
 
-import game.Position;
+import general.Position;
 
 public class Wall extends Element {
 

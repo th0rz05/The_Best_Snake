@@ -1,4 +1,4 @@
-in all game modes you'll have different fruits
+in all general modes you'll have different fruits
 that affect your speed and size.
 
 

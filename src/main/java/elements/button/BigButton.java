@@ -1,6 +1,6 @@
 package elements.button;
 
-import game.Position;
+import general.Position;
 
 public class BigButton extends Button {
     public BigButton(Position position, String text) {

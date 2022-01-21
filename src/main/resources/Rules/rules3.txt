@@ -16,8 +16,8 @@ ARROW KEYS and ENTER. or use ANY KEY when it
 says so.
 
 
-in every game mode you can press 'P' to pause
-the game at any time and you can press 'Q' to
+in every general mode you can press 'P' to pause
+the general at any time and you can press 'Q' to
 quit to the main menu.
 
 

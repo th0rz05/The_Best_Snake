@@ -10,7 +10,7 @@ as you can, not letting the snake hit itself.
 
 MULTIPLAYER:
 
-in this game mode two players
+in this general mode two players
 are going to play against each other (ARROW
 KEYS and WASD), try as hard as you can to make
 the other snake touch your body in order to

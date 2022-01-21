@@ -1,6 +1,6 @@
 package elements.fruit;
 
-import game.Position;
+import general.Position;
 import static java.lang.Math.floor;
 import static java.lang.Math.random;
 

@@ -4,8 +4,8 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import elements.Snake;
-import game.Game;
-import game.Position;
+import general.Game;
+import general.Position;
 import gui.LanternaGUI;
 
 import java.io.*;

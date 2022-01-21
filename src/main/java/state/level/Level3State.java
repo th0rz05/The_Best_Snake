@@ -1,6 +1,5 @@
 package state.level;
 
-import game.Position;
 import gui.LanternaGUI;
 import state.LevelXState;
 

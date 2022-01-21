@@ -1,7 +1,7 @@
 package elements.fruit;
 
 
-import game.Position;
+import general.Position;
 import elements.Element;
 
 

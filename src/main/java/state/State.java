@@ -6,7 +6,7 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
 import elements.Snake;
 import elements.button.Button;
-import game.Game;
+import general.Game;
 import gui.LanternaGUI;
 import observer.KeyboardObserver;
 
@@ -145,7 +145,7 @@ public abstract class State {
         }
     }
 
-    public void saveScore() throws IOException{};
+    public void saveScore() throws IOException{}
 
     public void checkMovement(KeyStroke key){
         moveArrows(key);
@@ -166,7 +166,9 @@ public abstract class State {
             case ArrowRight: {
                 if (!(snake.getDirectionX() == -1 && snake.getDirectionY() == 0)) {
                     snake.changeDirection(1, 0);}break;}
+            default :break;
             }
+
     }
 
     public void moveWasd(KeyStroke key){
@@ -188,10 +190,10 @@ public abstract class State {
         }
     }
 
-    public void checkAction(Game game, KeyStroke key) throws IOException{};
+    public void checkAction(Game game, KeyStroke key) throws IOException{}
 
-    public void enterState(Game game) throws FileNotFoundException{};
+    public void enterState(Game game) throws FileNotFoundException{}
 
-    public void exit(Game game) throws IOException{};
+    public void exit(Game game) throws IOException{}
 
 }

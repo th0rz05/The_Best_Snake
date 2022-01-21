@@ -1,4 +1,4 @@
-package game;
+package general;
 
 import elements.Element;
 import elements.Snake;

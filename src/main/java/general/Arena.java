@@ -1,15 +1,11 @@
-package game;
+package general;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
 import elements.*;
 import elements.fruit.*;
-import gui.LanternaGUI;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import static java.lang.Math.floor;
 import static java.lang.Math.random;
@@ -138,13 +134,13 @@ public class Arena implements Drawable {
             possibleFruits.add(new Mistery(new Position(0,0)));
         }
 
-        f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
+        f1.setPosition(new Position((int)floor(random()*width),(int)floor(random()*height)));
         while(check_snake_collisions(f1.getPosition()) || check_wall_collisions(f1.getPosition()))
-            f1.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
+            f1.setPosition(new Position((int)floor(random()*width),(int)floor(random()*height)));
 
-        f2.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
+        f2.setPosition(new Position((int)floor(random()*width),(int)floor(random()*height)));
         while(check_snake_collisions(f2.getPosition()) || f2.getPosition().equals(f1.getPosition()) || check_wall_collisions(f2.getPosition()))
-            f2.setPosition(new Position((int)floor(random()*(width)),(int)floor(random()*(height))));
+            f2.setPosition(new Position((int)floor(random()*width),(int)floor(random()*height)));
 
         fruit1 = f1;
         fruit2 = f2;

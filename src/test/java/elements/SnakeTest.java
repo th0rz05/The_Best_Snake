@@ -1,6 +1,6 @@
 package elements;
 
-import game.Position;
+import general.Position;
 import elements.fruit.Apple;
 import elements.fruit.Banana;
 import elements.fruit.Kiwi;

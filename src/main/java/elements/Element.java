@@ -3,7 +3,7 @@ package elements;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import game.Position;
+import general.Position;
 
 public class Element implements Drawable {
     private Position position;
@@ -38,6 +38,7 @@ public class Element implements Drawable {
         this.color = color;
     }
 
+    @Override
     public void draw(TextGraphics screen) {
         screen.setForegroundColor(TextColor.Factory.fromString(color));
         screen.putString(new TerminalPosition(getPosition().getX(), getPosition().getY()), symbol);

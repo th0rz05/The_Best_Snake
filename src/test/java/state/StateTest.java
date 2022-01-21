@@ -1,6 +1,6 @@
 package state;
 
-import game.Game;
+import general.Game;
 import gui.LanternaGUI;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

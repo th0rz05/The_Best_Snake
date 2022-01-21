@@ -1,12 +1,9 @@
 package state;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import elements.button.BigButton;
-import elements.button.Button;
-import game.Position;
-import game.Game;
+import general.Position;
+import general.Game;
 import gui.LanternaGUI;
 import state.level.Level1State;
 import state.level.Level2State;

@@ -3,11 +3,11 @@ package state;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import game.Arena;
-import game.ArenaBuilder;
-import game.Position;
+import general.Arena;
+import general.ArenaBuilder;
+import general.Position;
 import elements.Snake;
-import game.Game;
+import general.Game;
 import gui.LanternaGUI;
 
 import java.io.IOException;

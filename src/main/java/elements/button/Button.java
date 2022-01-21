@@ -5,7 +5,7 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import elements.Drawable;
-import game.Position;
+import general.Position;
 import state.State;
 
 public abstract class Button implements Drawable {

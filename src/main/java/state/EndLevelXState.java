@@ -1,7 +1,7 @@
 package state;
 
 import com.googlecode.lanterna.TerminalPosition;
-import game.Game;
+import general.Game;
 import gui.LanternaGUI;
 import java.io.*;
 import java.util.ArrayList;

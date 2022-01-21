@@ -1,5 +1,5 @@
-import game.Game;
-import game.MusicPlayer;
+import general.Game;
+import general.MusicPlayer;
 import gui.LanternaGUI;
 import state.MenuState;
 

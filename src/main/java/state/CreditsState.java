@@ -1,16 +1,11 @@
 package state;
 
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.input.KeyType;
-import observer.KeyboardObserver;
-import game.Game;
+import general.Game;
 import gui.LanternaGUI;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
 import java.io.IOException;
 
 public class CreditsState extends State{

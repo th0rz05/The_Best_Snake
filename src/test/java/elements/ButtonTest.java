@@ -2,8 +2,7 @@ package elements;
 
 import com.googlecode.lanterna.TextColor;
 import elements.button.BigButton;
-import elements.button.Button;
-import game.Position;
+import general.Position;
 import gui.LanternaGUI;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

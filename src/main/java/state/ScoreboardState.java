@@ -3,8 +3,8 @@ package state;
 import com.googlecode.lanterna.TerminalPosition;
 import elements.button.BigButton;
 import elements.button.SmallButton;
-import game.Position;
-import game.Game;
+import general.Position;
+import general.Game;
 import gui.LanternaGUI;
 
 import java.io.FileNotFoundException;

@@ -1,6 +1,6 @@
 package elements.button;
 
-import game.Position;
+import general.Position;
 
 public class SmallButton extends Button{
     public SmallButton(Position position, String text) {

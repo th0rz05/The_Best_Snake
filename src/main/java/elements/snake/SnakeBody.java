@@ -1,5 +1,5 @@
 package elements.snake;
-import game.Position;
+import general.Position;
 import elements.Element;
 
 public class SnakeBody extends Element {

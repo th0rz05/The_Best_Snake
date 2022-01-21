@@ -1,6 +1,6 @@
 package elements.fruit;
 
-import game.Position;
+import general.Position;
 
 public class Banana extends Fruit {
     public Banana(Position position) {
