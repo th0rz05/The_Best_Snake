@@ -2,8 +2,8 @@ eating a ORANGE will not affect your speed but
 increase your size by 1.
 
 
-eating an PEACH will divide your speed in half
-and decrease your size by 3.
+eating an PEACH will halven your speed and
+decrease your size by 3.
 
 
 there is also a MISTERY fruit that can affect

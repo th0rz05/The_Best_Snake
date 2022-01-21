@@ -1,1 +1,4 @@
-uf 4 17.3
+leandro 5 8.0
+andre 5 8.9
+duarte 3 5.4
+tiago 2 21.2
