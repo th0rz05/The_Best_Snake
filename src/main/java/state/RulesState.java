@@ -20,7 +20,7 @@ public class RulesState extends State{
 
     public RulesState(LanternaGUI screen) {
         super(screen);
-        filepath = "src/main/resources/rules1.txt";
+        filepath = "src/main/resources/Rules/rules1.txt";
         page = 1;
         initialRow = 4;
     }
@@ -64,12 +64,12 @@ public class RulesState extends State{
             KeyStroke key = observer.getKeys().get(0);
             if(key.getKeyType()!= KeyType.EOF) {
                 if(page==1) {
-                    filepath = "src/main/resources/rules2.txt";
+                    filepath = "src/main/resources/Rules/rules2.txt";
                     page = 2;
                     initialRow = 5;
                 }
                 else if(page==2){
-                    filepath = "src/main/resources/rules3.txt";
+                    filepath = "src/main/resources/Rules/rules3.txt";
                     page = 3;
                     initialRow = 5;
                 }

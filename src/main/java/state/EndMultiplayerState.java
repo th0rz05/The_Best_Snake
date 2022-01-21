@@ -92,7 +92,7 @@ public class EndMultiplayerState extends State{
 
     public void readFirstName(KeyStroke key){
         if(key.getKeyType()== KeyType.Character && name1.length() <= 10 ){
-            name1 += key.getCharacter().toString();
+            name1 += key.getCharacter().toString().toLowerCase();
         }
         else if(key.getKeyType()== KeyType.Enter){
             firstNameDone = true;
@@ -104,7 +104,7 @@ public class EndMultiplayerState extends State{
 
     public void readSecondName(KeyStroke key,Game game) throws IOException{
         if(key.getKeyType()== KeyType.Character && name2.length() <= 10 ){
-            name2 += key.getCharacter().toString();
+            name2 += key.getCharacter().toString().toLowerCase();
         }
         else if(key.getKeyType()== KeyType.Enter){
             saveScore();
