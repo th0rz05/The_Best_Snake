@@ -41,6 +41,7 @@ public class EndOriginalState extends State{
         drawText("YOUR NAME: " + name,color, new TerminalPosition(12,16));
     }
 
+    @Override
     public void saveScore() throws IOException {
         File scoreboard = new File("src/main/resources/Scoreboards/OriginalScoreBoard.txt");   // Melhorar método!
         BufferedWriter scoreWriter = Files.newBufferedWriter(scoreboard.toPath(), UTF_8, CREATE, APPEND);
