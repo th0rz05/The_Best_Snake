@@ -1,49 +1,34 @@
 package pt.up.ldts.elements;
 
-import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import pt.up.ldts.elements.button.BigButton;
 import pt.up.ldts.general.Position;
-import pt.up.ldts.gui.LanternaGUI;
-
-import java.io.IOException;
 
 public class ButtonTest {
 
     BigButton button;
-    LanternaGUI screen;
+    TextGraphics graphics;
 
     @BeforeEach
-    public void setup() throws IOException {
+    public void setup() {
         button = new BigButton(new Position(10,10),"test");
-        screen = new LanternaGUI(50,50);
-        screen.getScreen().startScreen();
+        graphics = Mockito.mock(TextGraphics.class);
     }
 
     @Test
-    public void drawTestNotHighlighted() throws IOException {
-        button.draw(screen.getGraphics());
-        Assertions.assertEquals(button.getText().substring(0,1),screen.getScreen().getBackCharacter(11,11).getCharacterString());
-        Assertions.assertEquals(button.getText().substring(1,2),screen.getScreen().getBackCharacter(12,11).getCharacterString());
-        Assertions.assertEquals(button.getText().substring(2,3),screen.getScreen().getBackCharacter(13,11).getCharacterString());
-        Assertions.assertEquals(button.getText().substring(3,4),screen.getScreen().getBackCharacter(14,11).getCharacterString());
-        Assertions.assertEquals( new TextColor.RGB(255,255,255),screen.getScreen().getBackCharacter(11,11).getForegroundColor());
-        screen.getScreen().stopScreen();
-        screen.getScreen().close();
+    public void drawTestNotHighlighted()  {
+        button.draw(graphics);
+        Assertions.assertEquals("#FFFFFF",button.getColor());
     }
 
     @Test
-    public void drawTestHighlighted() throws IOException {
+    public void drawTestHighlighted() {
         button.setHighlight(true);
-        button.draw(screen.getGraphics());
-        Assertions.assertEquals(button.getText().substring(0,1),screen.getScreen().getBackCharacter(11,11).getCharacterString());
-        Assertions.assertEquals(button.getText().substring(1,2),screen.getScreen().getBackCharacter(12,11).getCharacterString());
-        Assertions.assertEquals(button.getText().substring(2,3),screen.getScreen().getBackCharacter(13,11).getCharacterString());
-        Assertions.assertEquals(button.getText().substring(3,4),screen.getScreen().getBackCharacter(14,11).getCharacterString());
-        Assertions.assertEquals( new TextColor.RGB(249,242,4),screen.getScreen().getBackCharacter(11,11).getForegroundColor());
-        screen.getScreen().stopScreen();
-        screen.getScreen().close();
+        button.draw(graphics);
+        Assertions.assertEquals("#F9F204",button.getColor());
     }
 }

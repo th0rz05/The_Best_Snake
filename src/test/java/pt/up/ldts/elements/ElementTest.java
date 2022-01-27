@@ -1,37 +1,34 @@
 package pt.up.ldts.elements;
 
 
-import org.junit.jupiter.api.Assertions;
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import pt.up.ldts.general.Position;
 import pt.up.ldts.gui.LanternaGUI;
 
-import java.io.IOException;
+
+import static org.mockito.Mockito.atLeastOnce;
 
 public class ElementTest {
     LanternaGUI screen;
     Element element;
+    TextGraphics graphics;
+
     @BeforeEach
-    public void setup() throws IOException {
-        screen = new LanternaGUI(100,100);
-        screen.getScreen().startScreen();
+    public void setup(){
+        graphics = Mockito.mock(TextGraphics.class);
+        screen = Mockito.mock(LanternaGUI.class);
+        Mockito.when(screen.getGraphics()).thenReturn(graphics);
         element = new Element(new Position(10, 10));
         element.setSymbol("T");
     }
 
     @Test
-    public void test_draw() throws IOException {
+    public void test_draw() {
         element.draw(screen.getGraphics());
-        Assertions.assertEquals(element.getSymbol(),screen.getScreen().getBackCharacter(10,10).getCharacterString());
-        screen.getScreen().stopScreen();
-        screen.getScreen().close();
-    }
-    @Test
-    public void test_draw2() throws IOException {
-        element.draw(screen.getGraphics());
-        Assertions.assertNotEquals(element.getSymbol(),screen.getScreen().getBackCharacter(20,20).getCharacterString());
-        screen.getScreen().stopScreen();
-        screen.getScreen().close();
+        Mockito.verify(graphics,atLeastOnce()).putString(Mockito.any(TerminalPosition.class),Mockito.anyString());
     }
 }
