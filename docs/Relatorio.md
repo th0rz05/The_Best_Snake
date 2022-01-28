@@ -73,6 +73,8 @@ Depois cada estado, dependendo do que acontecer, pode mudar o estado do jogo per
 
 ![StateUML](../Imagens/UML/StateUML.png)
 
+
+
 As classes podem ser encontradas aqui:
 - [Game](../src/main/java/pt/up/ldts/general/Game.java)
 - [State](../src/main/java/pt/up/ldts/state/State.java)
