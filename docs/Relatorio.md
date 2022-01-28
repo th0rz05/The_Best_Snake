@@ -72,6 +72,7 @@ Depois cada estado, dependendo do que acontecer, pode mudar o estado do jogo per
 
 
 ![StateUML](../Imagens/UML/StateUML.png)
+
 As classes podem ser encontradas aqui:
 - [Game](../src/main/java/pt/up/ldts/general/Game.java)
 - [State](../src/main/java/pt/up/ldts/state/State.java)
@@ -100,6 +101,7 @@ Criámos uma classe ArenaBuilder que criava uma arena geral e depois tinha vári
 , usando essas funções disponíveis.
 
 ![BuilderUML](../Imagens/UML/BuilderUML.png)
+
 As classes podem ser encontradas aqui:
 - [Arena](../src/main/java/pt/up/ldts/general/Game.java)
 - [ArenaBuilder](../src/main/java/pt/up/ldts/state/State.java)
