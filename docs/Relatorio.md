@@ -1,7 +1,7 @@
 # LDTS <05 01> - THE BEST SNAKE
 
 Para o nosso projeto escolhemos como base o jogo "snake". O projeto terá vários modos de jogo, nomeadamente, o modo original , um modo multijogador e um modo desafio. Em todos as cobras têm que apanhar frutas para crescer e cumprir o objetivo de cada minijogo.
-Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up202008061, Tiago Barbosa up202004926 para LDTS 2021/22.
+Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up202008061, Tiago Barbosa up202004926 para LDTS 2021/22.Pode ver uma descrição mais detalhada [aqui](../README.md).
 
 
 ## FUNCIONALIDADES IMPLEMENTADAS
@@ -22,6 +22,8 @@ Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up2020
 - **Reset** - Permite resetar as pontuações.
 ## FUNCIONALIDADES A IMPLEMENTAR
 
+Todas as funcionalidades desejadas foram implementadas.
+
 ## DESIGN
 
 ### Diferentes formas de desenhar os elementos
@@ -38,6 +40,12 @@ O pattern que nós escolhemos foi o **_Command Pattern_** já que vai permitir m
 
 Este pattern evita o uso de várias flags para determinar o tipo de elemento que pretendemos desenhar porque ele remete essa tarefa para o próprio objeto permitindo assim apenas mandar o objeto desenhar-se a si próprio.
 Assim podermos apenas percorrer todo os elementos em jogo e fazê-los desenharem-se a eles mesmos.
+![CommandUML](../Imagens/UML/CommandUML.PNG)
+As classes podem ser encontradas aqui:
+- [Arena](../src/main/java/pt/up/ldts/general/Arena.java)
+- [Drawable](../src/main/java/pt/up/ldts/elements/Drawable.java)
+- [Element](../src/main/java/pt/up/ldts/elements/Element.java)
+- [Snake](../src/main/java/pt/up/ldts/elements/Snake.java)
 
 #### Consequências
 
@@ -59,13 +67,20 @@ Decidimos aplicar o **_State Pattern_** para o nosso programa visto que permite 
 
 Nesta implementação o programa tem a si associado um estado que tem um tarefa principal(step()) que está sempre a ser executada no loop do jogo.
 Depois cada estado, dependendo do que acontecer, pode mudar o estado do jogo permitindo assim controlar sempre em que estado está o programa.
+![StateUML](../Imagens/UML/StateUML.PNG)
+As classes podem ser encontradas aqui:
+- [Game](../src/main/java/pt/up/ldts/general/Game.java)
+- [State](../src/main/java/pt/up/ldts/state/State.java)
+- [OriginalState](../src/main/java/pt/up/ldts/state/OriginalState.java)
+- [MultiplayerState](../src/main/java/pt/up/ldts/state/MultiplayerState.java)
+- [MenuState](../src/main/java/pt/up/ldts/state/MenuState.java)
 #### Consequências
 
 O uso deste pattern traz vantagens como:
 - Torna desnecessário o uso de várias flags para controlar o estado do programa
 - Facilita a integração de um novo estado no programa não sendo necessário mudanças no código
 
-
+Este pattern trouxe uma desvantagem já que tivemos que criar uma nova classe para cada estado novo ficando assim o programa com muitas classes.
 ### Construir uma arena com diferentes propriedades
 
 #### Contexto do problema
@@ -77,7 +92,16 @@ Dependendo de qual minijogo vamos jogar a nossa arena tem atributos diferentes c
 Decidimos aplicar o **_Builder Pattern_** para o nosso programa já que permitia ter um objeto que se preocupava com a construção da nossa arena e dos vários pormenores de cada minijogo.
 #### Implementação
 
-Criámos uma classe ArenaBuilder que criava uma arena geral e depois tinha várias funções como adicionar paredes e adicionar porta que permitia a cada minijogo do nosso programa criar a arena da forma que necessitar, usando essas funções disponíveis.
+Criámos uma classe ArenaBuilder que criava uma arena geral e depois tinha várias funções como adicionar paredes e adicionar porta que permitia a cada minijogo do nosso programa criar a arena da forma que necessitar
+, usando essas funções disponíveis.
+
+![BuilderUML](../Imagens/UML/BuilderUML.png)
+As classes podem ser encontradas aqui:
+- [Arena](../src/main/java/pt/up/ldts/general/Game.java)
+- [ArenaBuilder](../src/main/java/pt/up/ldts/state/State.java)
+- [OriginalState](../src/main/java/pt/up/ldts/state/OriginalState.java)
+- [MultiplayerState](../src/main/java/pt/up/ldts/state/MultiplayerState.java)
+- [LevelXState](../src/main/java/pt/up/ldts/state/LevelXState.java)
 #### Consequências
 
 O uso deste pattern traz vantagens como:
