@@ -113,22 +113,23 @@ O uso deste pattern traz vantagens como:
 - Permite-nos construir a arena de forma progressiva passo a passo ao invés de ter vários construtores ou usar recursão.
 - Permite-nos isolar a parte de construção da arena para um objeto próprio permitindo assim que cada estado que use uma arena não tenha que saber como ela se cria e apenas tenha que solicitar a sua criação. 
 
-##CODE SMELLS
+## CODE SMELLS
 
-####Método longo
+#### Método longo
 O método com este code smell é o saveScore() em [EndOriginal](../src/main/java/pt/up/ldts/state/EndOriginalState.java) que tem muitas linhas e pode ficar bastante complicado de ler e para o resolver deveríamos usar o **Extract Method** onde criávamos funções mais pequenas para realizar algumas tarefas.
-####Classe longa
+#### Classe longa
 As classes [Arena](../src/main/java/pt/up/ldts/general/Arena.java) e [Snake](../src/main/java/pt/up/ldts/elements/Snake.java) são classes muito extensas o que pode dificultar a sua leitura.Podemos usar o método **Extract Class** para criar subclasses , no entanto estas duas classes são muito importantes no nosso programa e tendo em conta os design patterns usados, é natural que estas classes sejam longas.
-####Código duplicado
+#### Código duplicado
 Nas classes [EndMultiplayerState](../src/main/java/pt/up/ldts/state/EndMultiplayerState.java) e [EndOriginalState](../src/main/java/pt/up/ldts/state/EndOriginalState.java) o método saveScore() é muito semelhante pelo que devíamos usar o método **Pull Up Field** e passar este método para a classe [State](../src/main/java/pt/up/ldts/state/State.java).
-##TESTES
+
+## TESTES
 
 Coverage dos testes:
 ![Coverage](../Imagens/Screenshots/testCoverage.png)
 
 -[Mutation](../build/reports/pitest/202201281512/index.html)
 
-##AUTOAVALIAÇÃO
+## AUTOAVALIAÇÃO
 
 Todos os membros do grupo trabalharam de forma equivalente e deram o seu melhor para este projeto
 - Duarte Lopes : 33.3%

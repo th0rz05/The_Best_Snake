@@ -2,19 +2,19 @@
 
 O jogo da "SNAKE" completamente renovado com vários modos de jogo que te permitem reviver o passado com um modo igual ao jogo original, jogar com os teus amigos numa partida "cobra vs cobra" no modo multijogador e até para os jogadores mais experientes um modo desafio onde terás novas dificuldades num labirinto. Será que consegues escapar? 
 
-###MENU
+### MENU
 ![Menu](Imagens/Screenshots/menu.png)
-###REGRAS
+### REGRAS
 ![Rules](Imagens/Screenshots/regras.png)
-###ORIGINAL
+### ORIGINAL
 ![Original](Imagens/Screenshots/original.png)
-###PAUSE
+### PAUSE
 ![Pause](Imagens/Screenshots/pause.png)
-###VITÓRIA
+### VITÓRIA
 ![Vitoria](Imagens/Screenshots/vitoria.png)
-###MULTIJOGADOR
+### MULTIJOGADOR
 ![Multiplayer](Imagens/Screenshots/multiplayer.png)
-###DESAFIO
+### DESAFIO
 ![Challenge](Imagens/Screenshots/challenge.png)
-###PONTUAÇÕES
+### PONTUAÇÕES
 ![Scoreboard](Imagens/Screenshots/scoreboard.png)
