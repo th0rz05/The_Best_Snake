@@ -40,6 +40,8 @@ O pattern que nós escolhemos foi o **_Command Pattern_** já que vai permitir m
 
 Este pattern evita o uso de várias flags para determinar o tipo de elemento que pretendemos desenhar porque ele remete essa tarefa para o próprio objeto permitindo assim apenas mandar o objeto desenhar-se a si próprio.
 Assim podermos apenas percorrer todo os elementos em jogo e fazê-los desenharem-se a eles mesmos.
+
+
 ![CommandUML](../Imagens/UML/CommandUML.png)
 As classes podem ser encontradas aqui:
 - [Arena](../src/main/java/pt/up/ldts/general/Arena.java)
@@ -67,6 +69,8 @@ Decidimos aplicar o **_State Pattern_** para o nosso programa visto que permite 
 
 Nesta implementação o programa tem a si associado um estado que tem um tarefa principal(step()) que está sempre a ser executada no loop do jogo.
 Depois cada estado, dependendo do que acontecer, pode mudar o estado do jogo permitindo assim controlar sempre em que estado está o programa.
+
+
 ![StateUML](../Imagens/UML/StateUML.png)
 As classes podem ser encontradas aqui:
 - [Game](../src/main/java/pt/up/ldts/general/Game.java)
