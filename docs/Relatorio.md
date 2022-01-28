@@ -107,3 +107,4 @@ As classes podem ser encontradas aqui:
 O uso deste pattern traz vantagens como:
 - Permite-nos construir a arena de forma progressiva passo a passo ao invés de ter vários construtores ou usar recursão.
 - Permite-nos isolar a parte de construção da arena para um objeto próprio permitindo assim que cada estado que use uma arena não tenha que saber como ela se cria e apenas tenha que solicitar a sua criação. 
+
