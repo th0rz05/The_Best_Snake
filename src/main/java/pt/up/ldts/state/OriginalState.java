@@ -29,6 +29,7 @@ public class OriginalState extends State {
         arenaBuilder = new ArenaBuilder(snakeList,screen)
 ;       arena = arenaBuilder.getArena();
         arena.addFruits();
+
     }
 
 
@@ -36,8 +37,8 @@ public class OriginalState extends State {
     public void step(Game game) throws  IOException{
         Boolean GameOver;
         screen.getScreen().clear();
-        drawBackground("#85AA89");
         drawAllText("#000000");
+        drawBackground("#85AA88");
         arena.draw(screen.getGraphics());
         checkInputPlay(game);
         GameOver = arena.execute();
