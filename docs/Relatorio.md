@@ -1,7 +1,7 @@
 # LDTS <05 01> - THE BEST SNAKE
 
 Para o nosso projeto escolhemos como base o jogo "snake". O projeto terá vários modos de jogo, nomeadamente, o modo original , um modo multijogador e um modo desafio. Em todos as cobras têm que apanhar frutas para crescer e cumprir o objetivo de cada minijogo.
-Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up202008061, Tiago Barbosa up202004926 para LDTS 2021/22.Pode ver uma descrição mais detalhada [aqui](../README.md).
+Este projeto foi desenvolvido por Duarte Lopes up202006408, Leandro Silva up202008061, Tiago Barbosa up202004926 para LDTS 2021/22. Pode ver uma descrição mais detalhada [aqui](../README.md).
 
 
 ## FUNCIONALIDADES IMPLEMENTADAS
@@ -108,3 +108,24 @@ O uso deste pattern traz vantagens como:
 - Permite-nos construir a arena de forma progressiva passo a passo ao invés de ter vários construtores ou usar recursão.
 - Permite-nos isolar a parte de construção da arena para um objeto próprio permitindo assim que cada estado que use uma arena não tenha que saber como ela se cria e apenas tenha que solicitar a sua criação. 
 
+##CODE SMELLS
+
+####Método longo
+O método com este code smell é o saveScore() em [EndOriginal](../src/main/java/pt/up/ldts/state/EndOriginalState.java) que tem muitas linhas e pode ficar bastante complicado de ler e para o resolver deveríamos usar o **Extract Method** onde criávamos funções mais pequenas para realizar algumas tarefas.
+####Classe longa
+As classes [Arena](../src/main/java/pt/up/ldts/general/Arena.java) e [Snake](../src/main/java/pt/up/ldts/elements/Snake.java) são classes muito extensas o que pode dificultar a sua leitura.Podemos usar o método **Extract Class** para criar subclasses , no entanto estas duas classes são muito importantes no nosso programa e tendo em conta os design patterns usados, é natural que estas classes sejam longas.
+####Código duplicado
+Nas classes [EndMultiplayerState](../src/main/java/pt/up/ldts/state/EndMultiplayerState.java) e [EndOriginalState](../src/main/java/pt/up/ldts/state/EndOriginalState.java) o método saveScore() é muito semelhante pelo que devíamos usar o método **Pull Up Field** e passar este método para a classe [State](../src/main/java/pt/up/ldts/state/State.java).
+##TESTES
+
+Coverage dos testes:
+![Coverage](../Imagens/Screenshots/testCoverage.png)
+
+-[Mutation](../build/reports/pitest/202201281512/index.html)
+
+##AUTOAVALIAÇÃO
+
+Todos os membros do grupo trabalharam de forma equivalente e deram o seu melhor para este projeto
+- Duarte Lopes : 33.3%
+- Leandro Silva : 33.3%
+- Tiago Barbosa : 33.4%

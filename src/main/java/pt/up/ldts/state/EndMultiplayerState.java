@@ -64,7 +64,6 @@ public class EndMultiplayerState extends State {
         else if(!firstNameDone){
             drawBackground("#91F474");
             drawText("YOU WON! :)", color, new TerminalPosition(20,3));
-            //drawSnake(snake);
             drawText("SNAKE1", snake.getBodyColor(), new TerminalPosition(23,5));
             drawText("PLEASE ENTER YOUR NAME", color, new TerminalPosition(15,9));
             drawText("SCORE: " + score1, color, new TerminalPosition(12,25));
@@ -74,7 +73,6 @@ public class EndMultiplayerState extends State {
             drawBackground("#F59797");
             drawText("YOU LOST! :(", color, new TerminalPosition(20,3));
             drawText("SNAKE2", snake2.getBodyColor(), new TerminalPosition(23,5));
-            //drawSnake(snake2);
             drawText("PLEASE ENTER YOUR NAME", color, new TerminalPosition(15,9));
             drawText("SCORE: " + score2, color, new TerminalPosition(12,25));
             drawText("YOUR NAME: " + name2,color, new TerminalPosition(12,16));
@@ -153,18 +151,4 @@ public class EndMultiplayerState extends State {
         scoreWriter2.close();
         scoreReader.close();
     }
-
-    public void drawSnake(Snake s){
-        s.getSnakeHead().setPosition(new Position(27,5));
-        s.getSnakeTail().setPosition(new Position(26,5));
-        s.getSnakeHead().draw(screen.getGraphics());
-        s.getSnakeTail().draw(screen.getGraphics());
-        s.getSnakeTail().setPosition(new Position(25,5));
-        s.getSnakeTail().draw(screen.getGraphics());
-        s.getSnakeTail().setPosition(new Position(24,5));
-        s.getSnakeTail().draw(screen.getGraphics());
-        s.getSnakeTail().setPosition(new Position(23,5));
-        s.getSnakeTail().draw(screen.getGraphics());
-    }
-
 }
