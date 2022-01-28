@@ -26,13 +26,7 @@ public class LanternaGUI {
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             terminalFactory.setForceAWTOverSwing(true);
             terminalFactory.setTerminalEmulatorFontConfiguration(loadFont("src/main/resources/fonts/square.ttf"));
-            terminalFactory.setTerminalEmulatorTitle("THE BEST SNAKE");
-            Terminal terminal = terminalFactory.createTerminal();
-            this.screen = new TerminalScreen(terminal);
-            this.graphics = screen.newTextGraphics();
-            screen.setCursorPosition(null);
-            screen.startScreen();
-            screen.doResizeIfNecessary();
+            createScreen(terminalFactory);
         }
         catch (IOException  | FontFormatException e){
             e.printStackTrace();
@@ -47,13 +41,7 @@ public class LanternaGUI {
             DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
             terminalFactory.setForceAWTOverSwing(true);
             terminalFactory.setTerminalEmulatorFontConfiguration(loadFont(filename));
-            terminalFactory.setTerminalEmulatorTitle("THE BEST SNAKE");
-            Terminal terminal = terminalFactory.createTerminal();
-            this.screen = new TerminalScreen(terminal);
-            this.graphics = screen.newTextGraphics();
-            screen.setCursorPosition(null);
-            screen.startScreen();
-            screen.doResizeIfNecessary();
+            createScreen(terminalFactory);
         }
         catch (IOException  | FontFormatException e){
             e.printStackTrace();
@@ -90,6 +78,16 @@ public class LanternaGUI {
 
     public void setWidth(int width) {
         this.width = width;
+    }
+
+    public void createScreen(DefaultTerminalFactory terminalFactory) throws IOException{
+        terminalFactory.setTerminalEmulatorTitle("THE BEST SNAKE");
+        Terminal terminal = terminalFactory.createTerminal();
+        this.screen = new TerminalScreen(terminal);
+        this.graphics = screen.newTextGraphics();
+        screen.setCursorPosition(null);
+        screen.startScreen();
+        screen.doResizeIfNecessary();
     }
 
     public AWTTerminalFontConfiguration loadFont(String filename) throws FontFormatException, IOException{
