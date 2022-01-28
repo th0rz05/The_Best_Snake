@@ -70,11 +70,9 @@ Decidimos aplicar o **_State Pattern_** para o nosso programa visto que permite 
 Nesta implementação o programa tem a si associado um estado que tem um tarefa principal(step()) que está sempre a ser executada no loop do jogo.
 Depois cada estado, dependendo do que acontecer, pode mudar o estado do jogo permitindo assim controlar sempre em que estado está o programa.
 
-
 ![StateUML](../Imagens/UML/StateUML.png)
 
-
- As classes podem ser encontradas aqui:
+As classes podem ser encontradas aqui:
 - [Game](../src/main/java/pt/up/ldts/general/Game.java)
 - [State](../src/main/java/pt/up/ldts/state/State.java)
 - [OriginalState](../src/main/java/pt/up/ldts/state/OriginalState.java)
