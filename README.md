@@ -1,20 +1,21 @@
 # THE BEST SNAKE
 
-O jogo da "SNAKE" completamente renovado com vários modos de jogo que te permitem reviver o passado com um modo igual ao jogo original, jogar com os teus amigos numa partida "cobra vs cobra" no modo multijogador e até para os jogadores mais experientes um modo desafio onde terás novas dificuldades num labirinto. Será que consegues escapar? 
+Welcome to The Best Snake, a game developed for the [Software Design and Testing Laboratory Curricular Unit](https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=501676)
+The completely revamped "SNAKE" game with several game modes that let you relive the past with a mode just like the original game, play with your friends in a "snake vs. snake" multiplayer match, and even for the more experienced players a challenge mode where you will have new difficulties in a maze. Can you escape? 
 
 ### MENU
 ![Menu](Imagens/Screenshots/menu.png)
-### REGRAS
+### RULES
 ![Rules](Imagens/Screenshots/regras.png)
 ### ORIGINAL
 ![Original](Imagens/Screenshots/original.png)
 ### PAUSE
 ![Pause](Imagens/Screenshots/pause.png)
-### VITÓRIA
+### WINNER
 ![Vitoria](Imagens/Screenshots/vitoria.png)
-### MULTIJOGADOR
+### MULTIPLAYER
 ![Multiplayer](Imagens/Screenshots/multiplayer.png)
-### DESAFIO
+### CHALLENGE
 ![Challenge](Imagens/Screenshots/challenge.png)
-### PONTUAÇÕES
+### SCOREBOARD
 ![Scoreboard](Imagens/Screenshots/scoreboard.png)
